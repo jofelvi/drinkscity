@@ -1,0 +1,42 @@
+<% content_for :content do %>
+<div class="container-fluid">
+    <div class=" col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4 col-xs-12 col-sm-12"  >
+      <div class="col-xs-12 text-center">
+        <%= image_tag 'drinkscity.png', style: 'width: 100%;max-width: 150px;' %>
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+        </div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="form-group">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me, 'Recuerdame' %>
+          </div>
+        <% end -%>
+
+        <%if params[:cart]%>
+          <%=f.hidden_field(:cart, value:true)%>
+        <%end%>
+
+        <div class="form-group">
+          <%= f.submit "Iniciar Sesión", class: "btn btn-primary btn-block buttonP" %>
+        </div>
+        <%= link_to "Iniciar sesion con Facebook", user_facebook_omniauth_authorize_path, class:" btn btn-block btnRR KR", style:"background-color: #4267b2;" %>
+        <%= link_to "Iniciar sesion con Google", user_google_oauth2_omniauth_authorize_path, class:" btn btn-block btnRR KR", style:"background-color: #DD4B39;" %>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+      <%end%>
+          <br>
+      
+
+    </div>
+  </div>

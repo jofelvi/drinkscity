@@ -1,0 +1,159 @@
+<style type="text/css">
+	.items{
+		margin: 5px 0;
+		border-bottom: 1px solid #C2C2C2;
+	}
+
+	.mail-image{
+		width: 100px;
+		text-align: center;
+		border: 0.2mm solid #C2C2C2;
+	}
+
+	.name-product{
+		font-size: 1.9rem;
+	}
+
+	.div-total{
+		margin-top: 30px;
+	}
+
+	.subtotal{
+		margin-left: 30px;
+	}
+
+	.line-sum{
+		background-color: #aaa;
+		height: 1px;
+		width: 100%;
+		float: left;
+		margin: 10px 0;
+	}
+
+	.table-total{
+		margin-top: 40px;
+	}
+
+</style>
+
+<h4>Detalles de la compra</h4>
+<br>
+<% @order.order_items.each do |order| %>
+	<div class="row items">
+		<div class="col-md-2" style="padding-left: 0; padding-right: 0; ">
+			<%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image' %>
+		</div>
+		<div class="col-md-10">
+			<h5 class="name-product">
+				<%= order.item.name %>
+			</h5>
+			<p>
+				<small>
+					Cantidad: <%= order.quantity %>
+				</small>
+			</p>
+			<h4>
+				<%= number_to_currency(order.unit_price, precision: 0, format: "%u %n c/u" ) %>
+			</h4>
+		</div>
+	</div>
+<% end %>
+
+
+<table class="table-total">
+	<tbody>
+		<tr>
+			<td align="right">
+				<%= @order.order_items.count %> Producto:
+			</td>
+			<td>
+				<span class="subtotal"><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></span>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><hr class="line-sum" /></td>
+		</tr>
+		<tr>
+			<td align="right">
+				Total:
+			</td>
+			<td>
+				<span class="subtotal"><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="col-md-10">
+	<div class="row" style="margin-bottom: 180px;">
+		<div class="col-md-6 col-md-offset-3 text-center" style="position: relative;">
+			<div class="" style="background-color: #FFF; width: 220px; padding: 10px; position: absolute; margin-left:auto;margin-right:auto;left:0;right:0;">
+				<div id="contentqr" ></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if @order.store.delivery %>
+  <div class="col-md-10">
+  	<h3>Datos de entrega</h3>
+  	<p><strong>Recibe:</strong> <%= @order.recipient_name %></p>
+  	<p><strong>Dirección:</strong> <%= @order.address %></p>
+  </div>
+<% end %>
+
+<div class="col-md-10 ">
+	<footer>
+		<p>
+			<strong>
+				Vendedor
+			</strong>
+		</p>
+
+
+		<p>
+			<% if @order.order_items.first.item.priority == "evento" %>
+				<%= @order.order_items.first.item.event.name %>
+			<% else %>
+				<%= @order.order_items.first.item.item.name %>
+			<% end %>
+		</p>
+
+		<p>
+			Dirección
+		</p>
+
+		<p>
+			<% if @order.order_items.first.item.priority == "evento" %>
+				<%= @order.order_items.first.item.event.address %>
+			<% else %>
+				<%= @order.order_items.first.item.store.address %>
+			<% end %>
+		</p>
+
+		<br>
+	</footer>
+</div>
+<%= javascript_include_tag 'client' %>
+<script type="text/javascript">
+	$('#contentqr').qrcode({
+	    render: 'image',
+	    background: '#FFF',
+	    fill: '#000',
+	    text: '<%=@order.id%>',
+        minVersion: 5,
+        maxVersion: 40,
+		ecLevel: 'L',
+	    left: 0,
+	    top: 0,
+	    size: 200,
+		quiet: 0,
+	    mode: 0,
+	    mSize: 0.1,
+	    mPosX: 0.5,
+	    mPosY: 0.5,
+	    fontname: 'sans',
+	    fontcolor: '#000',
+	    image: null
+	});
+</script>

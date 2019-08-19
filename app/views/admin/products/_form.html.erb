@@ -1,0 +1,152 @@
+<%= form_with(model: [:admin, @product] , local: true, class: 'form-horizontal form-label-left input_mask' ) do |form| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2>Tuvimos <%= pluralize(@product.errors.count, "error") %> al crear este aviso.</h2>
+      <ul>
+        <% @product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Nuevo Aviso<small></small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li>
+            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <br />
+        <%= form.hidden_field :user_id, value: current_user.id, readonly: true %>
+
+        <%= form.hidden_field :item_type, value: 'Store', readonly: true %>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Tienda que vende el producto:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.select(:item_id, @stores ,{:include_blank => "Seleccione la tienda"}, {:class => "form-control", disabled: disabled}) %>
+            <%#= select_tag "item_id", options_from_collection_for_select(@stores, "id", "name"), class: 'form-control select select2', prompt: "Seleccione la tienda" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Tipo de aviso:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.select(:priority, Product.priorities.keys.reject{ |p| p=='evento' }.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione el tipo de aviso"}, {:class => "form-control", disabled: disabled}) %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Categoría
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.select(:category, Product.categories.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione la categoria del producto"}, {:class => "form-control", disabled: disabled}) %>          
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Nombre del producto:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.text_field :name, class:"form-control", placeholder:"Nombre del producto" , disabled: disabled%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Foto del producto:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+           <%= form.file_field :image, class: 'form-control' %>        
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Precio:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <%= form.text_field :price, class:"form-control", onkeyup: "format(this)", onchange: "format(this)", id: :user_fullname, placeholder:"Precio",  onkeypress: 'validate(event)' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Stock
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.number_field :stock, class:"form-control", id: :user_fullname, placeholder:"Stock", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Descripción
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.text_area :description, class:"form-control", id: :user_fullname, placeholder:"Descripcion del producto", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Inicia
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.datetime_field :start_datetime, class:"form-control", id: :user_fullname, placeholder:"Valido desde", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Termina
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.datetime_field :end_datetime, class:"form-control", id: :user_fullname, placeholder:"Valido hasta", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            ¿Venta online?
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.select :sale_or_show, [["Si, tengo ventas en linea", true], ["No, tengo ventas en linea", false]], {}, {class: "form-control"} %>
+          </div>
+        </div>
+
+        <div class="ln_solid"></div>
+
+        <%unless disabled%>
+          <button type="sumbit" style="width: 100%" class="btn btn-success">Guardar</button>
+        <%end%>
+      </div>
+    </div>
+  </div>
+
+  <% unless @product.new_record? %>
+    <div class="text-center">
+      <h3>Imagenes del producto</h3>
+      <%= image_tag @product.image.url(:medium), size: 100, class:"img-thumbnail" %>
+    </div>
+  <% end %>
+
+<% end %>

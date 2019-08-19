@@ -1,0 +1,57 @@
+<%= form_with(model: [:admin, @user] , local: true) do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>Error al crear este usuario</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :fullname, class:"form-control has-feedback-left", id: "user_fullname", placeholder:"Nombre Completo" %>
+      <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.password_field :password, class:"form-control has-feedback-left", id: :user_password, placeholder:"Contraseña", id: "password"%>
+      <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.password_field :confirm_password, class:"form-control has-feedback-left", id: :user_confirm_password, placeholder:"Confirmar contraseña", id: "confirm_password" %>
+      <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :rut, class:"form-control has-feedback-left", id: :user_rut, placeholder:"Rut", oninput: "checkRut(this)" %>
+      <span class="fa fa-address-card-o form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.email_field :email, class:"form-control has-feedback-left", id: :user_email, placeholder:"E-mail" %>
+      <span class="fa fa-envelope-open form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :address, class:"form-control has-feedback-left", id: :user_address, placeholder:"Direccion" %>
+      <span class="fa fa-address-book form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :phone, class:"form-control has-feedback-left", id: :user_phone, placeholder:"Teléfono" %>
+      <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group">
+      <%= form.select(:role, User.roles.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione"}, {:class => "form-control"}) %>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group">
+      <button type="sumbit" style="width: 100%" class="btn btn-success">Guardar</button>
+    </div>
+  </div>
+
+<% end %>

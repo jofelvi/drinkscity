@@ -1,0 +1,9 @@
+development:
+  access_key_id: AKIAJ5BFGQ4PAESLESGQ
+  secret_access_key: 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
+  region: us-east-2
+
+production:
+  access_key_id: AKIA4Z54UWJXNHRQHCWI
+  secret_access_key: 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
+  region:

@@ -1,0 +1,267 @@
+<%= form_with(model: [:admin, @store] , local: true, class: 'form-horizontal form-label-left input_mask') do |form| %>
+  <% if @store.errors.any? %>
+    <div id="error_explanation">
+      <h2>Tuvimos <%= pluralize(@store.errors.count, "error") %> al crear esta tienda.</h2>
+      <ul>
+        <% @store.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Nuevo Aviso<small></small></h2>
+        <ul class="nav navbar-right panel_toolbox">
+          <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+          <li>
+            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <br />
+
+        <div class="form-group">
+          <%if current_user.admin?%>
+            <% if store.user_ids.blank? %>
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                Usuario:
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <%= form.select(:user_id, User.store_admin.map {|key| [  key.fullname, key.id]},
+                    {:include_blank => "Seleccione el usuario"},
+                    {:class => "form-control",
+                    disabled: disabled} 
+                  )
+                %>
+              <% end %>
+            <%else%>
+              <%= form.hidden_field :user_id, value: current_user.id, disabled: true%>          
+            <%end%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Tipo de tienda:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.select(:kind, Store.kinds.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione el tipo de tieda"}, {:class => "form-control"}) %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-12 col-xs-12">
+            ¿Tiene Envios?
+          </label>
+          <div class="col-md-9 col-sm-12 col-xs-12">
+            <%= form.select :delivery, [["Si, tiene envios", true], ["No, tiene envios", false]], {prompt: "Seleccione una opción"}, {class: "form-control"} %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Nombre Tienda:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.text_field :name, class:"form-control form-15 has-feedback-left", id: :user_fullname, placeholder:"Nombre de la tienda" , disabled: disabled%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Reseña de la Tienda:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.text_area :description, class:"form-control form-15", id: :user_fullname, placeholder:"Reseña de la tienda", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Rut de la Tienda:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.text_field :rut, class:"form-control form-15 has-feedback-left", id: :user_rut, placeholder:"Rut de la tienda", required: true, oninput: "checkRut(this)" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Teléfono de la Tienda:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.telephone_field :phone, class:"form-control form-15 has-feedback-left", id: :user_fullname, placeholder:"Telefono de la tienda", onkeypress: 'validate(event)' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Logo de la Tienda:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.file_field :images, class: 'form-control', multiple: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Dirección de la Tienda:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.text_field :address, class:"form-control form-15 has-feedback-left", id: :input_store, placeholder:"Direccion de la tienda", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Rut del Representante Legal:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.text_field :legal_agent_rut, class:"form-control form-15 has-feedback-left", id: :user_fullname, placeholder:"Rut del representante legal", oninput: "checkRut(this)" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Teléfono Representante Legal:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.telephone_field :legal_agent_phone, class:"form-control form-15 has-feedback-left", id: :user_fullname, placeholder:"Telefono del representante legal", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+            Email Representante Legal:
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.email_field :legal_agent_email, class:"form-control form-15 has-feedback-left datepicker", id: :user_fullname, placeholder:"Email del representante legal", disabled: disabled %>
+          </div>
+        </div>
+
+        <div class="ln_solid"></div>
+       
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <label>Horarios de atencion</label>
+          </div>
+          <br>
+          <br>
+        </div>
+        <%#if  action_name == "edit" || action_name=="update"%>
+
+        <div class="col-lg-10 col-lg-offset-1 col-ms-12 col-xs-12 col-sm-12">
+
+        <div class="x_panel ">
+          <div class="x_title">
+            <h2>Horarios agregados<small></small></h2>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <br />
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="page-title">
+                    <div class="title_left">
+                      <h3>
+                        Agregar Horario
+                        <%unless @store.schedules.count >= 7 %>
+                          <span class="" >
+                            <%= link_to_add_association( form, :schedules,
+                              force_non_association_create: true, style: 'color:#fff;',
+                              'data-association-insertion-node': '.schedules-fields',
+                              'data-association-insertion-method': 'append',
+                              partial: 'schedule_fields', class: 'btn btn-success btn-xs', title: 'Agregar nuevo horario'
+                            ) do %>
+                              <i class="fa fa-plus" style="font-weight: bold; "></i>
+                            <% end %>
+                          </span>
+                        <%end%>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="schedules-fields">
+                  <%= form.fields_for :schedules do | schedule | %>
+                      <%= render 'schedule_fields', f: schedule %>
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!--
+        <%#else%>
+          <div class="form-group">
+            <label class="control-label no-padding-label col-md-3 col-sm-3 col-xs-12">
+              Días de Atención: <br>  (lun-jue-dom...)
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%#= form.text_field :days_opened, class:"form-control days-opened-mask has-feedback-left", id: :user_fullname, placeholder:"Dias" , disabled: disabled%>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label no-padding-label col-md-3 col-sm-3 col-xs-12">
+
+              Hora de Atención: <br> (08:00 - 18:00)
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">
+              </label>
+              <%#= form.text_field :time_opened, class:" time-opened-mask form-control has-feedback-left", id: :user_fullname, placeholder:"Hora", disabled: disabled %>
+            </div>
+          </div>
+        <%#end%>
+        -->
+        
+        <% unless disabled %>
+          <button type="sumbit" style="width: 100%" class="btn btn-success">Guardar</button>
+        <%end%>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%if @store.images.any?%>
+      <h3>Imagenes de la tienda</h3>
+
+      <%@store.images.each do |image|%>
+
+        <%= image_tag image.cover.url, size: 100, class:"img-thumbnail" %>
+
+        <%= link_to admin_image_path(image), { data: { confirm: "Esta seguro que desea eliminar esta imagen?" }, method: :delete } do %>
+          <i class="glyphicon glyphicon-trash" style="font-size:14px"></i>
+        <%end%>
+
+      <%end%>
+    <% end %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+  var searchInput = document.getElementById('input_store');
+  var autocomplete = new google.maps.places.Autocomplete(searchInput);
+  $('.timepickermask').inputmask("99:99");
+  $('.time-opened-mask').inputmask("99:99 - 99:99");
+  $('.days-opened-mask').inputmask("aaa-aaa-aaa-aaa-aaa-aaa-aaa");
+</script>
+
+<style media="screen">
+  .no-padding-label{
+    padding-top: 0px !important
+  }
+</style>

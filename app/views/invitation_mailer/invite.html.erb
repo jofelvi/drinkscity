@@ -1,0 +1,80 @@
+<style type="text/css">
+  .items{
+    margin: 5px 0;
+    border-bottom: 1px solid #C2C2C2;
+  }
+
+  .mail-image{
+    width: 100px;
+    text-align: center;
+    border: 0.2mm solid #C2C2C2;
+  }
+
+  .name-product{
+    font-size: 1.9rem;
+  }
+
+  .div-total{
+    margin-top: 30px;
+  }
+
+  .subtotal{
+    margin-left: 30px;
+  }
+
+  .line-sum{
+    background-color: #aaa;
+    height: 1px;
+    width: 100%;
+    float: left;
+    margin: 10px 0;
+  }
+
+  .table-total{
+    margin-top: 40px;
+  }
+
+</style>
+
+
+<div class="col-md-10">
+  <div class="row" style="margin-bottom: 180px;">
+    <div class="col-md-6 col-md-offset-3 text-center" style="position: relative;">
+      <div class="" style="background-color: #FFF; width: 220px; padding: 10px; position: absolute; margin-left:auto;margin-right:auto;left:0;right:0;">
+        <div id="contentqr" >
+          <p>Hola <%= @guest.name %></p><br>
+          <p>Has sido invitado al evento <%= @event.name %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-10 ">
+  <footer>
+  </footer>
+</div>
+<%= javascript_include_tag 'client' %>
+<script type="text/javascript">
+  $('#contentqr').qrcode({
+      render: 'image',
+      background: '#FFF',
+      fill: '#000',
+      text: '<%=@event.id%>',
+        minVersion: 5,
+        maxVersion: 40,
+    ecLevel: 'L',
+      left: 0,
+      top: 0,
+      size: 200,
+    quiet: 0,
+      mode: 0,
+      mSize: 0.1,
+      mPosX: 0.5,
+      mPosY: 0.5,
+      fontname: 'sans',
+      fontcolor: '#000',
+      image: null
+  });
+</script>

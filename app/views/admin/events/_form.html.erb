@@ -1,0 +1,274 @@
+<%= form_with(model: [:admin, @event], local: true, class: 'form-horizontal form-label-left input_mask') do |form| %>
+ 
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2>Tuvimos <%= pluralize(@event.errors.count, "error") %> al crear este evento.</h2>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <!-- parte left del form -->
+    <div class="col-md-6 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>Datos del Evento<small></small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br />
+        <% if current_user.admin? %>
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.select(:user_id, User.store_admin.map {|key| [  key.fullname, key.id]},{:include_blank => "Seleccione el usuario"}, {:class => "form-control", disabled: disabled, id: "user_select"}) %>
+            </div>
+          </div>
+        <% else %>
+          <%= form.hidden_field :user_id, value: current_user.id, disabled: disabled%>          
+        <% end %>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tienda</label>
+            <div class="col-md-9 col-sm-9 col-xs-12" >
+                <select class="form-control" id="user_stores" name="event[store_id]"></select>
+              <%#= form.select(:store_id, @stores.map {|key| [  key.name, key.id]},{:include_blank => "Seleccione la tienda"}, {:class => "form-control", disabled: disabled, id: :store_id}) %>
+
+              <%#= form.grouped_collection_select :store_id, User.order(fullname: :desc), :stores, :fullname, :id, :name, {prompt: "Seleccione una tienda"}, {class: "form-control"} %>
+            </div>
+          </div>
+
+<script type="text/javascript">
+  $('#user_select').on('change', function userID(value) {
+     const getUser = this.value;
+     console.log(getUser)
+  });
+</script>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.text_field :name, class:"form-control", id: :user_fullname, placeholder:"Nombre del evento" , disabled: disabled%>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= form.select(:category, Event.categories.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione el tipo de aviso"}, {:class => "form-control", disabled: disabled}) %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripción</label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.text_area :description, class:"form-control", id: :user_fullname, placeholder:"Descripcion del evento", disabled: disabled %>
+            </div>
+          </div>
+          
+          <div class="ln_solid"></div>
+<!-- 
+          <div class="form-group">
+            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+              <button type="button" class="btn btn-primary">Cancel</button>
+              <button class="btn btn-primary" type="reset">Reset</button>
+              <button type="button" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+ -->
+        </div>
+      </div>
+    </div> <!-- Cierre de la col -->
+
+
+    <!-- parte right del form -->
+    <div class="col-md-6 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2> Datos del Evento<small></small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br />
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+              Banner Evento
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.file_field :images, class: 'form-control', multiple: true %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+              Dirección
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.text_field :address, class:"form-control", id: :input_direction_event, placeholder:"Direccion del evento" , disabled: disabled%>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+              Link Video
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.text_field :video_link, class:"form-control", placeholder:"Enlace del video" , disabled: disabled%>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+              Comienza
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.datetime_field :start_datetime, class:"form-control", placeholder:"Valido desde", disabled: disabled %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+              Termina
+            </label>
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <%= form.datetime_field :end_datetime, class:"form-control", placeholder:"Valido hasta", disabled: disabled %>
+            </div>
+          </div>
+
+          <div class="ln_solid"></div>
+        </div>
+      </div>
+    </div> <!-- Cierre de la col -->
+  </div> <!-- Cierre del row -->
+
+  <!-- titulo entradas nuevas -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>
+            Entradas para el Evento
+
+            <span class="" >
+              <%= link_to_add_association( form, :tickets,
+                force_non_association_create: true, style: 'color:#fff;',
+                'data-association-insertion-node': '.tickets-fields',
+                'data-association-insertion-method': 'append',
+                partial: 'ticket_fields', class: 'btn btn-success', title: 'Agregar nueva entrada'
+              ) do %>
+                <i class="fa fa-plus" style="font-weight: bold; "></i>
+              <% end %>
+            </span>
+
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- entradas en el evento -->
+  <div class="row">
+    <div class="tickets-fields">
+      <%= form.fields_for :tickets do | ticket | %>
+          <%= render 'ticket_fields', f: ticket %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <!-- titulo productos para el evento -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>
+            Productos del Evento
+            <!--
+            <span class="" >
+              <%#= link_to_add_association( form, :products,
+                force_non_association_create: true, style: 'color:#fff;',
+                'data-association-insertion-node': '.products-fields',
+                'data-association-insertion-method': 'append',
+                partial: 'product_fields', class: 'btn btn-success', title: 'Agregar nuevo producto'
+              ) do %>
+                <i class="fa fa-plus" style="font-weight: bold; "></i>
+              <%# end %>
+            </span>-->
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Productos del evento -->
+  <div class="row">
+    <!--<div class="products-fields">
+      <%#= form.fields_for :products do | product | %>
+          <%#= render 'product_fields', f: product %>
+      <%# end %>
+    </div>-->
+    <%= form.hidden_field :product_ids, id: :product_ids%>
+    <input type="hidden" name="product_stk" id="product_stk">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped product-table">
+        <thead style="background-image: url(/assets/banda.png); color: white">
+          <tr>
+            <th>
+              <input type="checkbox" id="checkTodos" disabled="disabled" />
+              Marcar/Desmarcar Todos
+            </th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>  
+      </table>    
+    </div>
+  </div>
+
+  <% unless disabled %>
+    <br><br>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <button type="sumbit" style="width: 100%" class="btn btn-success" id="save_event">Guardar</button>          
+      </div>
+    </div>
+  <%end%>
+
+  <div class="text-center">
+    <h3>Imagenes del Evento</h3>
+
+    <%if @event.images.any?%>
+      <%@event.images.each do |image|%>
+        <%= image_tag image.cover.url, size: 100, class:"img-thumbnail" %>
+        <%= link_to admin_image_path(image), { data: { confirm: "Esta seguro que desea eliminar esta imagen?" }, method: :delete } do %>
+          <i class="glyphicon glyphicon-trash" style="font-size:14px"></i>
+        <%end%>
+      <%end%>
+    <% end %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+  var searchInput = document.getElementById('input_direction_event');
+  var autocomplete = new google.maps.places.Autocomplete(searchInput);
+
+</script>

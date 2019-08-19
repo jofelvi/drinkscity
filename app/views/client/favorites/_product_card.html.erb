@@ -1,0 +1,24 @@
+<article class="col-xs-12 col-md-6">
+	<div class="media" style="height: 170px;margin-top:30px">
+		<div class="media-left">
+			<a href="<%=producto_path(fp)%>" style="position:relative">
+				<%= image_tag fp.image.url(:mini), alt:'Imagen del producto', style:"height:auto; max-height:160px" %>
+			</a>
+		</div>
+		<div class="media-body text-left" style="position:relative;    padding-top: 2px;">
+
+				<span class="tituloHomeShow"><%=fp.name%></span><br>
+				<span class="tiendaHomeShow"><%=fp.store.name%></span><br>
+				<span class="precioHomeShow"><%=fp.price%></span><br>
+				<span class="distanciaHomeShow distanceTake" data-latitude="-33.46611" data-longitud="-70.586456"></span>
+
+		</div>
+		<div class="media-body text-right" style="position:relative;    padding-top: 2px;width:60px">
+			<div class="deleteFav text-center" data-id="4" style="cursor:pointer">
+				<a href="<%=eliminar_favorito_path(product_id: fp.id)%>" data-method="delete"><img src="/assets/trash.png" alt="" width="30"></a>
+			</div>
+			<br><br>
+		</div>
+	</div>
+	<img src="/assets/linea.png" alt="" style="width: 100%;" height="2">
+</article>

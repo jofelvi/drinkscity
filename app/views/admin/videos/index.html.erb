@@ -1,0 +1,4 @@
+<% @videos.each do |v|%>
+  <p>Video <%= v.id %> </p>
+  <%= link_to 'Ver', v.clip.url(:medium)%>
+<% end %>

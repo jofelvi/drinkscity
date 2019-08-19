@@ -1,0 +1,35 @@
+<% content_for :content do %>
+    <style media="screen">
+		section article{
+			max-width: 100%;
+		}
+	</style>
+	<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;">
+		<header class="text-center" style="margin-top:80px">
+			<h3 class="KR">AVISOS DESTACADOS</h3>
+      		<%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+		</header>
+    </section>
+        
+    
+        <ul class="grid" style="position: relative; height: 2317.3px;">
+            <% @products.each do |product|  %>
+                <%= render  "partials/product", product: product, order_item: @order_item %>
+            <% end %>
+        </ul>
+
+<% end %>
+
+
+<% content_for :script do %>
+	<script type="text/javascript">
+		document.addEventListener("turbolinks:load", function() {
+			$('.grid').masonry({
+				itemSelector: '.grid-item',
+			});
+		});
+
+    	mostrar_distancias({latitude: -33.448482, longitude: -70.598087});		
+    
+	</script>
+<% end %>

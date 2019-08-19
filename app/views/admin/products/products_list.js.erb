@@ -1,0 +1,16 @@
+//$('.product-table tbody').children().remove();
+$('.product-table tbody').empty();
+<%if @products.present?%>
+  $('#checkTodos').removeAttr('disabled');
+  <%@products.each do |product|%>
+    var component = '<tr>';
+    component += '<td> <input type="checkbox" value="<%= j product.id.to_s%>" class="chk" /> </td>';
+    component += '<td> <%= image_tag product.image.url(:mini), width: "50px" %> </td>';
+    component += '<td> <%= j product.name%> </td>';
+    component += '<td> <%= j product.description%> </td>';
+    component += '<td> <%= j number_to_currency( product.price, precision: 0, format: "%u %n c/u" ).to_s%> </td>';
+    component += '<td> <input type="text" name="stock_event" id="stock_event" style="width: 50px;"/> </td>';
+    component += '</tr>';
+    $('.product-table tbody').append(component);
+  <%end%>
+<%end%>

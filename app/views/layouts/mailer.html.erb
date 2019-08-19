@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<%= stylesheet_link_tag 'mailer', media: 'all'%>
+		<style type="text/css">
+			.logo{
+				width: 180px;
+				margin-bottom: 10px;
+			}
+
+			footer{
+				margin-top: 50px;
+			}
+
+			footer p{
+				margin-top: 0;
+				margin-bottom: 2px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2">
+					<div class="container-fluid">
+						<div class="row">
+							<%= yield %>								
+						</div>						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>

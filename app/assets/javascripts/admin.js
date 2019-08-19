@@ -1,0 +1,11 @@
+//= require chartkick
+//= require admin/gentelella-custom
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
+//= require cocoon
+//= require turbolinks
+//= require admin/event
+//= require janus
+//= require streaming

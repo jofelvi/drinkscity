@@ -1,0 +1,44 @@
+<footer class="bottomNav">
+	<%= image_tag 'linea.png', alt: "", style: "width: 100%; margin-top: -18px; height: 1px"  %>
+	<div class="flexNavbottom" >
+		<div class="">
+			<%= link_to root_url do %>
+				<div class="imgBottomNav inicio_logo"></div>
+				<p class="textBottomNav">INICIO</p>
+			<% end %>
+		</div>
+		<div class="">
+			<%= link_to tiendas_url do %>
+				<div class="imgBottomNav tienda_logo"></div>
+				<p class="textBottomNav">
+					TIENDAS
+				</p>
+			<% end %>
+		</div>
+		<div class="" style="position: relative;">
+    			<span class="badge cart-text " style="position: absolute; left: 20%; top:-15%; background-color: #3be8a8;  transition: all 0.1s;"><%= render 'layouts/cart_text' %></span>
+			<%= link_to cart_index_url do %>
+				<div class="imgBottomNav carro_logo"></div>
+				<p class="textBottomNav">
+					CARRO
+				</p>
+			<% end %>
+		</div>
+		<div class="">
+			<%= link_to eventos_url do %>
+				<div class="imgBottomNav eventos_logo"></div>
+				<p class="textBottomNav">
+					EVENTOS
+				</p>
+			<% end %>
+		</div>
+		<div class="">
+			<%= link_to promociones_url do %>
+				<div class="imgBottomNav promo_logo"></div>
+				<p class="textBottomNav">
+					PROMOS
+				</p>
+			<% end %>
+		</div>
+	</div><!-- /.navbar-collapse -->
+</footer>

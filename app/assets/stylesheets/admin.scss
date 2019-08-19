@@ -1,0 +1,25 @@
+@import "admin/gentelella-custom";
+
+.rd-0{
+	border-radius: 0px !important;
+}
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+	border-radius: 0px !important;
+}
+
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child){
+	border-radius: 0px !important;
+}
+
+.btn{
+	border-radius: 0px !important;
+}
+
+.form-15{
+	padding-left: 15px !important;
+}
+
+.input-group-addon{
+	border-radius: 0px;
+}

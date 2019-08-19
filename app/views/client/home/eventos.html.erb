@@ -1,0 +1,59 @@
+<% content_for :content do %>
+	<style media="screen">
+		section article{
+			max-width: 100%;
+		}
+	</style>
+	<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;">
+		<header class="text-center" style="margin-top:80px">
+			<h2 class="KR">EVENTOS</h2>
+      		<%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+		</header>
+		<br>
+
+		<% if @events.any? %>
+			<% @events.each do |event| %>
+				<div class="col-xs-12 col-md-4" style="padding:0 10px">
+					<article class=" " style="padding: 10px;">
+						<br>
+						<%= link_to evento_url(event), style: "position:relative" do %>
+							<%= image_tag (event.images.any?)? event.images.first.cover.url(:medium): 'event.jpg', style:"width: 100%" %>
+						<% end %>
+
+						<div class="media">
+							<div class="media-body text-left" style="position:relative;    padding-top: 2px;">
+								<h4 class="media-heading KR " style="text-transform:uppercase;">
+									<%= event.name %>
+								</h4>
+								<br>
+								<small>Lugar: <%= event.address %></small><br>
+							</div>
+
+							<div class="media-body text-center" style="position:relative;    padding-top: 2px;width:60px">
+								<div class="text-center ">
+									<p class="eventDate eventDay">
+										<span style="font-size:12px">
+											<%=  (l event.start_datetime, :format => :dia)[0..2] %>
+										</span>
+									</p>
+									<p class="eventNumer colorDC">
+										<%=  (l event.start_datetime, :format => :dia_num) %>
+									</p>
+									<p class="eventDate">
+										<%=  (l event.start_datetime, :format => :mes)[0..2] %>
+									</p>
+
+								</div><br>
+							</div>
+						</div>
+					</article>
+				</div>
+			<% end %>
+		<% else %>
+			<h4 class="KR">Lo lamentos. Actualmente no hay eventos disponibles..!!</h4>
+		<% end %>
+		<div style="clear:both"></div>
+	</section>
+
+	
+<% end %>

@@ -1,0 +1,38 @@
+<tr>
+  <td data-title="Imagen">
+  </td>
+  <td data-title="Producto" class="text-left">
+    <p><strong><%= order_item.item.name %></strong></p>
+  </td>
+
+  <td data-title="Cantidad" class="qty" data-id="a375b2a80f2feb9c831ded9de5aa2cf6" style="padding-top: 8px;">
+    <%unless order_item.quantity == 1%>
+    <%= link_to modify_quantity_path(order_item: {id: order_item.id, quantity: order_item.quantity, item_id: order_item.item_id}), method: "put" do %>
+    <i class="glyphicon glyphicon-minus" style="font-size:14px"></i>
+    <% end %>
+    <%end%>
+
+    <%= order_item.quantity %>
+
+    <%= link_to modify_quantity_path(order_item: {id: order_item.id, quantity: order_item.quantity, item_id: order_item.item_id}, add: true), method: "put" do %> <i class="glyphicon glyphicon-plus" style="font-size:14px"></i>
+    <% end %>
+
+  </td>
+  <td data-title="Precio" class="price">
+    <div style="padding-left: 15px">
+
+      <%=number_to_currency(order_item.unit_price, precision: 0,format: "%u %n c/u"  )  %>
+    </div>
+  </td>
+  <td data-title="Subtotal" class="subTotal">
+    <%=number_to_currency(order_item.total_price, precision: 0,format: "%u %n c/u"  )%>
+  </td>
+  <td>
+    <div class="btn-group">
+      <%= link_to order_item, { data: { confirm: "Esta seguro que desea eliminar el producto '#{order_item.item.name}' de su carrito?" }, method: :delete, remote: true, class: "btn btn-danger" } do %>
+      <i class="glyphicon glyphicon-trash" style="font-size:14px"></i>
+
+      <%end%>
+    </div>
+  </td>
+</tr>

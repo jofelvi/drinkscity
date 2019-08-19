@@ -1,0 +1,58 @@
+<span class="botonerA pull-right" style="    margin-top: -5px;">
+  <%if action_name=="show_producto"%>
+    <% if @product.sale_or_show %>
+	    <%= link_to  order_items_path(order_item: {quantity:1, item_id: @product.id, item_type: 'Product'}), class:"btnHeader", remote:true, method: "post" do %>
+	      <%= image_tag 'carro.png', alt: '' %>
+	    <%end%>
+    <%end%>
+  <%end%>
+
+	<button type="button" name="button" class="btnHeader" data-toggle="modal" data-target="#shareModal">
+    <%= image_tag 'compartir.png', alt: '' %>
+	</button>
+  <%= link_to agregar_favorito_path(favorite_id: favorite_id, favorite_type: favorite_type), class:"btnHeader addFav", remote:true, method: "put" do %>
+  	<%= image_tag 'heart.png', alt: '' %>
+  <%end%>
+</span>
+
+<!-- modal para compartir en las redes -->
+<div id="shareModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div>
+					<br>
+					<a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= request.original_url %>">
+						<button type="button" name="button" class="btn btn-primary btn-block faceButton" >
+							<%= image_tag 'face.png', style: 'width: 50px;' %>
+							<span style="margin-top: 30px;"></span>
+						</button>
+					</a>
+					<br>
+
+					<%= link_to "whatsapp://send?text=#{request.original_url}", target: '_blank', class: 'btn btn-success btn-block whatsButton' do %>
+						<%= image_tag 'whats.svg', style: 'width: 100px;' %>
+					<% end %>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- modal para compartir en las redes -->
+
+<script type="text/javascript">
+	compartir_whatsapp();
+
+    function compartir_whatsapp() {
+	    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+	    if (/android/i.test(userAgent)) {
+	        console.log('estas en un android');
+	    }else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+	        console.log('estas en ios');
+	    }else{
+	        $('.whatsButton').remove();
+	    }
+    }
+</script>

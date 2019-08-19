@@ -1,0 +1,31 @@
+<article class="" style="">
+	<!-- <p class="text-left">Informacíon del Anunciante</p> -->
+	<div class="media" style="height: 170px;">
+		<div class="media-left">
+			<%= link_to tienda_url(store ), style: "position: relative;" do %>
+				<%= image_tag store.logo.url(:medium), class: 'borderDC', style:"height:auto; max-height:160px" %>
+			<% end %>
+		</div>
+		<div class="media-body text-left" style="position:relative; padding-top: 2px;">
+			<h4 class="media-heading KR" style="text-transform:uppercase">
+				<%= store.name %>
+			</h4>
+			<h5 class="media-heading KL">
+				<br>
+			</h5>
+			<h5 class="media-heading KL">
+				<%= store.address %>
+			</h5>
+			<p>
+				<%= store.description %>
+			</p>
+
+			<p class="KR">
+				
+			</p>
+			<p>
+				<%= 'Tiene de delivery' if store.delivery %>
+			</p>
+		</div>
+	</div>
+</article>

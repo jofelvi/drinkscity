@@ -1,0 +1,15 @@
+<div class="nav toggle">
+  <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+</div>
+
+<% if user_signed_in? %>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="table-number">
+      <a>
+        <span>
+          <%= current_user.email.split('@')[0].downcase %>
+        </span>
+      </a>
+    </li>
+  </ul>
+<% end %>

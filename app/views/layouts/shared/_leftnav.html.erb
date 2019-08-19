@@ -1,0 +1,86 @@
+<div class="navbar nav_title" style="border: 0;">
+      <a href="/" class="site_title" style="text-align:center">
+        <img src="/assets/Logo_Drinks-City.png" alt="" style="width: 100%;max-width: 100px;" />
+
+      </a>
+    </div>
+
+<div class="clearfix"></div>
+
+<!-- menu profile quick info -->
+<!-- /menu profile quick info -->
+
+<br />
+
+<!-- sidebar menu -->
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+  <div class="menu_section">
+    <ul class="nav side-menu">
+      <li><a href="<%=admin_index_path%>"><i class="fa fa-home"></i> Inicio</a></li>
+      <li><a><i class="fa fa-users"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <!--<div class="hidden-xs hidden-sm">
+            <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Crear</a></li>
+          </div>-->
+          
+            <li><a href="<%=new_admin_user_path(type: :create_user)%>"  >Crear usuario</a></li>
+          <li><a href="<%=admin_users_path(type: :store_admin)%>"  >Ver Clientes</a></li>
+          <li><a href="<%=admin_users_path(type: :customer)%>">Ver Usuarios</a></li>
+          <li><a href="<%=admin_users_path%>">Ver todos los usuarios</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-map-pin"></i> Tiendas <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <%if current_user.admin?%>
+            <li><a href="<%=admin_stores_path(status: 0)%>">Tiendas Pendientes</a></li>
+          <%end%>
+          <li><a href="<%=new_admin_store_path%>">Crear</a></li>
+          <li><a href="<%=admin_stores_path%>">Ver</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-briefcase"></i> Avisos <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="<%=new_admin_product_path%>">Crear</a></li>
+          <li><a href="<%=admin_products_path%>">Ver</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-calendar"></i> Eventos <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li>
+            <%= link_to 'Crear', new_admin_event_path, data: { turbolinks: false } %>
+          </li>
+
+          <li><a href="<%=admin_events_path%>">Ver</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-usd"></i> Ventas <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="<%=admin_orders_path(status: 3)%>">Aprobadas</a></li>
+          <li><a href="<%=admin_orders_path(status: 4)%>">Validadas</a></li>
+          <li><a href="<%=admin_orders_path(status: 5)%>">Canceladas</a></li>
+          <li><a href="<%=admin_orders_path%>">Todas</a></li>
+        </ul>
+      </li>
+      <li><a href="<%=admin_videos_path%>"><i class="fa fa-home"></i> Videos</a></li>
+      <li><a href="<%=admin_streaming_index_path%>"><i class="fa fa-home"></i> Streaming</a></li>
+    </ul>
+  </div>
+</div>
+<!-- /sidebar menu -->
+
+<!-- /menu footer buttons -->
+<div class="sidebar-footer hidden-small">
+  <a data-toggle="tooltip" data-placement="top" title="Settings">
+    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="Lock">
+    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+  </a>
+  <a data-toggle="tooltip" data-placement="top" title="Logout" href="<%=destroy_user_session_path%>" data-method="DELETE">
+    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+  </a>
+</div>
+<!-- /menu footer buttons -->

@@ -1,0 +1,21 @@
+<% content_for :content do %>
+<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;">
+  <header class="text-center" style="margin-top:80px">
+    <h2  style="margin-bottom:0px"class="KR">ORDEN #<%= @order.id %>  </h2>
+    <%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+  </header>
+</section>
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <%if @valid_transaction%>
+          <%= form_tag(@transaction.url_redirection, method: :post, enforce_utf8: false, authenticity_token: false) do %>
+            <%= hidden_field_tag(:token_ws, @order.payment_id) %>
+            <%= submit_tag("Ver Voucher", class: "btn btn-primary btn-block buttonP") %>
+          <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+<%end%>

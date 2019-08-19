@@ -1,0 +1,27 @@
+<article class="col-xs-12 col-md-6">
+	<div class="media" style="height: 170px;margin-top:30px">
+		<div class="media-left">
+			<a href="<%=evento_path(fe)%>" style="position:relative">
+				<%= image_tag (fe.images.any?)? fe.images.first.cover.url(:mini): 'event.jpg', style:"height:auto; max-height:160px; width:160px" %>
+			</a>
+
+		</div>
+		<div class="media-body text-left" style="position:relative;    padding-top: 2px;">
+			<h4 class="media-heading KR" style="text-transform:uppercase">Synchrontinuum Festival 2018</h4>
+
+			<small>Categoria: <%=fe.category%></small><br>
+			<small>Descripcion: <%=fe.description%></small><br>
+			<small>Direccion: <%=fe.address%></small><br>
+			<small>Fecha: <%=fe.start_datetime%> </small><br>
+
+		</div>
+		<div class="media-body text-center" style="position:relative;    padding-top: 2px;width:60px">
+			<div class="deleteFav text-center" data-id="8" style="cursor:pointer">
+							<a href="<%=eliminar_favorito_path(event_id: fe.id)%>" data-method="delete"><img src="/assets/trash.png" alt="" width="30"></a>
+				
+			</div>
+			<br><br>
+		</div>
+	</div>
+	<img src="/assets/linea.png" alt="" class="img-responsive" height="2">
+</article>

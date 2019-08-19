@@ -1,0 +1,25 @@
+<h4>Esta tienda esta pendiente por ser aprobada</h4>
+<br><br>
+
+
+<%= image_tag (@store.images.any?)? @store.images.first.cover.url(:medium): 'store.jpg', class: 'borderDC', style:"height:auto; max-height:160px" %>
+<h3>
+	<strong>Nombre:</strong> <%= @store.name.titleize %>
+</h3>
+<h4>
+	<strong>Tipo: </strong> <%= @store.kind %>
+</h4>
+<h5>
+	<strong>Dirección: </strong><%= @store.address %>
+</h5>
+
+<%#= link_to(
+		'Ingresa aqui para activar la tienda aquí',
+		url_for(
+			controller: 'stores', 
+			action: 'index',
+			host: 'https://drinkscity.cl/',
+			port: '80'
+		)
+	)
+%>

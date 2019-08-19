@@ -1,0 +1,41 @@
+<div class="nested-fields ">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group">
+        <%= f.select(:day_of_week, Schedule.day_of_weeks.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione el dia de la semana"}, {:class => "form-control"}) %>
+      </div>
+
+            <div class="col-md-3 col-sm-5 col-xs-12 form-group">
+                <div class='input-group date' id='datetimepicker3'>
+                    <%= f.text_field :opens, class: "form-control form-15 has-feedback-left timepickermask", id: :opens, placeholder: "Abre" %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-5 col-xs-12 form-group">
+                <div class='input-group date' id='datetimepicker4'>
+                    <%= f.text_field :closes, class: "form-control form-15 has-feedback-left timepickermask", id: :closes, placeholder: "Cierra" %>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+                $('#datetimepicker4').datetimepicker({
+                    format: 'LT'
+                });
+            });
+        </script>
+
+
+        <label class="control-label col-md-1 col-sm-1 col-xs-12">
+          <%= link_to_remove_association f do %>
+            <i class="fa fa-close" style="color:red"></i>
+          <% end %>
+        </label>
+</div>

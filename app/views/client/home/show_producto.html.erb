@@ -1,0 +1,108 @@
+<% content_for :meta_facebook do %>
+	<meta property="og:image"   content="<%= "#{request.base_url}#{@product.image.url(:medium) }" %>" />
+	<meta property="og:title" 	content="<%= "#{@product.name.titleize} - #{ number_to_currency(@product.price, precision: 0, format: "%u %n" )}" %>" />
+	<meta property="og:type" 	content="product" />
+	<meta property="og:url" 	content="<%= request.original_url %>" />
+<% end %>
+
+<% content_for :content do %>
+	<section id="avisoView" class="text-center" style="width:100%;padding: 0 10px;max-width:800px;margin:0 auto">
+
+		<div class="text-center" style="margin-top:80px">
+			<h2 class="KR headerA">
+				<span class="pull-left titleAviso text-center" style="">
+					<%= @product.name%>
+				</span>
+	        <%= render 'partials/share_favorite', favorite_id: @product.id, favorite_type: "product" %>
+
+			</h2>
+			<%= image_tag 'linea.png', alt:"", height:"2", class:"img-responsive" %>
+		</div>
+		
+		<article class="">
+			<br>
+			<div class="" style="" align="center">
+				<%= image_tag @product.image.url(:medium), style: "width:100%;" %>
+			</div>
+			<br>
+			<div class="text-left">
+				<p class="tituloHomeShow " style="padding-top: 15px;">Calificación: <br><p class="text-center"><%= imdb_style_rating_for @product, current_user %></p></p>
+				<p class="tituloHomeShow" style="color:white"><span class="KL" style="    font-weight: normal;">Producto:</span> <br><%=@product.name%></p>
+				<p class="tituloHomeShow" style="color:white"><span class="KL" style="    font-weight: normal;">Categoria:</span> <br><%=@product.category%></p>
+				<p class="tituloHomeShow" style="color:white"><span class="KL" style="    font-weight: normal;">Descripcion:</span> <br><%=@product.description%></p>
+				<p class="tituloHomeShow" style="color:white"><span class="KL" style="    font-weight: normal;">Stock:</span> <br><%=@product.stock%></p>
+				<br>
+				<div class="col-md-12 text-center">
+					<p class="tituloHomeShow" style="padding-top: 15px;">VALOR: <br><%= number_to_currency(@product.price, precision: 0, format: "%u %n" ) %></p>
+				</div>
+			</div>
+
+			<div>
+
+			</div>
+
+		</article>
+		<div class="" style="clear:both"></div>
+
+
+		<div class="col-md-offset-3 col-md-6" style="    padding: 0;    margin-top: 20px;">
+			<!-- <p class="text-left KL">Cantidad</p> -->
+		</div>
+		<br>
+		<div class="col-md-offset-3 col-md-6" style="margin-top:10px;    padding: 0;">
+			<%= form_for @order_item, remote: true do |f| %>
+				<%= f.hidden_field :item_type, value: @product.class.name %>
+				<%= f.hidden_field :item_id, value: @product.id %>
+				<%= f.hidden_field :quantity, value: 1, min: 1, max: 1 %>
+				<% if @product.sale_or_show %>
+					<%= f.submit "Comprar", class: "btn btn-primary btn-block buttonP" %>
+				<% end %>
+			<% end %>
+		</div>
+
+		<br><br>
+		<style media="screen">
+			.renderDiv{
+				margin: 100px auto;
+			}
+			@media(max-width: 425px){
+				.renderDiv{
+					margin: 0px auto;
+				}
+			}
+		</style>
+
+    <br><br>
+    <div class="row ">
+	    <h2 class="title-front">Comentarios:</h2>
+			<% @product.comments.each do |comment| %>
+				<div class="row">
+					<div class="col-md-6 ">
+						<%= comment.comment%>
+					</div>
+				</div>
+				<br>
+			<% end %>
+		</div>
+
+
+		<!-- renderizado del mapa -->
+		<div class="row">
+	    	<%= render 'partials/show_mapa', hash: @hash %>
+		</div>
+		<!-- /renderizado del mapa -->
+
+		<!-- tienda que ofrece el producto -->
+		<% if @product.item_type == 'Store' %>
+			<div class="row">
+				<div class="col-md-12">
+					<br><br><p class="text-center">Informacíon del Anunciante</p>
+					<%= render 'partials/anunciante', store: @product.item %>
+				</div>
+			</div>
+		<% end %>
+		<!-- /tienda que ofrece el producto -->
+
+		<div class="" style="clear:both"></div>
+	</section>
+<%end%>

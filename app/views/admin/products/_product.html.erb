@@ -1,0 +1,42 @@
+<!-- PRODUCTOS -->
+<ul class="grid" style="position: relative; height: 2317.3px;">
+
+	<% products.each do |product|  %>
+		<li class="grid-item " style="">
+      <% if product.sale_or_show %>
+				<%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px; left: 0px" do %>
+					<%= image_tag 'carro_mas.png', alt:'' %>
+					<%= hidden_field_tag :item_id, product.id %>
+				<% end %>
+      <% end %>
+			<%= form_for order_item, remote: true, html: {class: "nifty_form", id: "form_#{product.id}"} do |f| %>
+				<%= f.hidden_field :item_id, value: product.id, id: "order_item_product_id_#{product.id}" %>
+				<%= f.hidden_field :quantity, value: 1, min: 1, max: 1, id: "order_item_quantity_#{product.id}" %>
+				<%= f.submit "Añadir al carrito", class: "btn btn-primary btn-submit-product", style: "display: none;" %>
+			<% end %>
+			<a href="<%=producto_path(id: product.id)%>" class="borderDC">
+				<div class="">
+					<%= image_tag (product.images.any?)? product.images.first.cover.url(:medium): 'product.jpg', class: 'avisoImg' %>
+				</div>
+				<div class="text-center" style="padding: 5px 0">
+					<%= product.sale_or_show%>
+					<span class="tituloHomeShow"><%= product.name %></span><br>
+					<span class="tiendaHomeShow"><%= product.store.name %></span><br>
+					<span class="tiendaHomeShow colorDC"><%= product.store.kind %> a </span>
+					<span class="distanciaHomeShow distanceTake colorDC" data-latitude="<%= product.store.latitude %>" data-longitud="<%= product.store.longitude %>"></span><br>
+					<span class="precioHomeShow">$ <%= product.price %></span>
+
+				</div>
+			</a>
+		</li>
+	<% end %>
+</ul>
+
+<script type="text/javascript">
+	document.addEventListener("turbolinks:load", function() {
+		$('.grid').masonry({
+			itemSelector: '.grid-item',
+		});
+	});
+</script>
+<!-- /PRODUCTOS -->

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<%= form_with(model:[:admin, @user] , local: true) do |form| %>
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :fullname, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Nombre Completo" %>
+      <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :password, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Contraseña" %>
+      <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :rut, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Rut" %>
+      <span class="fa fa-address-card-o form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :email, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"E-mail" %>
+      <span class="fa fa-envelope-open form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :adress, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Direccion" %>
+      <span class="fa fa-address-book form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :phone, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Teléfono" %>
+      <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
+      <%= form.text_field :role, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Teléfono" %>
+      <span class="fa fa-user-o form-control-feedback left" aria-hidden="true"></span>
+    </div
+
+  </div>
+
+<% end %>

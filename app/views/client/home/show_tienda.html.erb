@@ -1,0 +1,32 @@
+<% content_for :meta_facebook do %>
+  <meta property="og:image"   content="<%= "#{request.base_url}#{(@store.images.any?)? @store.images.first.cover.url(:medium) : "/assets/store.jpg" }" %>" />
+  <meta property="og:title"   content="<%= "#{@store.name.titleize} - en DrinksCity" %>" />
+  <meta property="og:type"    content="Store" />
+  <meta property="og:url"     content="<%= request.original_url %>" />
+<% end %>
+
+<% content_for :content do %>
+  <section id="avisoView" class="text-center" style="width:100%;padding: 0 10px;max-width:800px;margin:0 auto">
+    <header class="text-center" style="margin-top:80px">
+      <h2 class="KR headerA">
+        <span class="pull-left" style="font-size:24px">
+          <%= @store.name %>
+        </span>
+
+        <%= render 'partials/share_favorite', favorite_id: @store.id, favorite_type: "store" %>
+      
+      </h2>
+      <%= image_tag 'linea.png', alt:"", height:"2", class:"img-responsive" %>
+    </header>
+
+    <%= render 'partials/show_slider', item: @store %>
+    <br>
+    <%= render 'partials/anunciante', store: @store %>
+
+    <%= render 'partials/show_mapa', hash: @hash %>
+
+    <%= render 'partials/products_store', products: @store.products, order_item: @order_item %>
+    
+
+  </section>
+<% end %>

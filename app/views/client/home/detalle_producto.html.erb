@@ -1,0 +1,65 @@
+<% content_for :meta_facebook do %>
+  <meta property="og:image"   content="<%= "#{request.base_url}#{@product.image.url(:medium) }" %>" />
+  <meta property="og:title"   content="<%= "#{@product.name.titleize} - #{ number_to_currency(@product.price, precision: 0, format: "%u %n" )}" %>" />
+  <meta property="og:type"  content="product" />
+  <meta property="og:url"   content="<%= request.original_url %>" />
+<% end %>
+
+<% content_for :content do %>
+  <section id="avisoView" class="text-center" style="width:100%;padding: 0 10px;max-width:800px;margin:0 auto">
+
+    <div class="text-center" style="margin-top:80px">
+      <h2 class="KR headerA">
+        <span class="pull-left titleAviso text-center" style="">
+          <%= @product.name%>
+        </span>
+      </h2>
+      <%= image_tag 'linea.png', alt:"", height:"2", class:"img-responsive" %>
+    </div>
+
+    <div class="">
+      <div class="col-md-6">
+        <div class="" style="" align="center">
+          <%= image_tag @product.image.url(:medium), style: "width:100%;" %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="text-left">
+          <p class="tituloHomeShow" style="color:white"><span class="KL" style="    font-weight: normal;">Producto:</span> <br><%=@product.name%></p>
+          <p class="tituloHomeShow" style="color:white"><span class="KL" style="    font-weight: normal;">Categoria:</span> <br><%=@product.category%></p>
+          <p class="tituloHomeShow" style="color:white"><span class="KL" style="    font-weight: normal;">Descripcion:</span> <br><%=@product.description%></p>
+          <p class="tituloHomeShow" style="color:white;"><span class="KL" style="    font-weight: normal;">Valor:</span> <br><%= number_to_currency(@product.price, precision: 0, format: "%u %n" ) %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="" style="clear:both"></div>
+
+    <div>
+      <div class="col-md-offset-3 col-md-6" style="margin-top:10px;    padding: 0;">
+        Calificación: <%= rating_for @product, "quality", disable_after_rate: true, half_show: true  %></br>
+        <%= form_for calificar_path(id: @product.id), remote: true do |f| %>
+        <%= f.hidden_field :item_id, value: @product.id %>
+        <%= text_area(:post, :body, cols: 100, rows: 5, style:"color:black") %>
+        <%= f.submit "Comentar", class: "btn btn-primary btn-block buttonP" %>
+        <% end %>
+      </div>
+    </div>
+
+    <br><br>
+    <style media="screen">
+      .renderDiv{
+        margin: 100px auto;
+      }
+      @media(max-width: 425px){
+        .renderDiv{
+          margin: 0px auto;
+        }
+      }
+    </style>
+
+    <div class="" style="clear:both"></div>
+  </section>
+<%end%>

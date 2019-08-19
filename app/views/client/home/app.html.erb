@@ -1,0 +1,25 @@
+<% content_for(:content) do %>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="text-center" style="margin-top:80px">
+					<h2 class="KR">Descarga Nuestra App</h2>
+					<%= image_tag 'linea.png', height:"2", class:"img-responsive" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="text-center" style="margin-top:20px">
+					<h4 class="KR">App Para Registrar y Administrar Tu Tienda</h4>
+					<%= link_to 'javascript:void(0)', target: '_blank' do %>
+						<%= image_tag 'drinkscity.png', class: '' %>
+						<p class="KR">Click aqui para descargar la apk.</p>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+<% end %>

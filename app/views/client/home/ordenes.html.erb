@@ -1,0 +1,126 @@
+<% content_for :content do %>
+	<div class="">
+		<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;max-width: 800px;">
+			<header class="text-left" style="margin-top:80px">
+				<h2 class="KR">Mis Ordenes
+					<span class="botonerA pull-right" style="    margin-top: -5px;">
+						<img src="/assets/Logo_Drinks-City.png" style="width:120px" alt="">
+					</span>
+				</h2>
+				<img src="/assets/linea.png" alt="" class="img-responsive" height="2">
+			</header>
+					<div id="" class="formGroup hidden-xs hidden-sm" style="">
+					<div id="no-more-tables" class="table-responsive">
+				<table class="table jambo_table bulk_action" style="width:100%">
+				   	<thead>
+				       	<tr>
+										<th class="column-title " style="width:25%">Prductos</th>
+										<th class="column-title" style="text-align:center">N° Orden</th>
+				           	<th class="column-title" style="text-align:center">Total</th>
+				           	<th class="column-title" style="text-align:center">Estatus</th>
+				           	<th class="column-title" style="text-align:center"></th>
+
+				       	</tr>
+				   	</thead>
+
+				   	<tbody>
+							<%if @orders.any?%>
+								<%@orders.each do |order|%>
+				       		<tr>
+										<td data-title="Imagen">
+											<%order.order_items.each do |order_item|%>
+												<%= image_tag order_item.item.image.url(:medium), style: "width:50px; border-radius:5px", alt: ""  %>
+											<%end%>
+										</td>
+				           	<td data-title="" class="text-center">
+											<p>DC-000<%=order.id%></p>
+			           		</td>
+			           		<td class="text-center" >
+											<p><%=number_to_currency(order.subtotal, precision: 0)%></p>
+										</td>
+				           		<td class="text-center"><%=I18n.t "statuses.#{order.order_status.name}"%> </td>
+				           		<td>
+												<%= link_to orden_path(order), method: :post, class: "btn btn-danger", style: "background-color: #3be8a8; border-color: #3be8a8"  do %>
+					              	<i class="glyphicon glyphicon-eye-open" style="font-size:14px"></i>
+					              <%end%>
+												<%if order.order_status.id == 1%>
+													<%= link_to cancelar_orden_path(id: order.id), method: :delete,  confirm: "Esta seguro que desea eliminar esta orden?" , class: "btn btn-danger" do %>
+														<i class="glyphicon glyphicon-trash" style="font-size:14px"></i>
+													<%end%>
+												<%end%>
+
+											</td>
+
+				       		</tr>
+								<%end%>
+						<%else%>
+							<tr> Usted no tiene ordenes en Drinkscity</tr>
+						<%end%>
+
+				   	</tbody>
+
+
+				   </table>
+			</div>
+			</div>
+
+
+
+			<!-- Views for mobile -->
+
+			<div class="visible-xs visible-sm">
+				<div style="margin-top: 25px;">
+					<%if @orders.any?%>
+						<%@orders.each do |order|%>
+							<div class="row">
+								<div class="col-md-3 col-xs-3 col-sm-3">
+									<%order.order_items.each do |order_item|%>
+										<%= image_tag order_item.item.image.url(:medium), style: "width:100%; border-radius:5px"  %>
+									<%end%>
+								</div>
+
+								<div class="col-md-6 col-xs-5 col-sm-5">
+									<div class="form-group">
+										<p>DC-000<%=order.id%></p>
+									</div>
+									<div class="form-group">
+										<p><%=number_to_currency(order.subtotal, precision: 0)%></p>
+									</div>
+
+									<div class="form-group">
+										<p><%=I18n.t "statuses.#{order.order_status.name}"%></p>
+									</div>
+								</div>
+
+								<div class="col-md-3 col-xs-3 col-sm-3">
+									<%= link_to orden_path(order), class: "btn btn-danger", style: "background-color: #3be8a8; border-color: #3be8a8"  do %>
+										<i class="glyphicon glyphicon-eye-open" style="font-size:14px"></i>
+									<%end%>
+
+									<%if order.order_status.id == 1%>
+										<%= link_to cancelar_orden_path(id: order.id), method: :delete,  confirm: "Esta seguro que desea eliminar esta orden?" , class: "btn btn-danger" do %>
+											<i class="glyphicon glyphicon-trash" style="font-size:14px"></i>
+										<%end%>
+									<%end%>
+								</div>
+							</div>
+							<hr>
+						<% end %>
+					</div>
+				<% else %>
+					<div style="margin-top: 25px;">
+						<p>Usted no tiene ordenes en Drinkscity</p>
+					</div>
+				<% end %>
+			</div>
+		</section>
+
+
+
+	</div>
+
+
+
+
+
+				<%end%>

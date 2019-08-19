@@ -1,0 +1,14 @@
+<% if @error_in_order == true %>
+swal({
+  title: "DrinksCity",
+  text: "Debe agregar productos de una misma tienda",
+  icon: "error",
+});
+<% else %>
+swal({
+  title: "DrinksCity",
+  text: "Se ha agregado un articulo a su carrito",
+  icon: "success",
+});
+  $(".cart-text").html("<%= escape_javascript(render 'layouts/cart_text') %>");
+<% end %>

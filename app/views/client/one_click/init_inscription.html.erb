@@ -1,0 +1,21 @@
+<% content_for :content do %>
+<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;">
+  <header class="text-center" style="margin-top:80px">
+    <h2  style="margin-bottom:0px"class="KR">Inscripcion  </h2>
+    <%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+  </header>
+</section>
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <%if @inscription.valid?%>
+          <%= form_tag(@inscription.url_webpay, method: :post, enforce_utf8: false, authenticity_token: false) do %>
+            <%= hidden_field_tag(:TBK_TOKEN, @inscription.token) %>
+            <%= submit_tag("Afiliarse a Transbank One Click", class: "btn btn-primary btn-block buttonP") %>
+          <% end %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+<%end%>

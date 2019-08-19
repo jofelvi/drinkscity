@@ -1,0 +1,56 @@
+<!-- Add form -->
+<% content_for :content do %>
+<div class="container-fluid container">
+    <div class=" col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4 col-xs-12 col-sm-12"  >
+      <div class="col-xs-12 text-center">
+        <br><br><br><br>
+        <%= image_tag 'drinkscity.png', style: 'width: 100%;max-width: 150px;' %>
+        <br><br>
+      </div>
+
+  <br><br><br>
+  <h2 class="text-center">Registro de usuario</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="form-group">
+      <%= f.text_field :fullname, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Nombre Completo" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :password, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Contraseña", id: "password"%>
+    </div>
+
+    <div class="form-group">
+      <%= f.password_field :confirm_password, class:"form-control has-feedback-left", id: :user_confirm_password, placeholder:"Confirmar contraseña", id: "confirm_password" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :rut, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Rut", oninput: "checkRut(this)" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.email_field :email, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"E-mail" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :address, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Direccion" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.text_field :phone, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Teléfono" %>
+      <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Registrate", class: "btn btn-primary btn-block buttonP" %>
+    </div>
+  <% end %>
+  <br>
+  <%= render "devise/shared/links" %>
+<% end %>
+   
+
+    </div>
+  </div>

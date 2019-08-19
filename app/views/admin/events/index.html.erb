@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Avisos</h2>
+        <ul class="nav navbar-right panel_toolbox">
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+      <div class="hidden-xs hidden-sm">
+        <div class="table-responsive">
+          <table class="table-responsive table-hover table-stripped table">
+            <thead style="background-image: url(/assets/banda.png); color: white">
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Empieza</th>
+                <th>Termina</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% @events.each do |event| %>
+                  <td>
+                    <% if event.images.any? %>
+                      <%= image_tag event.images.first.cover.url(:mini), width: '50px'  %>
+                    <% else %>
+                      Sin img...
+                    <% end %>
+                  </td>
+                  <td><%= event.name %></td>
+                  <td><%= event.description %></td>
+                  <td><%= event.start_datetime.strftime("%m/%d/%y - %H:%M:%S") %></td>
+                  <td><%= event.end_datetime.strftime("%m/%d/%y - %H:%M:%S") %></td>
+                  <td> <div class="btn-group">
+                          <a class="btn btn-default" href="<%=admin_event_path(event)%>" ><%=fa_icon "eye"%></a>
+                          <a class="btn btn-default" href="<%=edit_admin_event_path(event)%>" ><%=fa_icon "pencil"%></a>
+                          <a class="btn btn-default" href="<%=admin_event_path(event)%>" data-method="DELETE" data-confirm="Esta seguro que desea eliminar este evento?" ><%=fa_icon "trash"%></a>
+                        </div>
+                  </td>
+              </tr>
+                <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="visible-xs visible-sm">
+        <% @events.each do |event| %>
+          <br>
+            <div class="row">
+              <div class="col-xs-3">
+                <% if event.images.any? %>
+                  <%= image_tag event.images.first.cover.url(:mini), width: '100%;'  %>
+                <% else %>
+                  Sin img...
+                <% end %>
+              </div>
+
+              <div class="col-xs-7">
+                <div class="form-group">
+                  <h4><%= event.name %></h4>
+                </div>
+
+                <div class="form-group">
+                  <%= event.description %>
+                  <br><br>
+                  <p><%= fa_icon "clock-o" %> <%= event.start_datetime.strftime("%m/%d/%y - %H:%M:%S") %></p>
+                  <p><%= fa_icon "clock-o" %> <%= event.end_datetime.strftime("%m/%d/%y - %H:%M:%S") %></p>
+                </div>
+              </div>
+
+              <div class="col-xs-1">
+                <div class="btn-group">
+                  <a class="btn btn-default btn-block" href="<%=admin_event_path(event)%>" ><%=fa_icon "eye"%></a>
+                  <br><br>
+                  <a class="btn btn-default btn-block" href="<%=edit_admin_event_path(event)%>" ><%=fa_icon "pencil"%></a>
+                  <br><br>
+                  <a class="btn btn-default btn-block" href="<%=admin_event_path(event)%>" data-method="DELETE" data-confirm="Esta seguro que desea eliminar este evento?" ><%=fa_icon "trash"%></a>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+          <%end%> 
+      </div>
+    </div>
+  </div>
+</div>

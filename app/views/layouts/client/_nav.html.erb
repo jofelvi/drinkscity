@@ -1,0 +1,88 @@
+<nav class="headerNav">
+    <div class="flexNav navP" style=" ">
+        <style media="screen">
+            .input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child>.btn, .input-group-btn:first-child>.btn-group>.btn, .input-group-btn:first-child>.dropdown-toggle, .input-group-btn:last-child>.btn-group:not(:last-child)>.btn, .input-group-btn:last-child>.btn:not(:last-child):not(.dropdown-toggle){
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+        </style>
+		<div class="">
+            <button type="button" class="btn btn-default sr-only" name="button" id="sideBack" onclick="opennav();">
+				<i class="glyphicon glyphicon-menu-left" style="font-size:25px;color:white;margin-top:5px"></i>
+			</button>
+			<button type="button" class="btn btn-default cerrarMenu" onclick="toggleNav()" name="button" id="sideMenu" style="position:relative">
+				<i class="fa fa-bars" aria-hidden="true" style="font-size:25px;color:white;margin-top:5px"></i>
+                <span id="notiBadge1" class="badge" style="right:2px;display:none"></span>
+			</button>
+		</div>
+		<div class="navCenter">
+      <%= form_for :search , url: busqueda_path, method:"get", html: { class: "form-inline"} do |f| %>
+			  <div class="form-group formDivHeader">
+			    <div class="input-group headerFilterDiv" >
+            <%= f.text_field :q, class:"form-control searchPP", id: "autocomplete", placeholder:"¿Que quieres para hoy?",style:" text-align:center; border-top-right-radius: 20px; border-bottom-right-radius: 20px;border-top-left-radius: 20px; border-bottom-left-radius: 20px;" %>
+			    </div>
+			  </div>
+      <% end %>
+		</div>
+        <div class="">
+        <a href="javascript:void(0)" type="button" class="btn btn-default" id="categoryShow"  name="button" style="padding: 1px 10px;">
+				<%= image_tag 'logo_blanco.png', alt: '', style: 'width: 38px' %>
+			</a>
+        </div>
+		<div class="">
+			<%= link_to mapa_url, class: "btn btn-default", data: { turbolinks: false } do %>
+				<%= image_tag 'mapa_blanco.png', alt: '', style: 'width: 38px' %>
+			<% end %>
+		</div>
+    </div>
+</nav>
+<div class="filterBand flexFilter" style="display:none;border-top:1px solid black"> 
+	<div class="text-center">
+		<a href="/categoria/1" >
+			<%= image_tag 'Iconos-02.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Botillerías</small>
+		</a>
+	</div>
+	<div class="text-center">
+		<a href="/categoria/0" >
+			<%= image_tag 'Iconos-01.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Bar</small>
+		</a>
+	</div>
+	<div class="text-center">
+		<a href="/categoria/3" >
+			<%= image_tag 'Iconos-05.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Disco</small>
+		</a>
+	</div>
+    <div class="text-center">
+		<a href="/categoria/5" >
+			<%= image_tag 'i_eventos.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Eventos</small>
+		</a>
+	</div>
+    <div class="text-center">
+		<a href="/categoria/2" >
+			<%= image_tag 'Iconos-04.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Delivery</small>
+		</a>
+	</div>
+	<div class="text-center">
+		<a href="/categoria/6" >
+			<%= image_tag 'motel.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Alojamiento</small>
+		</a>
+	</div>
+	<div class="text-center">
+		<a href="/categoria/7" >
+			<%= image_tag 'Iconos-03.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Restobares</small>
+		</a>
+	</div>
+    <div class="text-center">
+		<a href="/categoria/4" >
+			<%= image_tag 'Iconos-06.png', alt:"Botillerías", class:"imgFilterBand" %><br>
+            <small>Distribuidoras</small>
+		</a>
+	</div>
+</div>

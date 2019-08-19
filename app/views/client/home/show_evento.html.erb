@@ -1,0 +1,160 @@
+<% content_for :meta_facebook do %>
+	<meta property="og:image"		itemprop="image"	content="<%= "#{request.base_url}#{(@event.images.any?)? @event.images.first.cover.url(:mini) : "assets/event.jpg" }" %>" />
+	<meta property="og:title"   content="<%= "#{@event.name.titleize} #{@event.start_datetime.strftime("%m/%d/%Y")} - en DrinksCity" %>" />
+	<meta property="og:type"    content="website" />
+	<meta property="og:url"     content="<%= request.original_url %>" />
+	<meta property="og:updated_time" content="<%= Time.now.strftime('%s') %>" />
+
+<% end %>
+
+<% content_for :content do %>
+	<style type="text/css">
+		#map{
+			height: 350px;
+			width: : 100%;
+		}
+		.pre {
+			white-space: pre-wrap;       /* Since CSS 2.1 */
+			white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+			white-space: -pre-wrap;      /* Opera 4-6 */
+			white-space: -o-pre-wrap;    /* Opera 7 */
+			word-wrap: break-word;       /* Internet Explorer 5.5+ */
+			background-color: inherit;
+			border: 0px;
+			color: inherit;
+			font-size: inherit;
+			word-break: break-word;
+			text-align: justify;
+		}
+	</style>
+	<section id="avisoView" class="text-center" style="width:100%;padding: 0 10px;max-width:800px;margin:0 auto">
+		<div class="text-center" style="margin-top:80px">
+			<h2 class="KR headerA">
+				<span class="pull-left" style="font-size:24px">
+					<%= @event.name %>
+
+				</span>
+        	<%= render 'partials/share_favorite', favorite_id: @event.id, favorite_type: "event" %>
+
+			</h2>
+			<%= image_tag 'linea.png', alt:"", height:"2", class:"img-responsive" %>
+		</div>
+
+		<div class="">
+			<%= image_tag (@event.images.any?)? @event.images.first.cover.url(:medium): 'event.jpg', style:"width:100%"  %>
+		</div>
+
+		<hr>
+		<% unless @event.video_link.nil? %>
+			<div class="videoDiv">
+				<video controls class="player" id="player1" height="360"
+					width="100%" muted poster=""
+					preload="none" src="<%= @event.video_link %>"
+					style="max-width: 100%" tabindex="0" title="MediaElement">
+				</video>
+			</div>
+			<hr>
+		<% end %>
+
+		<div class="">
+			<div class="text-left" style="padding-top:8px;margin-bottom:20px">
+				<h3 class="" style="    margin-bottom: 0px;">Descripción</h3>
+				<%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+			</div>
+			<div>
+				<p class="text-left KL">
+					<pre class="text-left KR pre" style="">
+						<%= @event.description %>
+					</pre>
+				</p>
+			</div>
+		</div>
+
+
+		<% if @tickets.any? %>
+	    	<div class="">
+				<div class="text-left" style="padding-top:8px;margin-bottom:20px">
+					<h3 class="" style="    margin-bottom: 0px;">Entradas</h3>
+					<%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+				</div>
+
+				<div class="row">
+					<% @tickets.each do | ticket | %>
+						<article class="col-xs-12 col-sm-6 col-md-6">
+							<div class="media" style="height: 170px;margin-top:30px">
+
+								<div class="media-left">
+									<%= image_tag 'entrada.png', class:"", alt:"...", style:"height:auto; max-height:160px" %>
+								</div>
+								<div class="media-body text-left" style="position:relative;    padding-top: 2px;">
+									<h4 class="media-heading KR" style="text-transform: uppercase">
+										<%= ticket.name %>
+									</h4>
+
+									<p class="KR" style="font-size: 16px;">
+										Precio: <%= number_to_currency((ticket.price.nil?)? 0 : ticket.price, precision: 0, format: "%u %n c/u" ) %>
+									</p>
+
+									<br>
+
+									<p>
+										<% if (ticket.stock != nil || ticket.stock.to_i > 0 )%>
+											<%= form_for @order_item, remote: true do |f| %>
+												<%= f.hidden_field :item_id, value: ticket.id, id: "order_item_product_id_#{ticket.id}" %>
+												<%= f.hidden_field :item_type, value: ticket.class.name %>
+												<%= f.hidden_field :quantity, value: 1, min: 1, max: 1, id: "order_item_quantity_#{ticket.id}" %>
+												<%= f.submit "Comprar", class: "btn btn-primary btn-block buttonP" %>
+											<% end %>
+										<% else %>
+											<%= button_tag "Agotado", class: "btn btn-primary btn-block buttonP" %>
+										<% end %>
+									</p>
+								</div>
+							</div>
+
+							<%= image_tag 'linea.png', height:"2", style:"width: 100%;" %>
+						</article>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+
+		<% unless @event.latitude.nil? || @event.longitude.nil? %>
+	  		<%= render 'partials/show_mapa', hash: @hash %>
+	  	<% end %>
+
+		<!-- tienda que promociona el evento -->
+		<div class="row">
+			<div class="col-md-12">
+				<br><br><p class="text-center">Informacíon del Anunciante</p>
+				<%= render 'partials/anunciante', store: @event.store %>
+			</div>
+		</div>
+		<!-- /tienda que promociona el evento -->
+
+		<!-- Productos que se venden en el evento -->
+		<% if @products.any? %>
+	  		<%= render 'partials/products_store', products: @products, order_item: @order_item %>
+  		<% end %>
+		<!-- /Productos que se venden en el evento -->
+
+	</section>
+
+<% end %>
+
+<% content_for :script do %>
+	<script type="text/javascript">
+
+		$('#player1').mediaelementplayer({
+			// Configuration
+			success: function(media) {
+				var isNative = /html5|native/i.test(media.rendererName);
+
+				var isYoutube = ~media.rendererName.indexOf('youtube');
+
+			},
+			videoWidth: '500'
+		});
+
+	</script>
+<% end %>

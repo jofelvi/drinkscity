@@ -1,0 +1,16 @@
+$('#user_stores').children().remove();
+$('#user_stores').removeAttr('disabled');
+<%if @stores.present?%>
+  <%if @stores.any?%>
+    $('#user_stores').append('<option value="0">Seleccione la tienda</option>');
+    <%@stores.each do |store|%>
+      $('#user_stores').append('<option value = <%= j store.id.to_s%>> <%= j store.name%></option>');
+    <%end%>
+  <%else%>
+    $('#user_stores').children().remove();
+  <%end%>
+<%end%>
+var a = $('#user_stores').children().length
+if (a==0) {
+  $('#user_stores').prop('disabled',true);
+} else {}

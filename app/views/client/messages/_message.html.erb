@@ -1,0 +1,15 @@
+<div class="card ">
+  <div class="card-block ">
+    <div class="row ">
+      <div class="col-md-12">
+        <p class="card-text <%=select_chat_bubble(message.user)%>">
+          <span class="text-muted message-user"><%= message.user.email %> dice: </span>
+          <br>
+          <span> <%= message.body %></span> 
+          <br>  
+          <span class="hourChat text-muted pull-right"><%= message.timestamp %></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

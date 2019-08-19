@@ -1,0 +1,20 @@
+<% content_for :content do %>
+<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;">
+  <header class="text-center" style="margin-top:80px">
+    <h2  style="margin-bottom:0px"class="KR">SELECCIONE LA MODALIDAD DEL PAGO </h2>
+    <%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+  </header>
+</section>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <% if @transaction.valid? %>
+          <%= form_tag(@transaction.url, method: :post, enforce_utf8: false) do %>
+            <%= hidden_field_tag(:token_ws, @transaction.token) %>
+            <%= submit_tag("Pagar con Webpay plus", class: "btn btn-primary btn-block buttonP") %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<%end%>

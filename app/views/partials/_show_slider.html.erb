@@ -1,0 +1,54 @@
+<!-- Carousel -->
+<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+  <ol class="carousel-indicators" style="margin-top: 100px;">
+    <% unless item.images.any? %>
+      <li data-target="#carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel" data-slide-to="1"></li>
+      <li data-target="#carousel" data-slide-to="2"></li>
+      <li data-target="#carousel" data-slide-to="3"></li>
+      <li data-target="#carousel" data-slide-to="4"></li>
+    <% else %>
+      <% item.images.each_with_index do |image, index| %>
+        <li data-target="#carousel" data-slide-to="<%= index %>"></li>
+      <% end %>
+    <% end %>
+  </ol>
+
+  <!-- Carousel items -->
+  <div class="carousel-inner" height='400' >
+    <% unless item.images.any? %>
+      <div class="active item">
+        <a href="#">
+          <%= image_tag 'slides/slider1.jpg' %>
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <%= image_tag 'slides/slider5.jpg' %>
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <%= image_tag 'slides/slider3.jpg' %>
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <%= image_tag 'slides/slider4.jpg' %>
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <%= image_tag 'slides/slider2.jpg' %>
+        </a>
+      </div>
+    <% else %>
+      <% item.images.each_with_index do |image, index| %>
+        <div class="item <%= (index==0)? 'active': '' %>">
+          <%= image_tag image.cover.url(:medium), style: 'max-height: 300px; width: 100%' %>
+        </div>
+      <% end %>
+    <% end %>        
+  </div>
+</div>
+<!-- /Carousel -->

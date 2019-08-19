@@ -1,0 +1,169 @@
+<% content_for :content do %>
+	<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;">
+		<header class="text-center" style="margin-top:80px">
+			<h2  style="margin-bottom:0px"class="KR">ORDEN #<%= @order.id %>
+				<%if @payment_status.present?%>
+					<div style="float:right; font-size: 2rem" >
+						Status: <%=I18n.t "statuses.#{@order.order_status.name}"%>
+					</div>
+				</h2>
+					<%if @payment_status.status == "pending"%>
+						<div style="float:right; font-size: 2rem" >
+							<%= link_to "Verificar", payments_status_path(payment_id: @order.payment_id, id: @order.id), class:"btn btn-danger"  %>
+						</div>
+					<%end%>
+				<%end%>
+		</h2>
+
+			<%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+		</header>
+		<br>
+
+<%if alert.present? %>
+	<%if @order.order_status.id == 3 %>
+		<%icon="success"%>
+	<%else%>
+		<%icon = "warning"%>
+	<%end%>
+
+<script>
+	swal({
+		title: "DrinksCity",
+		text: "<%=raw alert%>",
+		icon: "<%=raw icon%>",
+	});
+</script>
+
+<%end%>
+ <br>
+
+<% if user_signed_in? && current_user.role == 0 %>
+	 <%if @payment_status.present? && (@order.order_status.id != 4 )  %>
+		<%= link_to "Generar codigo QR", payments_confirm_path(notification_token: @payment_status.notification_token, id: @order.id), class:"btn btn-success", style:"background-color: #3be8a8"%>
+	<%end%>
+<% end %>
+
+		<div id="" class="formGroup row" style="">
+			<div id="no-more-tables" class="table-responsive col-md-offset-2 col-md-8 col-xs-12 col-md-off">
+				<table class="table jambo_table bulk_action">
+					<thead>
+						<tr>
+							<th class="column-title"></th>
+							<th class="column-title">Producto</th>
+							<th class="column-title" style="text-align:center">Cantidad</th>
+							<th class="column-title" style="text-align:center">Precio</th>
+							<th class="column-title" style="text-align:center">Subtotal</th>
+							<th class="column-title" style="text-align:center; width: 20%">Calificar</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<% @order.order_items.each do |order_item| %>
+							<tr>
+								<td data-title="Imagen">
+									<%= image_tag order_item.item.image.url(:medium), style: "width:100%; max-width: 160px", alt: "" %>
+								</td>
+								<td data-title="Producto" class="text-left">
+									<p><strong><%= order_item.item.name %></strong></p>
+								</td>
+
+								<td data-title="Cantidad" class="qty" data-id="a91d79b5dc31edba955f517317fb8beb" style="padding-top: 0;">
+									<p style="padding:10px">
+										<strong>
+											<%= order_item.quantity %>
+										</strong>
+									</p>
+
+								</td>
+								<td data-title="Precio" class="price">
+									<%=  number_to_currency(order_item.unit_price, precision: 0 ) %>
+								</td>
+								<td data-title="Subtotal" class="subTotal">
+									<%=number_to_currency(order_item.total_price, precision: 0 ) %>
+								</td>
+								<td>
+									<%#= rating_for order_item.item, 'quality', disable_after_rate: true, enable_half: true%>
+									<div class="form-group">
+										<%= link_to calificacion_path(id: order_item.item.id), class:"btn btn-success btn-block buyP" do %>
+											Calificar
+										<% end %>
+									</div>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+					<tbody>
+						<tr>
+							<td></td>
+							<td colspan="2">&nbsp;</td>
+							<td style="font-size: 18px">Total:</td>
+							<td style="font-size: 18px" ><%=number_to_currency(@order.subtotal, precision: 0 ) %></td>
+						</tr>
+
+						<tr>
+					</tbody>
+				</table>
+				<%if @order.order_status.id ==1%>
+					<div class="form-group">
+						<%= link_to payments_create_path(id: @order.id), class:"btn btn-success btn-block buyP" do %>
+							COMPRAR
+						<% end %>
+					</div>
+				<%end%>
+
+				<!--
+					<%#if current_user.admin?# && @order.order_status_id == 3%>
+						<div class="form-group">
+							<%#= link_to one_click_reverse_path(id: @order.id), class:"btn btn-danger btn-block buyP" do %>
+								REVERSAR ESTA ORDEN
+							<%# end %>
+						</div>
+					<%#end%>
+				-->
+				</div>
+			</div>
+
+		<%if @order.order_status_id == 3 %>
+			<div class="row" style="margin-bottom: 400px;">
+				<div class="col-md-6 col-md-offset-3 text-center" style="position: relative;">
+					<div class="" style="background-color: #FFF; width: 220px; padding: 10px; position: absolute; margin-left:auto;margin-right:auto;left:0;right:0;">
+						<div id="contentqr" ></div>
+					</div>
+				</div>
+			</div>
+		<%end%>
+	</section>
+
+<% end %>
+
+<% content_for :content do %>
+
+
+
+
+<% end %>
+
+<% content_for :script do %>
+	<script type="text/javascript">
+		$('#contentqr').qrcode({
+			render: 'image',
+			background: '#FFF',
+			fill: '#000',
+			text: '<%=@order.id%>',
+			minVersion: 5,
+			maxVersion: 40,
+			ecLevel: 'L',
+			left: 0,
+			top: 0,
+			size: 200,
+			quiet: 0,
+			mode: 0,
+			mSize: 0.1,
+			mPosX: 0.5,
+			mPosY: 0.5,
+			fontname: 'sans',
+			fontcolor: '#000',
+			image: null
+		});
+	</script>
+<% end %>

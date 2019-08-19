@@ -1,0 +1,167 @@
+<% content_for :content do %>
+	<br><br><br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<div class="form-group">
+					<%= select_tag "people", options_for_select(Store.kinds.map {|k, v| [k.humanize.capitalize, v]}), class: 'form-control', id: 'select_kind',include_blank: "¿Qué estas buscando?" %>
+				</div>
+
+				<div class="form-group">
+					<input id="searchInput" type="text" name="" class="form-control" placeholder="Direccion de la Tienda" >
+				</div>
+			</div>
+		</div>
+
+		<% unless @stores.any? %>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h4>No encontramos tiendas en la categoría seleccionada.</h4>
+				</div>
+			</div>
+		<% end %>
+
+		<div class="row">
+			<div style='width: 99vw; height: 100vh'>
+				<div id="map" style='width: 90vw; height: 70vh; margin: 0 auto; margin-top: 20px;'></div>
+			</div>
+		</div>
+	</div>
+<% end %>
+<% content_for :script do %>
+	<script>
+		$('#select_kind').change(function(event) {
+			console.log('voy a hacer una petición');
+			console.log($(this).val());
+			window.location.assign("<%= "#{mapa_url}?categoria=" %>"+$(this).val());
+		});
+
+	  	var latitude;
+	  	var longitude;
+
+
+      	myLocation();
+
+      	function myLocation(){
+      		navigator.geolocation.getCurrentPosition( fn_ok, fn_mal);
+
+      		function fn_mal() {
+            console.log('esta pasando un error');
+
+            var handler = Gmaps.build('Google');
+            handler.buildMap({ internal: {id: 'map'}}, function(){
+              var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+              var markers = handler.addMarkers([{"lat": -33.448482,"lng": -70.598087}]);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+              handler.getMap().setZoom(16);
+            });
+          }
+
+      		function fn_ok(position){
+      		  	latitude = position.coords.latitude;
+      		  	longitude = position.coords.longitude;
+
+      		  	// console.log('latitude: '+ latitude);
+      		  	// console.log('longitude: '+ longitude);
+
+      		  	var handler = Gmaps.build('Google');
+      		  	// console.log('user_location: '+ user_location);
+      		  	handler.buildMap({ internal: {id: 'map'}}, function(){
+	      		  	var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+	      		  	var markers = handler.addMarkers([{"lat":latitude,"lng":longitude}]);
+	      		  	handler.bounds.extendWith(markers);
+	      		  	handler.fitMapToBounds();
+	      		  	handler.getMap().setZoom(16);
+      		  	});
+
+
+      // 		  	var gLatLng = new google.maps.LatLng(latitude, longitude);
+
+      // 		  	// objeto de configuracion del mapa
+      // 		  	var objConfig = {
+      // 		    	zoom: 17,
+	     //  		    center: gLatLng
+      // 		  	}
+
+		  		// var divMapa = document.getElementById('mapa');
+		  		// var gMapa = new google.maps.Map(divMapa, objConfig);
+      		}
+      	}
+
+  		var searchInput = document.getElementById('searchInput');
+  		var autocomplete = new google.maps.places.Autocomplete(searchInput);
+
+  		var map = new google.maps.Map(document.getElementById('map'), {mapTypeId: 'roadmap'});
+
+  		autocomplete.bindTo('bounds', map);
+  		google.maps.event.addListener(autocomplete, "place_changed", function () {
+  			var place = autocomplete.getPlace();
+  			lat = place.geometry.location.lat()
+  			lng = place.geometry.location.lng()
+/*
+
+  			var gLatLng = new google.maps.LatLng(latitude, longitude);
+
+  		  	// objeto de configuracion del mapa
+  		  	var objConfig = {
+  		    	zoom: 15,
+      		    center: gLatLng
+  		  	}
+
+	  		var divMapa = document.getElementById('map');
+	  		var gMapa = new google.maps.Map(divMapa, objConfig);
+*/
+
+  		  	var handler = Gmaps.build('Google');
+  		  	// console.log('user_location: '+ user_location);
+  		  	handler.buildMap({ internal: {id: 'map'}}, function(){
+      		  	var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+              // var markers = handler.addMarkers([{"lat":latitude,"lng":longitude}]);
+      		  	var markers = handler.addMarkers([{"lat":-33.448482,"lng":-70.598087}]);
+      		  	handler.bounds.extendWith(markers);
+      		  	handler.fitMapToBounds();
+      		  	handler.getMap().setZoom(13);
+				      handler.map.centerOn([lat, lng]);
+  		  	});
+
+/*
+  			if (place.geometry.viewport) {
+  				console.log('entre aqui');
+  				console.log(place);
+  				map.setZoom(5);
+  			} else {
+  				map.setCenter(place.geometry.location);
+  				console.log('entre aqui en el else');
+  				map.setZoom(5);
+  			}
+  			*/
+  		});
+
+
+/*
+
+  		function geolocate() {
+  			if (navigator.geolocation) {
+  				navigator.geolocation.getCurrentPosition(function(position) {
+  					var geolocation = {
+  						lat: position.coords.latitude,
+  						lng: position.coords.longitude
+  					};
+  					var circle = new google.maps.Circle({
+  						center: geolocation,
+  						radius: position.coords.accuracy
+  					});
+  					autocomplete.setBounds(circle.getBounds());
+  				});
+  			}
+  		}
+*/
+
+
+
+
+
+
+	</script>
+<% end %>

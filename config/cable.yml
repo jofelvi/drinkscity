@@ -1,0 +1,10 @@
+development:
+  adapter: redis
+
+test:
+  adapter: async
+
+production:
+  adapter: redis
+  url: redis://development:363159d526294e9e571a9305a7e5c19308918c7a47484e8695469707146e32ff@dokku-redis-development:6379
+  channel_prefix: drinkscity_production

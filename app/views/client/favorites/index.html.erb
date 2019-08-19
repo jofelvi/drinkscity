@@ -1,0 +1,35 @@
+<% content_for :content do %>
+	<div class="">
+	<!-- page content -->
+		<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;max-width: 800px;">
+
+			<header class="text-center" style="margin-top:80px">
+				<h2 class="KR">Favoritos</h2>
+				<img src="/assets/linea.png" alt="" class="img-responsive" height="2">
+			</header>
+			<header class="text-center" style="margin-top:10px">
+				<h3 class="KR">Productos</h3>
+			</header>
+			<%@favorited_products.each do |fp|%>
+				<%=render "product_card", fp: fp%>
+			<%end%>
+			<div class="" style="clear:both"></div>
+
+			<header class="text-center" style="margin-top:10px">
+				<h3 class="KR">Tiendas</h3>
+			</header>
+			<%@favorited_stores.each do |fs|%>
+				<%=render "store_card", fs: fs %>
+			<%end%>
+			<div class="" style="clear:both"></div>
+			<header class="text-center" style="margin-top:10px">
+				<h3 class="KR">Eventos</h3>
+			</header>
+			<%@favorited_events.each do |fe|%>
+				<%=render "event_card", fe: fe %>
+			<%end%>
+			<div class="" style="clear:both"></div>
+			<br>
+		</section>
+	</div>
+<%end%>

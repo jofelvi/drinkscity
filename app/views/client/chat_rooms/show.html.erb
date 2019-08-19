@@ -1,0 +1,50 @@
+<% content_for(:content) do %>
+	<div class="container">
+		<h1 class="text-center KR">Chatea con nosotros</h1>
+		<div class="row">
+			<div class="col-md-8">
+				<div id="messages" class="Kl messages-container" data-chat-room-id="<%= @chat_room.id %>">
+			  	<%= render @chat_room.messages %>
+				</div>
+			</div>
+		<div class="col-md-4 hidden message-body-col ">
+			<%= form_for @message, url: '#', id:'chat-form' do |f| %>
+			  <div class="form-group">
+			    <%= f.text_area :body, autofocus: true, class: 'form-control inputDC', rows: 5 %>
+			  </div>
+			  <%= f.submit "Enviar", class: 'btn btn-success btn-lg buttonP ', style:'width:100%', id:"send-message-button" %>
+		  	<br>
+		  	<br>
+				<p class="KR">
+		    	Gracias por contactarnos. Por favor, espere mientras nuestros agentes se comunican con usted
+				</p>		  		
+			<% end %>
+		</div>
+
+		<div class="col-md-4 notify-col">
+			<%= button_to "Iniciar Chat", notify_path(id:@chat_room.id), remote: true, class:'btn btn-success btn-lg buttonP', id:'notify-button', style: 'width:100%' %>
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(function() {
+			var notify = <%=@notify ? @notify.present? : false%>
+			if (notify===true) {
+				$('.message-body-col').removeClass('hidden')
+				$('.notify-col').addClass('hidden')
+				console.log('true')
+			} 
+			else {
+				console.log('false')
+			}
+			$('#notify-button').on('click',function () {
+				$('.message-body-col').removeClass('hidden')
+				$('.notify-col').addClass('hidden')
+
+			})
+		});
+	</script>
+<%end%>
+
+

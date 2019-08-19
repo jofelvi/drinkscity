@@ -1,0 +1,63 @@
+<!-- EVENTOS -->
+	<!-- TITULO -->
+	<h4 class="text-center ">
+		<a href="/eventos" class="hoverText">
+			<strong>
+				EVENTOS
+			</strong>
+		</a>
+		<%= image_tag 'linea.png', class:'img-responsive', style:"margin:10px 0", height:"1"%>
+	</h4>
+	<!-- /TITULO -->
+	<style media="screen">
+		.eventDayWrapper{
+			position: absolute;
+			right: 0px;
+			top: 0;
+		}
+	</style>
+	<!-- PRODUCTOS/EVENTOS -->
+	<div class="swiper-container2 swiper-container-horizontal">
+		<div class="swiper-wrapper">
+			<% events.each do |event| %>
+				<div class="swiper-slide swiper-slide-active" style="margin-left: 20px; width: auto; margin-right: 20px;">
+					<a href="javascript:void(0)">
+						<div class="text-left bannerBox" style="position:relative;padding:0 10px;border:none">
+
+							<%= link_to evento_url(event), style: "position:relative" do %>
+								<!-- image_tag 'event.jpg', style: 'width: 100%' -->
+								<%= image_tag (event.images.any?)? event.images.first.cover.url(:medium): 'event.jpg', class: 'bannerImg', style:"border: none" %>
+							<% end %>
+							<div class="" style="padding:10px 10px;position:relative">
+								<span class="tituloHomeShow"><%= event.name %></span><br>
+
+								<span class="tiendaHomeShow"><%= event.category %> a </span>
+								<span class="distanciaHomeShow distanceTake" data-latitude="-33.7023109" data-longitud="-70.335304">40 km</span><br>
+								<span class="tiendaHomeShow"><%= event.store.kind %></span><br>
+								<span class="tiendaHomeShow"></span>
+								<div class="text-center " style="    position: absolute;right: 14px;top: 15px;">
+									<p class="eventDate eventDay">
+										<span style="font-size:12px">
+											<%=  (l event.start_datetime, :format => :dia)[0..2] %>
+										</span>
+									</p>
+									<p class="eventNumer">
+										<%=  (l event.start_datetime, :format => :dia_num) %>
+									</p>
+									<p class="eventDate">
+										<%=  (l event.start_datetime, :format => :mes)[0..2] %>
+									</p>
+								</div>
+								<br>
+							</div>
+
+						</div>
+					</a>
+				</div>
+			<% end %>
+
+		</div>
+	</div>
+	<!-- /PRODUCTOS/EVENTOS -->
+
+<!-- EVENTOS

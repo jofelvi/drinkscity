@@ -1,0 +1,99 @@
+<p id="notice">
+  <%= notice %>
+</p>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <div class="row">
+          <div class="col-md-7 col-xs-12 col-sm-12">
+            <h2>Usuarios</h2>
+          </div>
+
+          <div class="col-md-5 col-xs-12 col-sm-12">
+            <%= form_tag admin_users_path, method: :get do %>
+            <div class="input-group">
+              <%= text_field_tag :search, params[:search], autocomplete: "off", class: "form-control" %>
+              <span class="input-group-btn">
+                <%= submit_tag "Buscar", class: "btn btn-default" %>
+              </span>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="hidden-xs hidden-sm">
+        <div class="table-responsive">
+          <table class="table table-responsive table-hover table-striped">
+            <thead style="background-image: url(/assets/banda.png); color: white">
+              <tr>
+                <th>N°</th>
+                <th>Nombre Completo</th>
+                <th>Email</th>
+                <th>Tipo de Usuario</th>
+                <th colspan="3">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= user.fullname %></td>
+                  <td><%= user.email %></td>
+                  <td>
+                    <% if user.role.present? %>
+                      <%= user.role %>
+                    <% elsif user.provider.present? %>
+                      <%= user.provider %> / Invitado
+                    <% else %>
+                      Invitado
+                    <% end %>
+                  </td>
+                  <td> 
+                    <div class="btn-group">
+                      <a class="btn btn-default" href="<%=edit_admin_user_path(user)%>" ><%=fa_icon "pencil"%></a>
+                      <%if user.store_admin?%>
+                        <% if user.stores.present? %>
+                         <a class="btn btn-default" href="<%=admin_stores_path(id: user.id)%>"><%=fa_icon "building"%></a>
+                        <% end %>
+                      <%end%>
+                      <a class="btn btn-default" href="<%=admin_user_path(user)%>" data-method="DELETE" data-confirm="Esta segudo que desea eliminar este usuario?" ><%=fa_icon "trash"%></a>
+                    </div>
+                  </td>
+                </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="visible-xs visible-sm">
+        <% @users.each do |user| %>
+          <br>
+            <div class="row">
+              <div class="col-xs-10">
+                <p><b>Id:</b> <%= user.id %></p>
+                  <p><b>Nombre:</b> <%= user.fullname %></p>
+                  <p><b>E-mail:</b> <%= user.email %></p>
+                  <p><b>Perfil:</b> <%= (I18n.t "roles.#{user.role}")%></p>
+              </div>
+
+              <div class="col-xs-2">
+                <div class="btn-group">
+                  <a class="btn btn-default btn-block" href="<%=edit_admin_user_path(user)%>" ><%=fa_icon "pencil"%></a>
+                  <%if user.store_admin?%>
+                    <% if user.stores.present? %>
+                      <a class="btn btn-default btn-block" href="<%=admin_stores_path(id: user.id)%>"><%=fa_icon "building"%></a>
+                    <% end %>
+                  <%end%>
+                  <a class="btn btn-default btn-block" href="<%=admin_user_path(user)%>" data-method="DELETE" data-confirm="Esta segudo que desea eliminar este usuario?" ><%=fa_icon "trash"%></a>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+          <%end%> 
+      </div>
+    </div>
+  </div>
+</div>

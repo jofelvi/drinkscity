@@ -1,0 +1,20 @@
+<% content_for :content do %>
+	<%= render 'layouts/client/slider', products: @products_slider_principal %>
+
+	<!-- OFERTAS DEL MOMENTO -->
+		<%= render 'ofertas', offers: @offers, order_item: @order_item %>
+	<!-- /OFERTAS DEL MOMENTO -->
+
+	<!-- DESTACADO -->
+		<%= render 'destacado', products: @destacado, order_item: @order_item %>
+	<!-- /DESTACADO -->
+
+	<!-- EVENTOS -->
+		<%= render 'events', events: @events, order_item: @order_item %>
+	<!-- EVENTOS -->
+
+	<!-- MAS CERCANOS -->
+		<%= render 'cercanos', products: @products, order_item: @order_item %>
+	<!-- /MAS CERCANOS -->
+<% end %>
+

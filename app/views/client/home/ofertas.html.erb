@@ -1,0 +1,87 @@
+<% content_for :content do %>
+	<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;">
+		<header class="text-center" style="margin-top:80px">
+			<h3 class="KR">OFERTAS DEL MOMENTO</h3>
+      		<%= image_tag 'linea.png', alt:"", height:"2", style:"width: 100%;" %>
+		</header>
+	</section>
+	<style media="screen">
+		.grid-item { width: 200px; }
+	</style>
+
+	<ul class="grid" style="position: relative; height: 2317.3px;">
+		<% @products.each do |product| %>			
+			<li class="grid-item " style="margin-bottom: 25px;">
+				<% if product.sale_or_show %>
+					<%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px; left: 0px" do %>
+						<%= image_tag 'carro_mas.png', alt:'' %>
+						<%= hidden_field_tag :product_id, product.id %>
+					<% end %>
+				<% end %>
+				<%= form_for @order_item, remote: true, html: {class: "", id: "form_#{product.id}"} do |f| %>
+					<%= f.hidden_field :item_id, value: product.id, id: "order_item_product_id_#{product.id}" %>
+					<%= f.hidden_field :item_type, value: product.class.name %>
+					<%= f.hidden_field :quantity, value: 1, min: 1, max: 1, id: "order_item_quantity_#{product.id}" %>
+					<%= f.submit "Añadir al carrito", class: "btn btn-primary btn-submit-product", style: "display: none;" %>
+				<% end %>
+				<a href="<%=producto_path(id: product.id)%>" class="borderDC">
+
+					<div class="" style="position:absolute; right:0; width: 100%; top: -20px; left: 70px" >
+						<%= image_tag 'crono.png', style:'display: inline-block' %>
+						<span class="timerOfertas" style='display: inline-block' data-hora="<%= (product.end_datetime.nil?) ? '23:59:59' : product.end_datetime.try(:strftime, '%H:%M:%S') %>"></span>
+					</div>
+					<%= image_tag product.image.url(:medium), class: 'avisoImg' %>
+					<div class="text-center" style="padding: 5px 0">
+						<span class="tituloHomeShow"><%= product.name %></span><br>
+						<span class="tiendaHomeShow"><%= product.item.name %></span><br>
+						<span class="tiendaHomeShow colorDC"><%= product.item.kind %> a </span>
+						<span class="distanciaHomeShow distanceTake colorDC" data-latitude="<%= product.item.latitude %>" data-longitud="<%= product.item.longitude %>"></span><br>
+						<span class="precioHomeShow"><%= number_to_currency((product.price.nil?)? 0 : product.price, precision: 0, format: "%u %n c/u" ) %></span>
+					</div>
+				</a>
+			</li>			
+		<% end %>
+	</ul>
+    <!-- /PRODUCTOS -->
+<% end %>
+
+<% content_for :script do %>
+	<script type="text/javascript">
+
+		document.addEventListener("turbolinks:load", function() {
+			$('.grid').masonry({
+				itemSelector: '.grid-item',
+			});
+		});
+
+	    window.onload = function(){
+			$('.grid').masonry({
+				itemSelector: '.grid-item',
+			});
+		}
+
+		function countDownOfertas()
+		{
+		    $( ".timerOfertas" ).each(function( index ) {
+			    var hora  = $( this ).data('hora');
+		        var da    = moment().format('YYYY-MM-DD');
+		        var tom   = moment(da+" "+hora).countdown();
+		        var hours = tom.hours;
+		        var min   = tom.minutes;
+		        var sec   = tom.seconds;
+		        if (hours < 10){ hours = '0'+hours; }
+		        if (min < 10){ min = '0'+min; }
+		        if (sec < 10){ sec = '0'+sec; }
+		        $(this).html(hours+":"+min+":"+sec)
+			});
+		}
+
+		countDownOfertas();
+
+    	setInterval(function(){ countDownOfertas() }, 1000);
+
+    	// mostrar_distancias(user_location);
+    	mostrar_distancias({latitude: -33.448482, longitude: -70.598087});
+	</script>
+<% end %>
+

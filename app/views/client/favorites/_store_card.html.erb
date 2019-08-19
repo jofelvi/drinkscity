@@ -1,0 +1,22 @@
+<article class="col-xs-12 col-md-6">
+	<div class="media" style="height: 170px;margin-top:30px">
+		<div class="media-left">
+			<a href="<%=tienda_path(fs)%>" style="position:relative">
+				<%= image_tag fs.logo.url(:mini), alt:"...", style:"height:auto; max-height:160px" %>
+			</a>
+		</div>
+		<div class="media-body text-left" style="position:relative;    padding-top: 2px;">
+			<h4 class="media-heading KR" style="text-transform:uppercase"><%=fs.name%></h4>
+			<p class="KR"><%=fs.days_opened %><span class=""></span></p>
+			<p class="KR"><%=fs.time_opened%> <span class=""></span></p>
+			<small class="pull-right KL distStores " data-latitude="-33.436188" data-longitud="-70.595062"></small>
+		</div>
+		<div class="media-body text-right" style="position:relative;    padding-top: 2px;width:60px">
+			<div class="deleteFav text-center" data-id="7" style="cursor:pointer">
+				<a href="<%=eliminar_favorito_path(store_id: fs.id)%>" data-method="delete"><img src="/assets/trash.png" alt="" width="30"></a>
+			</div>
+			<br><br>
+		</div>
+	</div>
+	<img src="/assets/linea.png" alt="" style="width: 100%;" height="2">
+</article>

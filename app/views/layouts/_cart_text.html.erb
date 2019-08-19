@@ -1,0 +1,7 @@
+<%if current_order.order_items.size > 0%>
+	<%items_quantity = 0%>
+	<%current_order.order_items.each do |a| %>
+	<% items_quantity = a.quantity + items_quantity%>
+<%end%>
+	<%= link_to "#{items_quantity}", cart_index_path, style: 'color: white' %>
+<%end%>

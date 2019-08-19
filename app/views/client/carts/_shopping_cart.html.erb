@@ -1,0 +1,135 @@
+<div class="" >
+  <!-- page content -->
+  <section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;max-width: 800px;">
+<header class="text-left" style="margin-top:80px">
+  <h2 class="KR">Carrito
+    <span class="botonerA pull-right" style="    margin-top: -5px;">
+      <%= image_tag 'khipu.png' %>
+    </span>
+  </h2>
+  <%= image_tag 'linea.png', class: "img-responsive", height:"2" %>
+</header>
+  <% if @order_items.size == 0 %>
+    <p class="text-center" style="padding-top: 80px">
+
+      No hay productos en su carrito de compra.  Por favor <%= link_to "regrese", root_path %> y agrege algunos productos a su carrito
+    </p>
+  <% else %>
+
+
+
+      <div id="" class="formGroup" style="">
+        <div id="no-more-tables" class="table-responsive">
+          <table class="table jambo_table bulk_action">
+            <thead>
+              <tr>
+                <th class="text-center"></th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Subtotal</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @order_items.each do |order_item| %>
+                <%= render 'client/carts/cart_row', product: order_item.item, order_item: order_item, show_total: true %>
+              <% end %>
+            </tbody>
+            <tbody>
+
+            <tr>
+              <td></td>
+              <td colspan="2">&nbsp;</td>
+              <td><h4>Total</h4></td>
+              <td> <h4><%=  number_to_currency(@order_items.first.order.subtotal, precision: 0, format: "%u %n "  )%></h4> </td>
+
+            </tr>
+
+          </tbody></table>
+
+          <style type="text/css">
+            .btn-custom, .btn-custom:hover, .btn-custom:active, .btn-custom:focus{
+              border: 2px solid #00c5da;
+              color: #FFF;
+              background-color: #000;
+            }
+          </style>
+
+<button class="btn btn-custom btn-block btn-lg" data-toggle="collapse" data-target="#deliveryForm">¿Desea recibir este pedidi en su domicilio?</button>
+<br><br>
+
+        <div id="deliveryForm" class="collapse" style="overflow: hidden;">
+          <% if current_order.store.delivery%>
+            <form class="form-horizontal" action='/add_address' method='post'>
+              <input name='_method' type='hidden' value='PUT' />
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                  Recibe
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" name="recipient_name" id="recipient_name" class="form-control" placeholder="nombre de quien recibe..">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                  Dirección
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" name="address" id="address" class="form-control" placeholder="direccion..">
+                </div>
+              </div>
+              <center>
+                <div class="form-group">
+                  <div class="">
+                    <button class="btn btn-sm btn-info" id="save_address" name="save_address" >Guardar</button>
+                  </div>
+                </div>
+              </center>
+              <br><br>
+            </form>
+          <% end %>
+        </div>
+
+
+
+        </div>
+
+        <div class="form-group">
+          <%= link_to payments_create_path(id: current_order.id), class:"btn btn-primary btn-block buttonP" do %>
+            PAGAR CON KHIPU
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= link_to webpay_init_transaction_path(id: current_order.id), class:"btn btn-primary btn-block buttonP" do %>
+            PAGAR CON TRANSBANK WEBPAY
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= link_to one_click_init_inscription_path(id: current_order.id), class:"btn btn-primary btn-block buttonP" do %>
+            PAGAR CON TRANSBANK ONE-CLICK
+          <% end %>
+        </div>
+        <%if current_user.try(:oneclick_user)%>
+          <div class="form-group">
+            <%= link_to one_click_remove_user_path, class:"btn btn-danger btn-block buttonP", style:"background-image:none;" do %>
+              ELIMINAR USUARIO DE ONE-CLICK
+            <% end %>
+          </div>
+        <%end%>
+      </div>
+    </section>
+
+  </div>
+
+<script type="text/javascript">
+  var searchInput = document.getElementById('address');
+  var autocomplete = new google.maps.places.Autocomplete(searchInput);
+
+</script>
+
+
+
+<% end %>

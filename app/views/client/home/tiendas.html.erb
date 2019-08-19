@@ -1,0 +1,42 @@
+<% content_for :content do %>
+	<section id="storesView" class="text-center" style="width:100%;padding: 0 10px;margin: 0 auto;max-width: 800px;">
+		<header class="text-center" style="margin-top:80px">
+			<h2 class="KR">TIENDAS</h2>
+			<%= image_tag 'linea.png', height:"2", class:"img-responsive" %>
+		</header>
+
+		<% @stores.each do |store| %>
+				<article class="col-xs-12 col-md-6">
+					<div class="media" style="height: 170px;margin-top:30px">
+						<div class="media-left">
+							<%= link_to tienda_url(store), style: "position: relative;", data: { turbolinks: false} do %>  <!-- data: { turbolinks: false } -->
+								<%= image_tag store.logo.url(:medium), class:"borderDC", alt:"...", style:"height:auto; max-height:160px" %>
+							<% end %>
+						</div>
+						<div class="media-body text-left" style="position:relative;    padding-top: 2px;">
+							<h4 class="media-heading KR" style="text-transform: uppercase">
+								<%= store.name %>
+							</h4>
+							<h4 class="media-heading KL colorDC">
+								<%= store.kind %>
+								a
+								<span class="KL  distanceTake" data-latitude="-33.448875" data-longitud="-70.609093">
+									3 km
+								</span>
+							</h4>
+							<p class="KR">
+								
+							</p>
+							<p class="KR" style="font-size: 16px;">
+								<%= "#{store.description} Vive la experiencia DrinksCity disfrutando los mejores y más variados  tragos junto a todos tus amigos!!" if !store.description %>
+							</p>
+
+						</div>
+					</div>
+					<%= image_tag 'linea.png', height:"2", style:"width: 100%;" %>
+				</article>
+			<% end %>
+
+		<div class="" style="clear:both"></div>
+	</section>
+<% end %>

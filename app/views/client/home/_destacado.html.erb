@@ -1,0 +1,53 @@
+<!-- DESTACADO -->
+<!-- TITULO -->
+<div class="" style="padding-top:8px">
+
+	<h4 class="text-center">
+		<%= link_to destacados_url, class: 'hoverText' do %>
+			<strong>DESTACADOS</strong>
+		<% end %>
+		<%= image_tag 'linea.png', class:'img-responsive', style:"margin:10px 0", height:"1"%>
+	</h4>
+</div>
+<!-- /TITULO -->
+<!-- PRODUCTOS -->
+<div class="swiper-container swiper-container-horizontal">
+	<div class="swiper-wrapper">
+
+		<% products.each do |product| %>
+		<div class="swiper-slide anuncioBox" style="padding-top: 20px; margin-right: 10px;">
+			<% if product.sale_or_show %>
+				<%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px" do %>
+					<%= image_tag 'carro_mas.png', alt:'' %>
+					<%= hidden_field_tag :product_id, product.id %>
+				<% end %>
+			<% end %>
+			<%= form_for order_item, remote: true, html: {class: "", id: "form_#{product.id}"} do |f| %>
+				<%= f.hidden_field :item_id, value: product.id, id: "order_item_product_id_#{product.id}" %>
+				<%= f.hidden_field :item_type, value: product.class.name, id: "order_item_product_type_#{product.id}" %>
+				<%= f.hidden_field :quantity, value: 1, min: 1, max: 1, id: "order_item_quantity_#{product.id}" %>
+				<%= f.submit "Añadir al carrito", class: "btn btn-primary btn-submit-product", style: "display: none;" %>
+			<% end %>
+			<a href="<%=producto_path(id: product.id)%>">
+
+				<div class="anuncioImgbox borderDC">
+					<%= image_tag product.image.url(:medium), class: 'avisoImg' %>
+					<div class="">
+						<span class="tituloHomeShow"><%= product.try(:name) %></span><br>
+
+						<span class="tiendaHomeShow"><%= product.description %></span><br>
+						<span class="tiendaHomeShow colorDC"><%= product.try(:item).try(:name) %></span>
+						<span class="distanciaHomeShow distanceTake colorDC" data-latitude="-33.436188" data-longitud="-70.595062">4 km</span><br>
+						<span class="precioHomeShow"><%= number_to_currency((product.price.nil?)? 0 : product.price, precision: 0, format: "%u %n c/u" ) %></span>
+					</div>
+				</div>
+			</a>
+		</div>
+		<% end %>
+
+	</div>
+	<!-- Add Pagination -->
+	<div class="swiper-pagination"></div>
+</div>
+<!-- /PRODUCTOS -->
+<!-- /DESTACADO -->

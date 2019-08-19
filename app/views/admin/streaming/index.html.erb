@@ -1,0 +1,79 @@
+<style type="text/css">
+
+.video_container {
+  display: grid;
+  /* Display as a Grid */
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  /* repeat = as many times as you can fit */
+  /* auto-fit = fit as many items on the line as possible, go bigger if you need to */
+  /*minmax = (min size, max size) = the minimum size the column should be is 200px, but if there's space then give them all 1fr of that width. */
+   grid-template-columns: repeat(auto-fit, minmax(490px, 1fr)); 
+  /* grid-template-columns: repeat(auto-fit, minmax(330px, 2fr)); */
+  /*grid-template-columns: repeat(2, minmax(330px, 480px));*/
+  /* grid-template-columns: 1fr 1fr; */
+  grid-gap: 10px;
+  justify-content: center;
+}
+
+.item {
+  /*background-color: lightgreen;*/
+  width: auto;
+  height: 320px;
+  text-align: center;
+}
+
+#videolocal, #videoremote1, #videoremote2, #videoremote3 {
+  width: 480px; 
+  height: 300px; 
+}
+</style>
+
+
+  <center>
+    <div class="header">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="page-header">
+            <h2>Video ChatRoom - VideoSFU
+            <button id="start">Start</button>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group margin-bottom-md" id="registernow">
+      <input class="form-control" autocomplete="off" type="text" placeholder="Input your display name" id="username" onkeypress="return checkEnter(this, event);"></input>
+      <button class="btn btn-success" autocomplete="off" id="register">Register/Join the room</button>
+    </div>
+  </center>
+    
+<br>
+
+<div class="video_container">
+  <div class="item">
+    <h3 class="panel-title">My Video <span class="label label-primary hide" id="publisher"></span></h3>
+    <video id="videolocal" width="320" height="240" autoplay muted></video>
+    <!-- video id="videolocal" width="480" height="320" autoplay muted></video -->
+  </div>
+  <div class="item">
+    <h3 class="panel-title">Remote Video #1 <span class="label label-info hide" id="remote1"></span></h3>
+    <!-- video id="videoremote1" width="320" height="240" autoplay muted></video -->
+    <video id="videoremote1" width="480" height="320" autoplay muted></video>
+  </div>
+  <div class="item">
+    <h3 class="panel-title">Remote Video #2 <span class="label label-info hide" id="remote2"></span></h3>
+    <!--video id="videoremote2" width="320" height="240" autoplay muted></video -->
+    <video id="videoremote2" width="480" height="320" autoplay muted></video>
+  </div>
+  <div class="item">
+    <h3 class="panel-title">Remote Video #3 <span class="label label-info hide" id="remote3"></span></h3>
+    <!-- video id="videoremote3" width="320" height="240" autoplay muted></video -->
+    <video id="videoremote3" width="480" height="320" autoplay muted></video>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  
+</script>
