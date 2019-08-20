@@ -1,15 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
-<style type="text/css">
-	@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
-	*{font-family: 'Roboto Mono', monospace;}
-	.list-group-item.active, 
-	.list-group-item.active:focus, 
-	.list-group-item.active:hover{
-		background-color: #76D9C7;
-		border-color: #76D9C7;
-	}
-</style>
+<body style="color: #000 !important;"></body>
 
 <div style="margin-top: 100px;">
 	<center><img src="https://i.ibb.co/1MfMm7p/drinkscity.png" class="img-responsive"></center>
@@ -36,8 +27,9 @@
 	</tbody>
 </table>
 
+<br><br>
 <div style="max-width: 100%;">
-	<div style="width: 50%; float: right;">
+	<div style="width: 50%; float: left;">
 		<ul class="list-group">
 			<li class="list-group-item active">Información del vendedor</li>
 			<li class="list-group-item"><b>Vendedor:</b> 
@@ -69,7 +61,7 @@
 		</div>
 	</div>
 
-	<div style="text-align: center; width: 50%; float: left;">
+	<div style="text-align: center; width: 50%; float: right;">
 		<div style="padding: 3em; border: 1px solid #DDD;">
 			<h2><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></h2>
 			<h1 style="color: #76D9C7;">Total</h1>
