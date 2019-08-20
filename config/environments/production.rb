@@ -95,11 +95,11 @@ Rails.application.configure do
   #}
 
 
-  config.action_mailer.default_url_options = { :host => 'www.wexury.com' }
+  config.action_mailer.default_url_options = { :host => 'www.drinkscity.cl' }
   ActionMailer::Base.smtp_settings = {
-    :user_name => 'dach3r',
-    :password => 'Wexury.com*2020',
-    :domain => 'www.wexury.com',
+    :user_name => 'drinkscity_web',
+    :password => 'drinkscity*2019',
+    :domain => 'www.drinkscity.cl',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,

@@ -31,18 +31,16 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { :host => "localhost" }
-
   config.action_mailer.delivery_method = :smtp
   # Mailgun setting 
-  config.action_mailer.smtp_settings = {
-    :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "sandbox3f075265f65f4197b1a652a0225162d1.mailgun.org",
-    :user_name => "postmaster@sandbox3f075265f65f4197b1a652a0225162d1.mailgun.org",
-    :password => "aefedf5a19c296b22d69421e23f058c9"
-  }
+  #config.action_mailer.smtp_settings = {
+  #  :authentication => :plain,
+  #  :address => "smtp.mailgun.org",
+  #  :port => 587,
+  #  :domain => "sandbox3f075265f65f4197b1a652a0225162d1.mailgun.org",
+  #  :user_name => "postmaster@sandbox3f075265f65f4197b1a652a0225162d1.mailgun.org",
+  #  :password => "aefedf5a19c296b22d69421e23f058c9"
+  #}
 
   # config.paperclip_defaults = {
   #   :storage => :s3,
@@ -63,6 +61,13 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+
+  # Mailer
+  # gem install mailcatcher
+  # start with mailcatcher
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

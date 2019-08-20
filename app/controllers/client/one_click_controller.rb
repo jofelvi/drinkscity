@@ -114,7 +114,7 @@ class Client::OneClickController < ApplicationController
     if params[:id].present?
       @finish = params[:id].to_i
     else
-      @finish = 40
+      @finish = Order.find(params[:id])
     end
 
     puts "============================="

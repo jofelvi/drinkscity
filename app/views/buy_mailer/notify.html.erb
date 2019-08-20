@@ -1,159 +1,104 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
 <style type="text/css">
-	.items{
-		margin: 5px 0;
-		border-bottom: 1px solid #C2C2C2;
+	@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+	*{font-family: 'Roboto Mono', monospace;}
+	.list-group-item.active, 
+	.list-group-item.active:focus, 
+	.list-group-item.active:hover{
+		background-color: #76D9C7;
+		border-color: #76D9C7;
 	}
-
-	.mail-image{
-		width: 100px;
-		text-align: center;
-		border: 0.2mm solid #C2C2C2;
-	}
-
-	.name-product{
-		font-size: 1.9rem;
-	}
-
-	.div-total{
-		margin-top: 30px;
-	}
-
-	.subtotal{
-		margin-left: 30px;
-	}
-
-	.line-sum{
-		background-color: #aaa;
-		height: 1px;
-		width: 100%;
-		float: left;
-		margin: 10px 0;
-	}
-
-	.table-total{
-		margin-top: 40px;
-	}
-
 </style>
 
-<h4>Detalles de la compra</h4>
+<div style="margin-top: 100px;">
+	<center><img src="https://i.ibb.co/1MfMm7p/drinkscity.png" class="img-responsive"></center>
+</div>
 <br>
-<% @order.order_items.each do |order| %>
-	<div class="row items">
-		<div class="col-md-2" style="padding-left: 0; padding-right: 0; ">
-			<%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image' %>
-		</div>
-		<div class="col-md-10">
-			<h5 class="name-product">
-				<%= order.item.name %>
-			</h5>
-			<p>
-				<small>
-					Cantidad: <%= order.quantity %>
-				</small>
-			</p>
-			<h4>
-				<%= number_to_currency(order.unit_price, precision: 0, format: "%u %n c/u" ) %>
-			</h4>
-		</div>
-	</div>
-<% end %>
-
-
-<table class="table-total">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Foto</th>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>Precio</th>
+		</tr>
+	</thead>
 	<tbody>
-		<tr>
-			<td align="right">
-				<%= @order.order_items.count %> Producto:
-			</td>
-			<td>
-				<span class="subtotal"><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2"><hr class="line-sum" /></td>
-		</tr>
-		<tr>
-			<td align="right">
-				Total:
-			</td>
-			<td>
-				<span class="subtotal"><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></span>
-			</td>
-		</tr>
+		<% @order.order_items.each do |order| %>
+			<tr>
+				<td><%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image img-responsive' %></td>
+				<td><%= order.item.name %></td>
+				<td><%= order.quantity %></td>
+				<td><%= number_to_currency(order.unit_price, precision: 0, format: "%u %n c/u" ) %></td>
+			</tr>
+		<% end %>
 	</tbody>
 </table>
 
-<div class="col-md-10">
-	<div class="row" style="margin-bottom: 180px;">
-		<div class="col-md-6 col-md-offset-3 text-center" style="position: relative;">
-			<div class="" style="background-color: #FFF; width: 220px; padding: 10px; position: absolute; margin-left:auto;margin-right:auto;left:0;right:0;">
-				<div id="contentqr" ></div>
-			</div>
+<div class="row">
+	<div class="col-md-6">
+		<ul class="list-group">
+			<li class="list-group-item active">Información del vendedor</li>
+			<li class="list-group-item"><b>Vendedor:</b> 
+				<% if @order.order_items.first.item.priority == "evento" %>
+					<%= @order.order_items.first.item.event.name %>
+				<% else %>
+					<%= @order.order_items.first.item.item.name %>
+				<% end %>
+			</li>
+
+			<li class="list-group-item"><b>Dirección:</b> 
+				<% if @order.order_items.first.item.priority == "evento" %>
+					<%= @order.order_items.first.item.event.address %>
+				<% else %>
+					<%= @order.order_items.first.item.store.address %>
+				<% end %>
+			</li>
+		</ul>
+		<br>
+		<% if @order.store.delivery %>
+			<h4>Datos de entrega</h4>
+			<p><strong>Recibe:</strong> <%= @order.recipient_name %></p>
+			<p><strong>Dirección:</strong> <%= @order.address %></p>
+		<% end %>
+
+		<br>
+		<div class="" style="background-color: #FFF; width: 220px; padding: 10px; position: absolute; margin-left:auto;margin-right:auto;left:0;right:0;">
+			<div id="contentqr" ></div>
+		</div>
+	</div>
+
+	<div class="col-md-6 text-center">
+		<div class="thumbnail" style="padding: 3em;">
+			<h2><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></h2>
+			<h1 style="color: #76D9C7;">Total</h1>
 		</div>
 	</div>
 </div>
 
-<% if @order.store.delivery %>
-  <div class="col-md-10">
-  	<h3>Datos de entrega</h3>
-  	<p><strong>Recibe:</strong> <%= @order.recipient_name %></p>
-  	<p><strong>Dirección:</strong> <%= @order.address %></p>
-  </div>
-<% end %>
-
-<div class="col-md-10 ">
-	<footer>
-		<p>
-			<strong>
-				Vendedor
-			</strong>
-		</p>
-
-
-		<p>
-			<% if @order.order_items.first.item.priority == "evento" %>
-				<%= @order.order_items.first.item.event.name %>
-			<% else %>
-				<%= @order.order_items.first.item.item.name %>
-			<% end %>
-		</p>
-
-		<p>
-			Dirección
-		</p>
-
-		<p>
-			<% if @order.order_items.first.item.priority == "evento" %>
-				<%= @order.order_items.first.item.event.address %>
-			<% else %>
-				<%= @order.order_items.first.item.store.address %>
-			<% end %>
-		</p>
-
-		<br>
-	</footer>
-</div>
-<%= javascript_include_tag 'client' %>
-<script type="text/javascript">
-	$('#contentqr').qrcode({
-	    render: 'image',
-	    background: '#FFF',
-	    fill: '#000',
-	    text: '<%=@order.id%>',
-        minVersion: 5,
-        maxVersion: 40,
-		ecLevel: 'L',
-	    left: 0,
-	    top: 0,
-	    size: 200,
-		quiet: 0,
-	    mode: 0,
-	    mSize: 0.1,
-	    mPosX: 0.5,
-	    mPosY: 0.5,
-	    fontname: 'sans',
-	    fontcolor: '#000',
-	    image: null
-	});
-</script>
+<center>
+	<%= javascript_include_tag 'client' %>
+	<script type="text/javascript">
+		$('#contentqr').qrcode({
+			render: 'image',
+			background: '#FFF',
+			fill: '#000',
+			text: '<%=@order.id%>',
+			minVersion: 5,
+			maxVersion: 40,
+			ecLevel: 'L',
+			left: 0,
+			top: 0,
+			size: 200,
+			quiet: 0,
+			mode: 0,
+			mSize: 0.1,
+			mPosX: 0.5,
+			mPosY: 0.5,
+			fontname: 'sans',
+			fontcolor: '#000',
+			image: null
+		});
+	</script>
+</center>
