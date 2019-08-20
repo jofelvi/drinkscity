@@ -30,7 +30,7 @@
 	<br><br>
 
 	<div style="width: 45%; float: left;">
-		<ul class="list-group">
+		<ul style="border-radius: 3px;">
 			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd; background-color: #72D4CE !important; color: white; font-weight: bolder;">Información del vendedor</li>
 			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd;"><b>Vendedor:</b> 
 				<% if @order.order_items.first.item.priority == "evento" %>
@@ -62,7 +62,7 @@
 	</div>
 
 	<div style="text-align: center; width: 45%; float: right; margin-left: 10%;">
-		<div style="padding: 3em; border: 1px solid #DDD;">
+		<div style="padding: 3em; border: 1px solid #DDD; border-radius: 3px;">
 			<h2><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></h2>
 			<h1 style="color: #76D9C7;">Total</h1>
 		</div>
