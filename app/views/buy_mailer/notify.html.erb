@@ -7,26 +7,26 @@
 </div>
 <br><br>
 <div>
-<table style="border-collapse: collapse !important; background-color: #fff !important; border: 1px solid #ddd !important; border: 1px solid #ddd; border: 1px solid #ddd; border-bottom-width: 2px;">
-	<thead>
-		<tr>
-			<th>Foto</th>
-			<th>Producto</th>
-			<th>Cantidad</th>
-			<th>Precio</th>
-		</tr>
-	</thead>
-	<tbody>
+
+<table style="border-collapse: collapse;width: 100%;">
+	<tr>
+		<th style="padding: 15px;">Foto</th>
+		<th style="padding: 15px;">Producto</th>
+		<th style="padding: 15px;">Cantidad</th>
+		<th style="padding: 15px;">Precio</th>
+	</tr>
+	<tr>
 		<% @order.order_items.each do |order| %>
 			<tr>
-				<td><%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image img-responsive' %></td>
-				<td><%= order.item.name %></td>
-				<td><%= order.quantity %></td>
-				<td><%= number_to_currency(order.unit_price, precision: 0, format: "%u %n c/u" ) %></td>
+				<td style="padding: 15px;"><%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image img-responsive' %></td>
+				<td style="padding: 15px;"><%= order.item.name %></td>
+				<td style="padding: 15px;"><%= order.quantity %></td>
+				<td style="padding: 15px;"><%= number_to_currency(order.unit_price, precision: 0, format: "%u %n c/u" ) %></td>
 			</tr>
 		<% end %>
-	</tbody>
+	</tr>
 </table>
+
 	<br><br>
 
 	<div style="width: 45%; float: left;">
