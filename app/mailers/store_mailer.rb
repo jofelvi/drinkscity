@@ -6,10 +6,10 @@ class StoreMailer < ApplicationMailer
 	#   en.store_mailer.registration.subject
 	#
 	def registration(store)
-		#store = store
-		#user = store.users.store_admin.first
-		mail(to: "test@gmail.com", subject: 'Bienvenido, su registro se ha realizado exitosamente..!!')
-		#mail to: store.legal_agent_email, subject: 'Bienvenido, su registro se ha realizado exitosamente..!!'
+		store = store
+		user = store.users.store_admin.first
+		#mail(to: "test@gmail.com", subject: 'Bienvenido, su registro se ha realizado exitosamente..!!')
+		mail to: store.legal_agent_email, subject: 'Bienvenido, su registro se ha realizado exitosamente..!!'
 	end
 
 	def pending(store)
