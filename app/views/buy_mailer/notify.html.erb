@@ -8,20 +8,20 @@
 <br><br>
 <div>
 
-<table style="border-collapse: collapse;width: 100%; border-color: #DDD; text-align: left !important;">
+<table style="border-collapse: collapse;width: 100%; text-align: left !important; border: 1px solid #ddd;">
 	<tr>
-		<th style="padding: 15px;">Foto</th>
-		<th style="padding: 15px;">Producto</th>
-		<th style="padding: 15px;">Cantidad</th>
-		<th style="padding: 15px;">Precio</th>
+		<th style="padding: 15px;border: 1px solid #ddd;">Foto</th>
+		<th style="padding: 15px;border: 1px solid #ddd;">Producto</th>
+		<th style="padding: 15px;border: 1px solid #ddd;">Cantidad</th>
+		<th style="padding: 15px;border: 1px solid #ddd;">Precio</th>
 	</tr>
 	<tr>
 		<% @order.order_items.each do |order| %>
 			<tr>
-				<td style="padding: 15px;"><%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image img-responsive' %></td>
-				<td style="padding: 15px;"><%= order.item.name %></td>
-				<td style="padding: 15px;"><%= order.quantity %></td>
-				<td style="padding: 15px;"><%= number_to_currency(order.unit_price, precision: 0, format: "%u %n c/u" ) %></td>
+				<td style="padding: 15px;border: 1px solid #ddd;"><%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image img-responsive' %></td>
+				<td style="padding: 15px;border: 1px solid #ddd;"><%= order.item.name %></td>
+				<td style="padding: 15px;border: 1px solid #ddd;"><%= order.quantity %></td>
+				<td style="padding: 15px;border: 1px solid #ddd;"><%= number_to_currency(order.unit_price, precision: 0, format: "%u %n c/u" ) %></td>
 			</tr>
 		<% end %>
 	</tr>
