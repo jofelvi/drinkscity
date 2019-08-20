@@ -36,8 +36,8 @@
 	</tbody>
 </table>
 
-<div class="row">
-	<div class="col-md-6">
+<div style="margin-right: -15px; margin-left: -15px; display: table; content: " ";">
+	<div style="width: 50%;">
 		<ul class="list-group">
 			<li class="list-group-item active">Información del vendedor</li>
 			<li class="list-group-item"><b>Vendedor:</b> 
@@ -69,8 +69,8 @@
 		</div>
 	</div>
 
-	<div class="col-md-6 text-center">
-		<div class="thumbnail" style="padding: 3em;">
+	<div style="text-align: center; width: 50%;">
+		<div style="padding: 3em; border: 1px solid #DDD;">
 			<h2><%= number_to_currency(@order.subtotal, precision: 0, format: "%u %n" ) %></h2>
 			<h1 style="color: #76D9C7;">Total</h1>
 		</div>
