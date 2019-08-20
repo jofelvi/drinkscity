@@ -31,7 +31,7 @@
 <div style="max-width: 100%;">
 	<div style="width: 50%; float: left;">
 		<ul class="list-group">
-			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd; background-color: #72D4CE !important; color: white;">Información del vendedor</li>
+			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd; background-color: #72D4CE !important; color: white; font-weight: bolder;">Información del vendedor</li>
 			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd;"><b>Vendedor:</b> 
 				<% if @order.order_items.first.item.priority == "evento" %>
 					<%= @order.order_items.first.item.event.name %>
@@ -60,6 +60,8 @@
 			<div id="contentqr" ></div>
 		</div>
 	</div>
+
+	&nbsp;&nbsp;&nbsp;
 
 	<div style="text-align: center; width: 50%; float: right;">
 		<div style="padding: 3em; border: 1px solid #DDD;">
