@@ -116,15 +116,16 @@ Rails.application.configure do
   #     s3_region: 'us-east-2',
   #   }
   # }
+
   config.paperclip_defaults = {
-    storage: :s3,
-    s3_credentials: {
-      bucket: 'drinkscity',
-      access_key_id: 'AKIATCIBM62RYZWGRQ3A',
-      secret_access_key: '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',
-      #s3_host_name: ENV.fetch('AWS_HOST_NAME'),
-      s3_region: 'us-east-1',
-    }
+    :storage => :s3,
+    :preserve_files => true,
+    :s3_credentials => {
+      :access_key_id => 'AKIATCIBM62RYZWGRQ3A',
+      :secret_access_key => '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',
+      :s3_region => "us-east-1"
+    },
+    :bucket => 'drinkscity'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
