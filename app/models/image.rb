@@ -25,6 +25,6 @@ class Image < ApplicationRecord
 
   belongs_to :item, polymorphic: true
   # Validaciones del atributo foto que se esta subiendo
-  has_attached_file :cover, styles: {medium: "800x600", thumb: "318x200", mini: "256x256"}, default_url: "https://s3.amazonaws.com/drinkcitybucket/product.jpg"
+  has_attached_file :cover, styles: {medium: "800x600", thumb: "318x200", mini: "256x256"}, default_url: "https://s3.amazonaws.com/drinkcity/product.jpg"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/ 
 end

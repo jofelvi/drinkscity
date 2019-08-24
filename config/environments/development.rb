@@ -79,4 +79,15 @@ Rails.application.configure do
   config.time_zone = 'Caracas'
   config.i18n.default_locale = :es
   config.encoding = 'utf-8'
+
+  
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => 'drinkscity',
+      :access_key_id => 'AKIATCIBM62RYZWGRQ3A',
+      :secret_access_key => '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',
+      :s3_region => "us-east-1"
+    }
+  }
 end
