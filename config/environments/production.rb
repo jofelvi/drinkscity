@@ -119,11 +119,11 @@ Rails.application.configure do
   config.paperclip_defaults = {
     storage: :s3,
     s3_credentials: {
-      bucket: ENV.fetch('S3_BUCKET_NAME'),
-      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-      s3_host_name: ENV.fetch('AWS_HOST_NAME'),
-      s3_region: ENV.fetch('AWS_REGION'),
+      bucket: 'drinkscity',
+      access_key_id: 'AKIATCIBM62RYZWGRQ3A',
+      secret_access_key: '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',
+      #s3_host_name: ENV.fetch('AWS_HOST_NAME'),
+      s3_region: 'us-east-1',
     }
   }
 
