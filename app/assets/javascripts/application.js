@@ -49,7 +49,7 @@ function checkRut(rut) {
 	dvEsperado = 11 - (suma % 11);
 	dv = (dv == 'K')?10:dv;
 	dv = (dv == 0)?11:dv;
-	if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }   
+	//if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }   
 	rut.setCustomValidity('');
 }
 
