@@ -13,7 +13,7 @@
 
 class Schedule < ApplicationRecord
   belongs_to :store
-  enum day_of_week: [ :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday ]
+  enum day_of_week: [ :Lunes, :Martes, :Miercoles, :Jueves, :Viernes, :Sabado, :Domingo ]
   validates :day_of_week, presence: true
   validates :opens, presence: true
   validates :closes, presence: true
