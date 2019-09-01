@@ -46,6 +46,8 @@ class Admin::ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+  rescue StandardError => e
+    Airbrake.notify(e)
   end
 
   # PATCH/PUT /products/1
@@ -60,6 +62,8 @@ class Admin::ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+  rescue StandardError => e
+    Airbrake.notify(e)
   end
 
   # DELETE /products/1
@@ -70,6 +74,8 @@ class Admin::ProductsController < ApplicationController
       format.html { redirect_to admin_products_path, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  rescue StandardError => e
+    Airbrake.notify(e)
   end
 
   def products_list

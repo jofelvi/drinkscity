@@ -24,6 +24,8 @@ module Api
 				else
 					render json: @product.errors, status: :unprocessable_entity
 				end
+			rescue StandardError => e
+				Airbrake.notify(e)
 			end
 
 			# PATCH/PUT /products/1
@@ -33,11 +35,15 @@ module Api
 				else
 					render json: @product.errors, status: :unprocessable_entity
 				end
+			rescue StandardError => e
+				Airbrake.notify(e)
 			end
 
 			# DELETE /products/1
 			def destroy
 				@product.destroy
+			rescue StandardError => e
+				Airbrake.notify(e)
 			end
 
 			private
