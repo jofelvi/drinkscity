@@ -36,7 +36,7 @@ function checkRut(rut) {
 	cuerpo = valor.slice(0,-1);
 	dv = valor.slice(-1).toUpperCase();
 	rut.value = cuerpo + '-'+ dv
-	if(cuerpo.length < 9) { rut.setCustomValidity("RUT Incompleto"); return false;}
+	if(cuerpo.length > 13) { rut.setCustomValidity("RUT Incompleto"); return false;}
 
 	suma = 0;
 	multiplo = 2;
