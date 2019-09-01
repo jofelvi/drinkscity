@@ -54,6 +54,19 @@
                     </div>
                   </td>
               </tr>
+
+              <div id="deleteProduct" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h2>¿Estas seguro de eliminarlo?</h2>
+        <br>
+        <%= link_to "Eliminar", admin_product_path(product), method: :delete, class: "btn btn-primary" %>
+        <%= link_to "Cancelar", "#", "data-dismiss"=>"modal", class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>
                 <%end%>
             </tbody>
           </table>
@@ -63,20 +76,6 @@
 
     <div class="visible-xs visible-sm">
       
-    </div>
-  </div>
-</div>
-
-
-<div id="deleteProduct" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h2>¿Estas seguro de eliminarlo?</h2>
-        <br>
-        <%= link_to "Eliminar", admin_product_path(product), method: :delete, class: "btn btn-primary" %>
-        <%= link_to "Cancelar", "#", "data-dismiss"=>"modal", class: "btn btn-success" %>
-      </div>
     </div>
   </div>
 </div>

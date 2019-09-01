@@ -73,17 +73,12 @@
 
                           <a class="btn btn-default btn-block" href="<%=admin_products_path(store_id: store.id)%>" ><%=fa_icon "building"%></a>
                           <br><br>
-                          <a class="btn btn-default btn-block" href="<%=admin_delete_store_path(id: store.id)%>" data-confirm="¿Estas seguro?"><%=fa_icon "trash"%></a>
+                          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#deleteStore"><%=fa_icon "trash"%></button>
                     </div>
               </div>
             </div>
 
             <hr>
-          <%end%>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div id="deleteStore" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -91,8 +86,13 @@
       <div class="modal-body">
         <h2>¿Estas seguro de eliminarlo?</h2>
         <br>
-        <%= link_to "Eliminar", admin_delete_store_path(id: store.id), method: :delete, class: "btn btn-primary" %>
+        <%= link_to "Eliminar", admin_delete_store_path(store), method: :delete, class: "btn btn-primary" %>
         <%= link_to "Cancelar", "#", "data-dismiss"=>"modal", class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>
+          <%end%>
       </div>
     </div>
   </div>
