@@ -34,8 +34,8 @@ function checkRut(rut) {
   rut = String(rut);
   var valor = rut.replace(".", "").replace(".", "");
   valor = valor.replace("-", "");
-  cuerpo = valor.slice(0, -1);
-  dv = valor.slice(-1).toUpperCase();
+  //cuerpo = valor.slice(0, -1);
+  //dv = valor.slice(-1).toUpperCase();
   rut = cuerpo + "-" + dv;
 }
 
