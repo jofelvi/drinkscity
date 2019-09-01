@@ -38,8 +38,8 @@ class Product < ApplicationRecord
 	validates :category, presence: true
 	validates :stock, presence: true
 
-  has_attached_file :image, styles: {large: "2600x600", medium: "800x600", thumb: "318x200", mini: "256x256"}, default_url: "https://s3.amazonaws.com/drinkcitybucket/product.jpg"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+	has_attached_file :image, styles: {large: "2600x600", medium: "800x600", thumb: "318x200", mini: "256x256"}, default_url: "https://s3.amazonaws.com/drinkcitybucket/product.jpg"
+	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 	enum priority: [ :aviso_standar, :oferta_del_momento, :promocion, :aviso_destacado, :aviso_vip_slider_principal, :evento]
 	enum category: [ :licores, :cervezas, :vinos, :tragos_preparados, :insumos, :habitaciones, :comida]

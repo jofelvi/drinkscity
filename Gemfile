@@ -124,6 +124,7 @@ gem 'foundation-rails'
 
 gem 'ratyrate'
 
+gem 'airbrake'
 
 # para el login con cualquier(miltiple proveedor)
 # docs https://github.com/omniauth/omniauth/wiki/Managing-Multiple-Providers
