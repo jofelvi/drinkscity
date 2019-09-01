@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group">
-      <%= f.text_field :rut, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Rut" %>
+      <%= f.text_field :rut, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Rut", oninput: "checkRut(this)" %>
     </div>
 
     <div class="form-group">
