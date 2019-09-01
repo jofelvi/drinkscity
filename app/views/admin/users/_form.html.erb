@@ -36,8 +36,7 @@
     </div>
 
     <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
-      <%#= form.text_field :address, class:"form-control has-feedback-left", id: :user_address, placeholder:"Direccion" %>
-      <%= form.text_field :address, class:"form-control form-15 has-feedback-left", id: :input_store, placeholder:"Direccion", disabled: disabled %>
+      <%= form.text_field :address, class:"form-control has-feedback-left", id: :user_address, placeholder:"Direccion" %>
       <span class="fa fa-address-book form-control-feedback left" aria-hidden="true"></span>
     </div>
 
@@ -56,3 +55,8 @@
   </div>
 
 <% end %>
+
+<script type="text/javascript">
+  var searchInput = document.getElementById('user_address');
+  var autocomplete = new google.maps.places.Autocomplete(searchInput);
+</script>
