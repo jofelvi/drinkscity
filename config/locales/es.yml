@@ -246,3 +246,12 @@ es:
       dia_num: "%d"
       mes: "%B"
     pm: pm
+
+  number:
+    currency:
+      format:
+        unit: '$'
+        delimiter: ','
+        separator: '.'
+        precision: 0
+        format: '%u%n'
