@@ -60,8 +60,8 @@ class Store < ApplicationRecord
 
 	validates_presence_of :kind, :name, :address, :legal_agent_phone, :rut
 	
-	validates :phone, presence: true, numericality: true, length: {minimum: 10, maximum: 15}
-	validates :legal_agent_phone, presence: true, numericality: true, length: {minimum: 10, maximum: 15}
+	validates :phone, presence: true, numericality: true
+	validates :legal_agent_phone, presence: true, numericality: true
 
 	enum kind: [ :bar_pub, :botilleria, :delivery, :discoteque, :distribuidora, :productora_de_eventos, :alojamiento, :restobar ]
 	enum status: [ :pendig, :active, :inactive ]
