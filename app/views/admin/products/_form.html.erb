@@ -83,7 +83,8 @@
           <div class="col-md-9 col-sm-9 col-xs-12">
             <div class="input-group">
               <span class="input-group-addon">$</span>
-              <%= form.text_field :price, class:"form-control", onkeyup: "format(this)", onchange: "format(this)", id: :user_fullname, placeholder:"Precio",  onkeypress: 'validate(event)' %>
+              <%#= form.text_field :price, class:"form-control", onkeyup: "format(this)", onchange: "format(this)", id: :user_fullname, placeholder:"Precio",  onkeypress: 'validate(event)' %>
+              <%= form.text_field :price, autofocus: false, class: "form-control", placeholder: "Precio" %>
             </div>
           </div>
         </div>
