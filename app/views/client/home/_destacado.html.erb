@@ -38,7 +38,7 @@
 						<span class="tiendaHomeShow"><%= product.description %></span><br>
 						<span class="tiendaHomeShow colorDC"><%= product.try(:item).try(:name) %></span>
 						<span class="distanciaHomeShow distanceTake colorDC" data-latitude="-33.436188" data-longitud="-70.595062">4 km</span><br>
-						<span class="precioHomeShow"><%= number_to_currency((product.price.nil?)? 0 : product.price, precision: 0, format: "%u %n c/u" ) %></span>
+						<span class="precioHomeShow">$<%= product.price.nil? ? 0 : product.price.to_i  %> c/u</span>
 					</div>
 				</div>
 			</a>
