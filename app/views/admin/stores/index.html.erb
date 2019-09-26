@@ -38,7 +38,9 @@
                           <a class="btn btn-default btn-block" href="<%=edit_admin_store_path(store)%>" ><%=fa_icon "pencil"%></a>
                           <a class="btn btn-default btn-block" href="<%=admin_products_path(store_id: store.id)%>" ><%=fa_icon "building"%></a>
 
-                        <button type="button" class="btn btn-default btn-block rd-0" data-toggle="modal" data-target="#deleteStore"><%=fa_icon "trash"%></button>
+                        <%= link_to admin_delete_store_path(store), class: "btn btn-default btn-block rd-0" do %>
+                          <%=fa_icon "trash"%>
+                        <% end %>
                     </div>
                   </td>
                 </tr>
@@ -73,9 +75,7 @@
 
                           <a class="btn btn-default btn-block" href="<%=admin_products_path(store_id: store.id)%>" ><%=fa_icon "building"%></a>
                           <br><br>
-                          <%= link_to do admin_delete_store_path(store), class: "btn btn-info btn-lg" %>
-                            <%=fa_icon "trash"%>
-                          <% end %>
+                          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#deleteStore"><%=fa_icon "trash"%></button>
                     </div>
               </div>
             </div>
