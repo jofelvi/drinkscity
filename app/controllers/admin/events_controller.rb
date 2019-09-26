@@ -38,6 +38,7 @@ class Admin::EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.store = Store.first
 
     respond_to do |format|
       if @event.save

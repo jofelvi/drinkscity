@@ -37,14 +37,10 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user = current_user
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to admin_products_path, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    if @product.save
+      redirect_to admin_products_path, notice: 'Product was successfully created.'
+    else
+      render admin_products_path, alert: "Product not created"
     end
   rescue StandardError => e
     Airbrake.notify(e)

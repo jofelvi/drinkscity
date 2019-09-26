@@ -18,6 +18,7 @@ module Api
 			# POST /products
 			def create
 				@product = Product.new(product_params)
+				@product.user = current_user
 
 				if @product.save
 					render json: @product, status: :created
