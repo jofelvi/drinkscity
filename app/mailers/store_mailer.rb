@@ -16,7 +16,7 @@ class StoreMailer < ApplicationMailer
 		@store = store
 
 		mail(
-			to: ['dach3r@gmail.com', 'jofelvi07@gmail.com'],
+			to: ['matias.vasquez.05@gmail.com', 'jofelvi07@gmail.com'],
 			subject: 'Tienda pendiente por aprobación'
 		)
   	end
