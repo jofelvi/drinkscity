@@ -16,12 +16,12 @@
     </div>
 
     <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
-      <%= form.password_field :password, class:"form-control has-feedback-left", id: :user_password, placeholder:"Contraseña", id: "password"%>
+      <%= form.password_field :password, class:"form-control has-feedback-left", id: :user_password, placeholder:"Contraseña", id: "password", required: true%>
       <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
     </div>
 
     <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group has-feedback">
-      <%= form.password_field :confirm_password, class:"form-control has-feedback-left", id: :user_confirm_password, placeholder:"Confirmar contraseña", id: "confirm_password" %>
+      <%= form.password_field :confirm_password, class:"form-control has-feedback-left", id: :user_confirm_password, placeholder:"Confirmar contraseña", id: "confirm_password", required: true %>
       <span class="fa fa-calculator form-control-feedback left" aria-hidden="true"></span>
     </div>
 
