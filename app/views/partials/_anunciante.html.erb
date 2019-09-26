@@ -3,7 +3,7 @@
 	<div class="media" style="height: 170px;">
 		<div class="media-left">
 			<%= link_to tienda_url(store ), style: "position: relative;" do %>
-				<%= image_tag store.logo.url(:medium), class: 'borderDC', style:"height:auto; max-height:160px" %>
+				<%= image_tag store.logo.url, class: "img-responsive borderDC", style: "max-height: 160px; height: auto; border-radius: 10px;" %>
 			<% end %>
 		</div>
 		<div class="media-body text-left" style="position:relative; padding-top: 2px;">

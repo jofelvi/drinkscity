@@ -55,7 +55,7 @@ class Store < ApplicationRecord
 	accepts_nested_attributes_for :schedules, reject_if: :all_blank, allow_destroy: true
 
 
-	has_attached_file :logo, styles: {large: "2600x600", medium: "800x600", thumb: "318x200", mini: "256x256"}, default_url: "https://s3.us-east-2.amazonaws.com/drinkcity/store.jpg"
+	has_attached_file :logo, styles: {large: "2600x600", medium: "800x600", thumb: "318x200", mini: "256x256"}, default_url: "https://pngimage.net/wp-content/uploads/2018/06/online-store-png-6.png"
 	validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
 	validates_presence_of :kind, :name, :address, :legal_agent_phone, :rut
