@@ -5,8 +5,7 @@ Transbank::Webpay.configure do |config|
   config.cert_path            = Rails.root + "public/597034221898_NORMAL_CLP/597034221898.crt"
   config.server_cert_path     = Rails.root + "public/597034221898_NORMAL_CLP/597034221898.csr"
  
-  #config.cert_path            = '/home/oscarjosecostero/app2/public/597020000541_NORMAL_CLP/tbk.pem'
-  #config.server_cert_path     = '/home/oscarjosecostero/app2/public/597020000541_NORMAL_CLP/597020000541.crt'
+  
   config.commerce_code        = '597034221898'
   # config.commerce_code        = '34221898'
 
