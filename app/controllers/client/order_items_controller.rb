@@ -4,7 +4,6 @@ class Client::OrderItemsController < ApplicationController
 
   def create
     if current_order.order_items.any?
-
 			if current_order.order_items.first.item_type == 'Product'
 				if current_order.order_items.first.item.item == Product.find(params[:order_item][:item_id]).item
 					create_order_item
@@ -50,7 +49,7 @@ class Client::OrderItemsController < ApplicationController
     @order_item.update_attributes(order_item_params)
     @order_items = @order.order_items
   end
-  
+
   def destroy
     @order_item.destroy
     @order_items = @order.order_items
