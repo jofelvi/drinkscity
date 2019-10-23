@@ -3,7 +3,7 @@ Transbank::Webpay.configure do |config|
   config.wsdl_nullify_url     = 'https://webpay3g.transbank.cl/WSWebpayTransaction/cxf/WSCommerceIntegrationService?wsdl'
   config.key_path             = Rails.root + "public/597034221898_NORMAL_CLP/597034221898.key"
   config.cert_path            = Rails.root + "public/597034221898_NORMAL_CLP/597034221898.crt"
-  config.server_cert_path     = Rails.root + "public/597034221898_NORMAL_CLP/597034221898.csr"
+  config.server_cert_path     = Rails.root + "public/597034221898_NORMAL_CLP/tbk.crt"
  
   
   config.commerce_code        = '597034221898'
