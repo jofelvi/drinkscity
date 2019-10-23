@@ -2,7 +2,7 @@ Transbank::Oneclick.configure do |config|
   config.url               = "https://webpay3g.transbank.cl/webpayserver/wswebpay/OneClickPaymentService?wsdl"
   config.key_path          = Rails.root + "public/597033757425_ONECLICK/597033757425.key"
   config.cert_path         = Rails.root + "public/597033757425_ONECLICK/597033757425.crt"
-  config.server_cert_path  = Rails.root + "public/597033757425_ONECLICK/tbk.pem.crt"
+  config.server_cert_path  = Rails.root + "public/597033757425_ONECLICK/tbk.crt"
 
  # These are the default options for Net::HTTP
  # it is also possible to pass them on every request
