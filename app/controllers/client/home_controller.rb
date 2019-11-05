@@ -9,7 +9,7 @@ class Client::HomeController < ApplicationController
 		@events = Event.all.vigente
 		@products = Product.aviso_standar.list_store # todos los productos standar
 
-		@order_item = current_order&.order_items.new
+		@order_item = current_order&.order_items&.new
 	end
 
 	def ofertas
