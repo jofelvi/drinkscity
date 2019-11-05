@@ -1,26 +1,28 @@
-<li class="grid-item " style="">
-    <% if product.sale_or_show %>
-      <%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px; left: 0px" do %>
-          <%= image_tag 'carro_mas.png', alt:'' %>
-          <%= hidden_field_tag :product_id, product.id %>
+<% unless product.nil? %>
+  <li class="grid-item " style="">
+      <% if product.sale_or_show %>
+        <%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px; left: 0px" do %>
+            <%= image_tag 'carro_mas.png', alt:'' %>
+            <%= hidden_field_tag :product_id, product.id %>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= form_for order_item, remote: true, html: {class: "", id: "form_#{product.id}"} do |f| %>
-        <%= f.hidden_field :item_id, value: product.id, id: "order_item_product_id_#{product.id}" %>
-        <%= f.hidden_field :item_type, value: product.class.name %>
-        <%= f.hidden_field :quantity, value: 1, min: 1, max: 1, id: "order_item_quantity_#{product.id}" %>
-        <%= f.submit "Añadir al carrito", class: "btn btn-primary btn-submit-product", style: "display: none;" %>
-    <% end %>
-    <a href="<%=producto_path(id: product.id)%>" class="borderDC">
-        <div class="">
-            <%= image_tag product.image.url(:medium), class: 'avisoImg' %>
-        </div>
-        <div class="text-center" style="padding: 5px 0">
-            <span class="tituloHomeShow"><%= product.name %></span><br>
-            <span class="tiendaHomeShow"><%= product.item.name %></span><br>
-            <span class="tiendaHomeShow colorDC"><%= product.item.kind %> a </span>
-            <span class="distanciaHomeShow distanceTake colorDC" data-latitude="<%= product&.item&.latitude %>" data-longitud="<%= product&.item&.longitude %>"></span><br>
-            <span class="precioHomeShow"><%= number_to_currency((product.price.nil?)? 0 : product.price, precision: 0, format: "%u %n c/u" ) %></span>
-        </div>
-    </a>
-</li>
+      <%= form_for order_item, remote: true, html: {class: "", id: "form_#{product.id}"} do |f| %>
+          <%= f.hidden_field :item_id, value: product.id, id: "order_item_product_id_#{product.id}" %>
+          <%= f.hidden_field :item_type, value: product.class.name %>
+          <%= f.hidden_field :quantity, value: 1, min: 1, max: 1, id: "order_item_quantity_#{product.id}" %>
+          <%= f.submit "Añadir al carrito", class: "btn btn-primary btn-submit-product", style: "display: none;" %>
+      <% end %>
+      <a href="<%=producto_path(id: product.id)%>" class="borderDC">
+          <div class="">
+              <%= image_tag product.image.url(:medium), class: 'avisoImg' %>
+          </div>
+          <div class="text-center" style="padding: 5px 0">
+              <span class="tituloHomeShow"><%= product.name %></span><br>
+              <span class="tiendaHomeShow"><%= product.item.name %></span><br>
+              <span class="tiendaHomeShow colorDC"><%= product.item.kind %> a </span>
+              <span class="distanciaHomeShow distanceTake colorDC" data-latitude="<%= product&.item&.latitude %>" data-longitud="<%= product&.item&.longitude %>"></span><br>
+              <span class="precioHomeShow"><%= number_to_currency((product.price.nil?)? 0 : product.price, precision: 0, format: "%u %n c/u" ) %></span>
+          </div>
+      </a>
+  </li>
+<% end %>
