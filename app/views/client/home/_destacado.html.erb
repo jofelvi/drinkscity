@@ -14,7 +14,7 @@
 <div class="swiper-container swiper-container-horizontal">
 	<div class="swiper-wrapper">
 
-		<% products.each do |product| %>
+		<% products&.each do |product| %>
 		<div class="swiper-slide anuncioBox" style="padding-top: 20px; margin-right: 10px;">
 			<% if product.sale_or_show %>
 				<%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px" do %>

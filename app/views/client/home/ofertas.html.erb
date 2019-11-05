@@ -10,7 +10,7 @@
 	</style>
 
 	<ul class="grid" style="position: relative; height: 2317.3px;">
-		<% @products.each do |product| %>			
+		<% @products&.each do |product| %>			
 			<li class="grid-item " style="margin-bottom: 25px;">
 				<% if product.sale_or_show %>
 					<%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px; left: 0px" do %>
@@ -39,7 +39,7 @@
 						<span class="precioHomeShow"><%= number_to_currency((product.price.nil?)? 0 : product.price, precision: 0, format: "%u %n c/u" ) %></span>
 					</div>
 				</a>
-			</li>			
+			</li>
 		<% end %>
 	</ul>
     <!-- /PRODUCTOS -->
@@ -84,4 +84,3 @@
     	mostrar_distancias({latitude: -33.448482, longitude: -70.598087});
 	</script>
 <% end %>
-

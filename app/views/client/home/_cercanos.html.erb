@@ -15,7 +15,7 @@
 	<!-- PRODUCTOS -->
 	<ul class="grid" style="position: relative;">
 
-	<% products.each do |product|  %>
+	<% products&.each do |product|  %>
 		<li class="grid-item " style="">
 			<% if product.sale_or_show%>
 				<%= button_tag class:"btnHeader addCar item-product", 'data-id': product.id, style:"top:0px; left: 0px" do %>

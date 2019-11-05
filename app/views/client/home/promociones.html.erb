@@ -3,12 +3,12 @@
 
 		<header class="text-center" style="margin-top:80px">
 			<h2 class="KR">PROMOCIONES</h2>
-			<%= image_tag 'linea.png', alt:"", height:"2", class:"img-responsive" %>			
+			<%= image_tag 'linea.png', alt:"", height:"2", class:"img-responsive" %>
 		</header>
 
-		<div class="container-fluid">		
-			<div class="row">		
-				<% @products.each do |product| %>
+		<div class="container-fluid">
+			<div class="row">
+				<% @products&.each do |product| %>
 					<div class="col-xs-6 col-sm-6 col-md-3" style="margin-bottom: 10px; margin-top:10px">
 						<div class=" anuncioBox " style="">
 							<% if product.sale_or_show %>
