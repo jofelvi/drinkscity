@@ -44,7 +44,7 @@ class Order < ApplicationRecord
       self.order_status_id = 1
     end
     def set_store
-      self.store_id = self.order_items.last.item.store.id
+      self.store_id = self&.order_items.last.item.store.id
     end
 
     def notify_for_email

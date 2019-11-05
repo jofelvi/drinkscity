@@ -9,22 +9,22 @@ class Client::HomeController < ApplicationController
 		@events = Event.all.vigente
 		@products = Product.aviso_standar.list_store # todos los productos standar
 
-		@order_item = current_order.order_items.new
+		@order_item = current_order&.order_items.new
 	end
 
 	def ofertas
 		@products = Product.oferta_del_momento.list_store # ofertas del momento
-		@order_item = current_order.order_items.new
+		@order_item = current_order&.order_items.new
 	end
 
 	def destacados
 		@products = Product.aviso_destacado.list_store # ofertas del momento
-		@order_item = current_order.order_items.new
+		@order_item = current_order&.order_items.new
 	end
 
 	def cercanos
-		@products = Product.aviso_standar.list_store # todos los productos standar		
-		@order_item = current_order.order_items.new
+		@products = Product.aviso_standar.list_store # todos los productos standar
+		@order_item = current_order&.order_items.new
 	end
 
 	def politica
@@ -111,7 +111,7 @@ class Client::HomeController < ApplicationController
 
 	def show_tienda
 		@store = Store.find(params[:id])
-		@order_item = current_order.order_items.new
+		@order_item = current_order&.order_items.new
 		get_location(@store.id)
 	end
 
@@ -151,7 +151,7 @@ class Client::HomeController < ApplicationController
 
 	def show_evento
 		@event = Event.find(params[:id])
-		@order_item = current_order.order_items.new
+		@order_item = current_order&.order_items.new
 		get_location_event(@event)
 		@store = @event.store
 		@products = @event.products.active
@@ -160,7 +160,7 @@ class Client::HomeController < ApplicationController
 
 	def show_producto
 		@product = Product.find(params[:id])
-		@order_item = current_order.order_items.new
+		@order_item = current_order&.order_items.new
 		@store = @product.item
 		get_location(@product.item.id)
 	end
@@ -176,17 +176,17 @@ class Client::HomeController < ApplicationController
 				product_id: params[:id],
 				comment: params[:post][:body]
 			)
-			
+
 			redirect_to :root
 		else
 			redirect_to new_user_session_path
 		end
-		
+
 	end
 
 	def promociones
 		@products = Product.promocion
-		@order_item = current_order.order_items.new
+		@order_item = current_order&.order_items.new
 	end
 
 	def show_promocion

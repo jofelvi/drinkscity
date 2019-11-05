@@ -16,7 +16,7 @@
 		<th style="padding: 15px;border: 1px solid #ddd;">Precio</th>
 	</tr>
 	<tr>
-		<% @order.order_items.each do |order| %>
+		<% @order&.order_items.each do |order| %>
 			<tr>
 				<td style="padding: 15px;border: 1px solid #ddd;"><%= image_tag (order.item.image)? '': 'product.jpg', class: 'mail-image img-responsive' %></td>
 				<td style="padding: 15px;border: 1px solid #ddd;"><%= order.item.name %></td>
@@ -32,19 +32,19 @@
 	<div style="width: 45%; float: left;">
 		<ul style="border-radius: 3px;">
 			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd; background-color: #72D4CE !important; color: white; font-weight: bolder;">Información del vendedor</li>
-			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd;"><b>Vendedor:</b> 
-				<% if @order.order_items.first.item.priority == "evento" %>
-					<%= @order.order_items.first.item.event.name %>
+			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd;"><b>Vendedor:</b>
+				<% if @order&.order_items.first.item.priority == "evento" %>
+					<%= @order&.order_items.first.item.event.name %>
 				<% else %>
-					<%= @order.order_items.first.item.item.name %>
+					<%= @order&.order_items.first.item.item.name %>
 				<% end %>
 			</li>
 
-			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd;"><b>Dirección:</b> 
-				<% if @order.order_items.first.item.priority == "evento" %>
-					<%= @order.order_items.first.item.event.address %>
+			<li style="position: relative;display: block;padding: 10px 15px;margin-bottom: -1px;background-color: #fff;border: 1px solid #ddd;"><b>Dirección:</b>
+				<% if @order&.order_items.first.item.priority == "evento" %>
+					<%= @order&.order_items.first.item.event.address %>
 				<% else %>
-					<%= @order.order_items.first.item.store.address %>
+					<%= @order&.order_items.first.item.store.address %>
 				<% end %>
 			</li>
 		</ul>

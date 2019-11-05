@@ -3,15 +3,15 @@ class Client::OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:update, :destroy]
 
   def create
-    if current_order.order_items.any?
-			if current_order.order_items.first.item_type == 'Product'
-				if current_order.order_items.first.item.item == Product.find(params[:order_item][:item_id]).item
+    if current_order&.order_items.any?
+			if current_order&.order_items.first.item_type == 'Product'
+				if current_order&.order_items.first.item.item == Product.find(params[:order_item][:item_id]).item
 					create_order_item
 				else
 					@error_in_order = true
 				end
-			elsif current_order.order_items.first.item_type == 'Ticket'
-				if current_order.order_items.first.item.event.store == Product.find(params[:order_item][:item_id]).item
+			elsif current_order&.order_items.first.item_type == 'Ticket'
+				if current_order&.order_items.first.item.event.store == Product.find(params[:order_item][:item_id]).item
 					create_order_item
 				else
 					@error_in_order = true
@@ -27,14 +27,14 @@ class Client::OrderItemsController < ApplicationController
 		@order_items = @order.order_items
 	end
 
-      #if current_order.order_items.first.item_type == 'Product'
-      #  if current_order.order_items.first.item.item == Product.find(params[:order_item][:item_id]).item
+      #if current_order&.order_items.first.item_type == 'Product'
+      #  if current_order&.order_items.first.item.item == Product.find(params[:order_item][:item_id]).item
       #    create_order_item
       #  else
       #    @error_in_order = true
       #  end
-      #elsif current_order.order_items.first.item_type == 'Ticket'
-      #  if current_order.order_items.first.item.event.store == Product.find(params[:order_item][:item_id]).item
+      #elsif current_order&.order_items.first.item_type == 'Ticket'
+      #  if current_order&.order_items.first.item.event.store == Product.find(params[:order_item][:item_id]).item
       #    create_order_item
       #  else
       #    @error_in_order = true

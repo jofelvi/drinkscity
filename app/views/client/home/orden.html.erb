@@ -58,7 +58,7 @@
 					</thead>
 
 					<tbody>
-						<% @order.order_items.each do |order_item| %>
+						<% @order&.order_items.each do |order_item| %>
 							<tr>
 								<td data-title="Imagen">
 									<%= image_tag order_item.item.image.url(:medium), style: "width:100%; max-width: 160px", alt: "" %>

@@ -24,6 +24,6 @@ class OrderSerializer < ActiveModel::Serializer
   belongs_to :user
 
   def order_items
-    { order_items: object.order_items.map { |e| {name: e.item.name, quantity: e.quantity, unit_price: e.unit_price, item_id: e.item_id, item_type: e.item_type}  } }
+    { order_items: object&.order_items.map { |e| {name: e.item.name, quantity: e.quantity, unit_price: e.unit_price, item_id: e.item_id, item_type: e.item_type}  } }
   end
 end
