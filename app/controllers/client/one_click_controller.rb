@@ -22,7 +22,7 @@ class Client::OneClickController < ApplicationController
         @order.authorization_code = @transaction.try(:authorization_code)
         @order.response_code = @transaction.try(:response_code)
         @order.save
-        
+
         p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
         p "@@@@@@@@@@@@@@@@ ONECLICK @@@@@@@@@@@@@@@@@"
         p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -112,13 +112,11 @@ class Client::OneClickController < ApplicationController
 
   def finish
     if params[:id].present?
-      @finish = params[:id].to_i
-    else
-      @finish = Order.find(params[:id])
+      @finish = Order.find_by_id(params[:id])
     end
 
     puts "============================="
-    puts @finish
+    # puts @finish
     puts "============================="
   end
 end
