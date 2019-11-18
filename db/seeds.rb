@@ -20,7 +20,6 @@ User.create! id: 5, fullname: "agent2", email: "agent2@gmail.com", password: "te
 User.create! id: 6, fullname: "agent3", email: "agent3@gmail.com", password: "test123", password_confirmation: "test123",role: 3
 User.create! id: 7, fullname: "agent4", email: "agent4@gmail.com", password: "test123", password_confirmation: "test123", role: 5
 User.create! id: 8, fullname: "customer", email: "customer@gmail.com", password: "test123", password_confirmation: "test123", role: 4
-User.create! id: 9, fullname: "Jesús Torres", email: "jesustc17@gmail.com", password: "test123", password_confirmation: "test123", role: 0
 
 Store.create! id: 1, name: "Store 1", legal_agent: "legal agent", legal_agent_phone: "041212335567786", address:"Santiago de chile, Chile", kind: 1, status: 1, longitude: '8.293781', latitude: '-62.741614', time_opened: '03:00 - 11:00', days_opened: 'lun-___-___-___-___-___-___', phone: "3103212345", rut: "000000000-0"
 Store.create! id: 2, name: "Store 2", legal_agent: "legal agent", legal_agent_phone: "041212335567786", address:"Santiago de chile, Chile", kind: 2, status: 2, longitude: '8.275690', latitude: '-62.758039', time_opened: '03:00 - 11:00', days_opened: 'lun-___-___-___-___-___-___', phone: "3103212340", rut: "000000002-0"

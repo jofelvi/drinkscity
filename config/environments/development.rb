@@ -76,7 +76,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.time_zone = 'santiago'
+  config.time_zone = "America/Santiago"
   config.i18n.default_locale = :es
   config.encoding = 'utf-8'
 

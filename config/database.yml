@@ -10,8 +10,8 @@ development:
   timeout: 5000
   database: drink_city_development
   host: localhost
-  username: dach3r
-  password: 123456
+  username: 
+  password: 
   port: 5432
 
 

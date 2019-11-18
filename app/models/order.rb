@@ -35,7 +35,7 @@ class Order < ApplicationRecord
   def format_buyorder
     day_orders = Order.where("created_at >= ? AND created_at <= ?", self.created_at.beginning_of_day, self.created_at.end_of_day)
     day_order_number = "%03d" % (day_orders.index{|x| x.id == self.id } + 1)
-    buy_order = Time.now.in_time_zone("Santiago").strftime("%Y%m%d%H%M%S")
+    buy_order = Time.now.in_time_zone("America/Santiago").strftime("%Y%m%d%H%M%S")
     buy_order = buy_order + day_order_number
   end
 

@@ -25,7 +25,7 @@ module Drinkscity
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.time_zone = 'Caracas'
+    config.time_zone = "America/Santiago"
     config.i18n.default_locale = :es
     config.encoding = 'utf-8'
 

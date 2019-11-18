@@ -87,11 +87,11 @@ class Store < ApplicationRecord
 	end
 
 	def check_status
-		now = Time.now.utc.in_time_zone('Santiago')
+		now = Time.now.utc.in_time_zone("America/Santiago")
 		schedule = self.schedules.send(now.strftime('%A').downcase).last
 		if schedule
-			opens = schedule.opens.in_time_zone('Santiago')
-			closes = schedule.closes.in_time_zone('Santiago')
+			opens = schedule.opens.in_time_zone("America/Santiago")
+			closes = schedule.closes.in_time_zone("America/Santiago")
 			if opens < closes
 				if now.between?(opens, closes)
 					return [true, opens, closes]
