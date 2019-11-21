@@ -4,64 +4,80 @@ class Client::OneClickController < ApplicationController
   before_action :finish
 
   def init_inscription
-    @order = Order.find(params[:id])
+
     if user_signed_in?
       if current_user.oneclick_user.present?
-        @order.buy_order = @order.format_buyorder
-        @order.save
-        @transaction = Transbank::Oneclick.authorize({
-        	amount: @order.subtotal,
-        	tbk_user: current_user.oneclick_user,
-        	username: current_user.email,
-        	buy_order: @order.buy_order
-        })
-
-        @order.payment_id = @transaction.try(:transaction_id)
-        @order.username = current_user.try(:email)
-        @order.tbk_user = current_user.try(:oneclick_user)
-        @order.authorization_code = @transaction.try(:authorization_code)
-        @order.response_code = @transaction.try(:response_code)
-        @order.save
-
-        p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-        p "@@@@@@@@@@@@@@@@ ONECLICK @@@@@@@@@@@@@@@@@"
-        p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-        p @transaction.inspect
-        p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-        p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-        p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-
-        if @transaction.valid?
-          redirect_to aprobar_orden_path(id: @order.id )
-        else
-          redirect_to cart_index_path, alert: "Disculpe, su pago no se realizo con exito, por favor intente nuevamente mas tarde"
-        end
-
+        authorize
       else
-        select_url
+      select_url
         @inscription = Transbank::Oneclick.init_inscription({
-        	email: current_user.email,
-        	username: current_user.email,
-          response_url: @response_url
+                                                              email: current_user.email,
+                                                              username: current_user.email,
+                                                              response_url: @response_url
         })
         puts @inscription.inspect
-
-
-
       end
-    else
-			redirect_to new_user_session_path(cart: true)
-		end
+    end
+    #     if current_user.oneclick_user.present?
+    #       @order.buy_order = @order.format_buyorder
+    #       @order.save
+    #       @transaction = Transbank::Oneclick.authorize({
+    #         amount: @order.subtotal,
+    #         tbk_user: current_user.oneclick_user,
+    #         username: current_user.email,
+    #         buy_order: @order.buy_order
+    #       })
+
+    #       @order.payment_id = @transaction.try(:transaction_id)
+    #       @order.username = current_user.try(:email)
+    #       @order.tbk_user = current_user.try(:oneclick_user)
+    #       @order.authorization_code = @transaction.try(:authorization_code)
+    #       @order.response_code = @transaction.try(:response_code)
+    #       @order.save
+
+    #       p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    #       p "@@@@@@@@@@@@@@@@ ONECLICK @@@@@@@@@@@@@@@@@"
+    #       p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    #       p @transaction.inspect
+    #       p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    #       p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    #       p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+
+    #       if @transaction.valid?
+
+    #         puts params[:id]
+    #         puts @order.id
+    #         redirect_to aprobar_orden_path(id: @order.id )
+    #       else
+    #         redirect_to cart_index_path, alert: "Disculpe, su pago no se realizo con exito, por favor intente nuevamente mas tarde"
+    #       end
+
+    #     else
+    #       select_url
+    #       @inscription = Transbank::Oneclick.init_inscription({
+    #         email: current_user.email,
+    #         username: current_user.email,
+    #         response_url: @response_url
+    #       })
+    #       puts @inscription.inspect
+
+
+
+    #     end
+    #   else
+    #   redirect_to new_user_session_path(cart: true)
+    # end
   end
 
   def finish_inscription
+
     @inscription = Transbank::Oneclick.finish_inscription(params[:TBK_TOKEN])
     puts @inscription.inspect
     if @inscription.valid?
       current_user.oneclick_user = @inscription.tbk_user
       current_user.save
+      authorize
       #redirect_to cart_index_path, alert: "Usted se ha afiliado a oneclick con exito"
-      redirect_to aprobar_orden_path(id: @finish )
     else
       redirect_to cart_index_path, alert: "Hubo un problema, no se ha podido afiliar, intente nuevamente mas tarde"
     end
@@ -69,8 +85,8 @@ class Client::OneClickController < ApplicationController
 
   def remove_user
     response = Transbank::Oneclick.remove_user({
-	    tbk_user: current_user.oneclick_user,
-	    username: current_user.email
+                                                 tbk_user: current_user.oneclick_user,
+                                                 username: current_user.email
     })
     puts response.inspect
     if response.valid?
@@ -83,6 +99,41 @@ class Client::OneClickController < ApplicationController
   end
 
   def authorize
+    @order = Order.where(user_id: current_user.id, order_status_id: 1).first
+    if current_user.oneclick_user.present?
+      @order.buy_order = @order.format_buyorder
+      @order.save
+      @transaction = Transbank::Oneclick.authorize({
+                                                     amount: @order.subtotal,
+                                                     tbk_user: current_user.oneclick_user,
+                                                     username: current_user.email,
+                                                     buy_order: @order.buy_order
+      })
+
+      @order.payment_id = @transaction.try(:transaction_id)
+      @order.username = current_user.try(:email)
+      @order.tbk_user = current_user.try(:oneclick_user)
+      @order.authorization_code = @transaction.try(:authorization_code)
+      @order.response_code = @transaction.try(:response_code)
+      @order.save
+
+      p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      p "@@@@@@@@@@@@@@@@ ONECLICK @@@@@@@@@@@@@@@@@"
+      p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      p @transaction.inspect
+      p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      p "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+
+      if @transaction.valid?
+
+        puts params[:id]
+        puts @order.id
+        redirect_to aprobar_orden_path(id: @order.id )
+      else
+        redirect_to cart_index_path, alert: "Disculpe, su pago no se realizo con exito, por favor intente nuevamente mas tarde"
+      end
+    end
   end
 
   def reverse
