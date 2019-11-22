@@ -40,7 +40,7 @@
 										</td>
 				           		<td class="text-center"><%=I18n.t "statuses.#{order.order_status.name}"%> </td>
 				           		<td>
-												<%= link_to orden_path(order), method: :post, class: "btn btn-danger", style: "background-color: #3be8a8; border-color: #3be8a8"  do %>
+												<%= link_to orden_path(order), method: :get, class: "btn btn-danger", style: "background-color: #3be8a8; border-color: #3be8a8"  do %>
 					              	<i class="glyphicon glyphicon-eye-open" style="font-size:14px"></i>
 					              <%end%>
 												<%if order.order_status.id == 1%>
