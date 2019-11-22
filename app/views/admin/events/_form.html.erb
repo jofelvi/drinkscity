@@ -214,11 +214,11 @@
 
   <!-- Productos del evento -->
   <div class="row">
-    <!--<div class="products-fields">
-      <%#= form.fields_for :products do | product | %>
-          <%#= render 'product_fields', f: product %>
-      <%# end %>
-    </div>-->
+    <div class="products-fields">
+      <%= form.fields_for :products do | product | %>
+          <%= render 'product_fields', f: product %>
+      <% end %>
+    </div>
     <%= form.hidden_field :product_ids, id: :product_ids%>
     <input type="hidden" name="product_stk" id="product_stk">
     <div class="table-responsive">
