@@ -19,7 +19,7 @@
     <% @tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.name %></td>
-        <td><%= ticket.price %></td>
+        <td><%= number_to_currency(ticket.price)%></td>
         <td><%= ticket.stock %></td>
         <td><%= ticket.active %></td>
         <td><%= ticket.start_date %></td>

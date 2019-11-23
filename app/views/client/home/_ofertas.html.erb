@@ -40,7 +40,7 @@
 								<span class="tiendaHomeShow"><%= product.item.name %></span><br>
 								<span class="tiendaHomeShow colorDC"><%= product.item.kind %>  a </span>
 								<span class="distanciaHomeShow distanceTake colorDC" data-latitude="-33.46611" data-longitud="-70.586456">5 km</span><br>
-								<span class="precioHomeShow">$<%= product.price.nil? ? 0 : product.price.to_i  %> c/u</span>
+								<span class="precioHomeShow"><%=number_to_currency(product.price.nil? ? 0 : product.price.to_i )  %> c/u</span>
 							</div>
 						</div>
 					</a>

@@ -42,7 +42,7 @@
                   <td><%= image_tag product.image.url(:mini), width: '50px' %></td>
                   <td><%= product.name %></td>
                   <td><%= truncate(product.description.html_safe, length:35) %></td>
-                  <td>$<%= product.price.to_i %></td>
+                  <td><%= number_to_currency(product.price) %></td>
                   <td><%= product.stock %></td>
                   <td> 
                     <div class="btn-group">

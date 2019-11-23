@@ -46,7 +46,7 @@
               <% @orders.each do |order| %>
               <tr>
                 <td><%= order.id %></td>
-                <td><%= order.subtotal %></td>
+                <td><%= number_to_currency(order.subtotal) %></td>
                 <td><%= order.user.try(:email) %></td>
                 <%if params[:status]==3%>
                 <td class="text-center">
