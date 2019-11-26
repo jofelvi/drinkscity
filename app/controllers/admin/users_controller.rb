@@ -39,9 +39,9 @@ class Admin::UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.add_role params[:user][:role]
     respond_to do |format|
       if @user.save
-        @user.add_role params[:user][:role]
         format.html { redirect_to admin_users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
