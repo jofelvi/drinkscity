@@ -34,15 +34,24 @@ class Admin::ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    u = User.find_by(id: current_user.id)
-    @stores = u.stores.where(status: 1)
+    if current_user.has_role? :admin
+      @stores = Stores.all
+    else
+      u = User.find_by(id: current_user.id)
+      @stores = u.stores.where(status: 1)
+    end
+    
     @product = Product.new    
   end
 
   # GET /products/1/edit
   def edit
-    u = User.find_by(id: current_user.id)
-    @stores = u.stores.where(status: 1)
+    if current_user.has_role? :admin
+      @stores = Stores.all
+    else
+      u = User.find_by(id: current_user.id)
+      @stores = u.stores.where(status: 1)
+    end
   end
 
   # POST /products
