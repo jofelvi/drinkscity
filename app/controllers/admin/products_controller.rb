@@ -41,6 +41,8 @@ class Admin::ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    u = User.find_by(id: current_user.id)
+    @stores = u.stores.where(status: 1)
   end
 
   # POST /products
