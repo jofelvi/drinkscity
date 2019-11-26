@@ -1,4 +1,4 @@
 class StoresUser < ApplicationRecord
 	belongs_to: user
-	belongs_to: stores
+	belongs_to: store
 end
