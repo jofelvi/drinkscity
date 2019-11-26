@@ -27,7 +27,10 @@
 #
 
 class User < ApplicationRecord
-	acts_as_favoritor
+  	resourcify
+  	rolify
+  	
+  	acts_as_favoritor
 	has_and_belongs_to_many :stores
 	has_and_belongs_to_many :tickets
 	has_many :orders, dependent: :destroy
@@ -40,7 +43,9 @@ class User < ApplicationRecord
 
 	has_one :validator, class_name: "Order", foreign_key: "validator_id"
 
-	enum role: [ :admin, :store_admin, :validator, :rrpp, :customer, :guest ]
+	
+	#enum role: [ :admin, :store_admin, :validator, :rrpp, :customer, :guest ]
+	
 
 	#validates_presence_of :fullname, :rut, :email, :address, :phone
 	#validates_uniqueness_of :email, :rut
@@ -51,7 +56,7 @@ class User < ApplicationRecord
 	:recoverable, :rememberable, :trackable, :validatable,
 	:omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 	
-	before_create :default_values
+	after_create :default_values
 
 	ratyrate_rater
 
@@ -59,9 +64,7 @@ class User < ApplicationRecord
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 	def default_values
-		if self.role.present?
-			self.role ||= 4
-		end
+		self.add_role(:guest) if self.roles.blank?
 	end
 
 	# Facebook Auth

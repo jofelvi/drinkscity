@@ -63,7 +63,7 @@ end
 	namespace 'admin' do
 		get 'index', to: 'home#index'
 		
-		resources :stores
+		#resources :stores
     resources :videos
     resources :streaming, only: :index
 		get '/accept_store/:id', to: 'stores#accept_store', as: 'accept_store'

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
       if params[:user][:cart].present?
         cart_index_path
       else
-        if current_user.role == 'admin' || current_user.role == 'store_admin'
+        if current_user.has_role? :admin or current_user.has_role? :store_admin
           admin_index_path
         else
           root_path
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
   def check_permission
     if current_user.present?
-      if current_user.admin? || current_user.store_admin?
+      if current_user.has_role? :admin or current_user.has_role? :store_admin
         return
       else
         redirect_back(fallback_location: root_path)

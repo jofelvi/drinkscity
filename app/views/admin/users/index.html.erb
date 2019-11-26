@@ -41,18 +41,12 @@
                   <td><%= user.fullname %></td>
                   <td><%= user.email %></td>
                   <td>
-                    <% if user.role.present? %>
-                      <%= user.role %>
-                    <% elsif user.provider.present? %>
-                      <%= user.provider %> / Invitado
-                    <% else %>
-                      Invitado
-                    <% end %>
+                    <%= user.roles.pluck(:name).join("") %>
                   </td>
                   <td> 
                     <div class="btn-group">
                       <a class="btn btn-default" href="<%=edit_admin_user_path(user)%>" ><%=fa_icon "pencil"%></a>
-                      <%if user.store_admin?%>
+                      <%if user.has_role? :store_admin%>
                         <% if user.stores.present? %>
                          <a class="btn btn-default" href="<%=admin_stores_path(id: user.id)%>"><%=fa_icon "building"%></a>
                         <% end %>
@@ -81,7 +75,7 @@
               <div class="col-xs-2">
                 <div class="btn-group">
                   <a class="btn btn-default btn-block" href="<%=edit_admin_user_path(user)%>" ><%=fa_icon "pencil"%></a>
-                  <%if user.store_admin?%>
+                  <%if user.has_role? :store_admin%>
                     <% if user.stores.present? %>
                       <a class="btn btn-default btn-block" href="<%=admin_stores_path(id: user.id)%>"><%=fa_icon "building"%></a>
                     <% end %>

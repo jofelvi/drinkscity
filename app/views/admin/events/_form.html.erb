@@ -25,11 +25,16 @@
         </div>
         <div class="x_content">
           <br />
-        <% if current_user.admin? %>
+        <% if current_user.has_role? :admin %>
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <%= form.select(:user_id, User.store_admin.map {|key| [  key.fullname, key.id]},{:include_blank => "Seleccione el usuario"}, {:class => "form-control", disabled: disabled, id: "user_select"}) %>
+              <%= form.select(:user_id, User.with_any_role(:store_admin).map {|key| [  key.fullname, key.id]},
+                     {:include_blank => "Seleccione el usuario"},
+                    {:class => "form-control",
+                    disabled: disabled} 
+                  )
+                %>
             </div>
           </div>
         <% else %>
@@ -207,17 +212,28 @@
               <%# end %>
             </span>-->
           </h3>
+           <h1></h1>
         </div>
       </div>
     </div>
+
   </div>
 
   <!-- Productos del evento -->
   <div class="row">
     <div class="products-fields">
+    <% if @event.new_record? %>
+     <% @products.each do |p| %>
       <%= form.fields_for :products do | product | %>
-          <%= render 'product_fields', f: product %>
+          <%= render 'product_fields', f: product, p: p %>
       <% end %>
+     <%end%>
+    <%else%>
+        <%= form.fields_for :products do | product | %>
+          <%= render 'edit_product_fields', f: product %>
+      <% end %>
+
+    <%end%>
     </div>
     <%= form.hidden_field :product_ids, id: :product_ids%>
     <input type="hidden" name="product_stk" id="product_stk">

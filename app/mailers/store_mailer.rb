@@ -7,7 +7,7 @@ class StoreMailer < ApplicationMailer
 	#
 	def registration(store)
 		store = store
-		user = store.users.store_admin.first
+		user = User.with_role(:admin).first
 		#mail(to: "test@gmail.com", subject: 'Bienvenido, su registro se ha realizado exitosamente..!!')
 		mail to: store.legal_agent_email, subject: 'Bienvenido, su registro se ha realizado exitosamente..!!'
 	end

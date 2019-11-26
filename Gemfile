@@ -69,6 +69,7 @@ gem 'omniauth-google-oauth2'
 
 # Para el control de usuarios
 gem "rolify"
+gem 'cancancan'
 gem "pundit"
 
 # plantilla gentellela

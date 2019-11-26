@@ -6,15 +6,25 @@ class Admin::ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    if current_user.admin?
-      @products = params[:store_id] ? Product.where(item_type: 'Store', item_id: params[:store_id]) : Product.all
+
+    if current_user.has_role? :admin
+      if params[:store_id]
+        s= Store.find_by(id: params[:store_id] )
+        @products = s.products
+      else
+        @products = Product.all
+      end
+      #@products = params[:store_id] ? Product.where(item_type: 'Store', item_id: params[:store_id]) : Product.all
+      # @products = params[:store_id] ? Store.find_by(id: params[:store_id]) : Product.all
     else
       @products = params[:store_id] ? Product.where(item_type: 'Store', item_id: params[:store_id]) : current_user.products
     end
 
     palabra = "%#{params[:search]}%"
-
-    @products = Product.where("name LIKE ? OR description LIKE ?", palabra, palabra)
+    if params[:search]
+      @products = Product.where("name LIKE ? OR description LIKE ?", palabra, palabra)
+    end
+  
   end
 
   # GET /products/1
@@ -24,6 +34,8 @@ class Admin::ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    u = User.find_by(id: current_user.id)
+    @stores = u.stores.where(status: 1)
     @product = Product.new    
   end
 
@@ -98,7 +110,7 @@ class Admin::ProductsController < ApplicationController
     end
 
     def list_stores
-      if current_user.admin?
+      if current_user.has_role? :admin
         @stores = Store.all.map {|key| [  key.name, key.id]}
       else
         @stores = current_user.stores.map {|key| [  key.name, key.id]}

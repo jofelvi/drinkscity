@@ -2,20 +2,22 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :check_permission
-
+  
   # GET /users
   # GET /users.json
   def index
-    #if current_user.admin?
-    #   @users = params[:type].present? ? User.where(role: params[:type]) : User.all
-    #else
-    #  @users = User.where(id: current_user.id)
-    #end
-    @users = User.last_published
+    if current_user.has_role? :admin
+      @users = User.all
+    else
+      @users= User.with_role(:rrpp)
+    end
 
-    palabra = "%#{params[:search]}%"
-
-    @users = User.where("fullname LIKE ? OR email LIKE ? OR phone LIKE ?", palabra, palabra, palabra)
+    if params[:search]
+      palabra = "%#{params[:search]}%"
+      @users = User.where("fullname LIKE ? OR email LIKE ? OR phone LIKE ?", palabra, palabra, palabra)
+    end  
+    
+   
   end
 
   # GET /users/1
@@ -37,9 +39,9 @@ class Admin::UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
+        @user.add_role params[:user][:role]
         format.html { redirect_to admin_users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -67,6 +69,9 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
+     
+      @user.add_role params[:user][:role]
+     
       redirect_to admin_users_path, notice: 'El usuario se actualizo correcta mente.'
     else
       redirect_to admin_users_path, notice: 'Tuvimos problemas al actualizar este usuario.'
@@ -91,6 +96,6 @@ class Admin::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:password, :password_confirmation, :fullname, :rut, :email, :address, :phone, :role)
+      params.require(:user).permit(:password, :password_confirmation, :fullname, :rut, :email, :address, :phone,  :role)
     end
 end

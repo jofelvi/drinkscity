@@ -37,7 +37,7 @@
 <%end%>
  <br>
 
-<% if user_signed_in? && current_user.role == 0 %>
+<% if user_signed_in? && current_user.has_role? :admin %>
 	 <%if @payment_status.present? && (@order.order_status.id != 4 )  %>
 		<%= link_to "Generar codigo QR", payments_confirm_path(notification_token: @payment_status.notification_token, id: @order.id), class:"btn btn-success", style:"background-color: #3be8a8"%>
 	<%end%>

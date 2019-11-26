@@ -93,7 +93,7 @@
 					</div>
 				</div>
 
-				<% if current_user.role == 'admin' || current_user.role == 'store_admin' %>
+				<% if current_user.has_role? :admin or current_user.has_role? :store_admin%>
 					<%= link_to admin_stores_path, class: "KL sideNavItem", style: "padding: 5px!important;" do %>
 						Panel admin
 					<% end %>

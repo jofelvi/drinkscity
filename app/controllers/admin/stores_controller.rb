@@ -7,9 +7,21 @@ class Admin::StoresController < ApplicationController
 	# GET /stores
 	# GET /stores.json
 	def index
-		if current_user.admin?
-			@stores = params[:id] ? Store.includes(:users).where(users: {id: params[:id]}) : Store.all
-			@stores = params[:status] ? Store.where(status: params[:status]) : @stores.where(status: 1)
+
+		if current_user.has_role? :admin
+			if params[:id]
+				u = User.find_by(id: params[:id])
+				@stores = u.stores
+			else
+				@stores = Store.all
+			end
+			if params[:status]
+				@stores=Store.where(status: params[:status])
+			else
+				@stores = @stores.where(status: 1)
+			end
+			#@stores = params[:id] ? Store.includes(:users).where(users: {id: params[:id]}) : Store.all
+			#@stores = params[:status] ? Store.where(status: params[:status]) : @stores.where(status: 1)
 		else
 			@stores = current_user.stores.where(status: 1)
 		end
@@ -22,6 +34,7 @@ class Admin::StoresController < ApplicationController
 	# GET /stores/1
 	# GET /stores/1.json
 	def show
+		
 	end
 
 	def accept_store
@@ -50,7 +63,9 @@ class Admin::StoresController < ApplicationController
 		@store.status = 0
 
 		if @store.save
-			#@store.users << User.find(params[:store][:user_id])
+			if params[:store][:user_id]
+				@store.users << User.find(params[:store][:user_id])
+			end	
 			add_images
 			redirect_to admin_stores_path, notice: "Store was successfully created."
 		else
@@ -63,6 +78,9 @@ class Admin::StoresController < ApplicationController
 	def update
 		respond_to do |format|
 			if @store.update(store_params)
+				if params[:store][:user_id]
+					@store.users << User.find(params[:store][:user_id])
+				end	
 				add_images
 				format.html { redirect_to admin_stores_path, notice: 'Store was successfully updated.' }
 				format.json { render :show, status: :ok, location: @store }
@@ -95,7 +113,7 @@ class Admin::StoresController < ApplicationController
 			params.require(:store).permit(:longitude, :latitude, :address, :description,
 				:kind,:status, :delivery, :name, :description, :rut, :phone, :email,
 				:region, :days_opened, :time_opened, :legal_agent, :legal_agent_rut, :legal_agent_phone,
-				:legal_agent_email, schedules_attributes: [:id, :day_of_week, :opens, :closes,:_destroy])
+				:legal_agent_email, :user_id, schedules_attributes: [:id, :day_of_week, :opens, :closes,:_destroy])
 		end
 
 		def add_schedules

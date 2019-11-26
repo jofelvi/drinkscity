@@ -26,13 +26,13 @@
         <br />
 
         <div class="form-group">
-          <%if current_user.admin?%>
+          <%if current_user.has_role? :admin%>
             <% if store.user_ids.blank? %>
               <label class="control-label col-md-3 col-sm-3 col-xs-12">
                 Usuario:
               </label>
               <div class="col-md-9 col-sm-9 col-xs-12">
-                <%= form.select(:user_id, User.store_admin.map {|key| [  key.fullname, key.id]},
+                <%= form.select(:user_id, User.with_any_role(:store_admin).map {|key| [  key.fullname, key.id]},
                     {:include_blank => "Seleccione el usuario"},
                     {:class => "form-control",
                     disabled: disabled} 
@@ -50,7 +50,7 @@
             Tipo de tienda:
           </label>
           <div class="col-md-9 col-sm-9 col-xs-12">
-            <%= form.select(:kind, Store.kinds.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione el tipo de tieda"}, {:class => "form-control"}) %>
+            <%= form.select(:kind, Store.kinds.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione el tipo de tienda"}, {:class => "form-control"}) %>
           </div>
         </div>
 

@@ -20,7 +20,7 @@
       <%= f.hidden_field :user_id, value: current_user.id, readonly: true %>
 
       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-        <%= f.text_field :name, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Nombre del producto", value: p.name, disabled: disabled%>
+        <%= f.text_field :name, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Nombre del producto", disabled: disabled%>
         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
       </div>
 
@@ -29,12 +29,12 @@
       </div>
 
       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-        <%= f.number_field :price, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Precio" , value: p.price, disabled: disabled%>
+        <%= f.number_field :price, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Precio" , disabled: disabled%>
         <span class="fa fa-dollar form-control-feedback left" aria-hidden="true"></span>
       </div>
 
       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-        <%= f.number_field :stock, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Stock", value: p.stock, disabled: disabled %>
+        <%= f.number_field :stock, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Stock",  disabled: disabled %>
         <span class="fa fa-shopping-bag form-control-feedback left" aria-hidden="true"></span>
       </div>
 
@@ -43,7 +43,7 @@
           Descripción
         </label>
         <div class="col-md-9 col-sm-9 col-xs-12">
-          <%= f.text_area :description, class:"form-control", id: :user_fullname, placeholder:"Descripcion del producto", value: p.description, disabled: disabled %>
+          <%= f.text_area :description, class:"form-control", id: :user_fullname, placeholder:"Descripcion del producto", disabled: disabled %>
         </div>
       </div>
 
@@ -52,7 +52,7 @@
           Tipo de aviso
         </label>
         <div class="col-md-9 col-sm-9 col-xs-12">
-          <%= f.select(:priority, Product.priorities.keys.map {|key| [ key.humanize, key]}, {:selected => p.priority, :include_blank => "Seleccione el tipo de aviso"}, {:class => "form-control", disabled: disabled}) %>
+          <%= f.select(:priority, Product.priorities.keys.map {|key| [ key.humanize, key]}, { :include_blank => "Seleccione el tipo de aviso"}, {:class => "form-control", disabled: disabled}) %>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
           Categoría
         </label>
         <div class="col-md-9 col-sm-9 col-xs-12">
-          <%= f.select(:category, Product.categories.keys.map {|key| [ key.humanize, key]},{:selected => p.category, :include_blank => "Seleccione la categoria del producto"}, {:class => "form-control", disabled: disabled}) %>          
+          <%= f.select(:category, Product.categories.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione la categoria del producto"}, {:class => "form-control", disabled: disabled}) %>          
         </div>
       </div>
 
@@ -71,8 +71,8 @@
         </label>
         <div class="col-md-9 col-sm-9 col-xs-12">
           <div id="gender" class="btn-group" data-toggle="buttons">
-            Si <%= f.radio_button :active, true, :checked => p.sale_or_show, class: 'flat' %> &nbsp;
-            No <%= f.radio_button :active, false,  :checked => p.sale_or_show!=true, class: 'flat'%>
+            Si <%= f.radio_button :active, true,  class: 'flat' %> &nbsp;
+            No <%= f.radio_button :active, false, class: 'flat'%>
           </div>
         </div>
       </div>

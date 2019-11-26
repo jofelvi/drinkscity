@@ -26,10 +26,12 @@ module ApplicationHelper
 	end
 
 	def roles_select
-		if current_user.admin?
-			@roles = User.roles.keys
+		if current_user.has_role? :admin
+			@roles = Role.all.pluck(:name)
 		else
-			@roles = User.roles.keys - ["admin", "guest", "store_admin"]
+			@role_exclude_list = ['customer', 'validator', 'rrpp']
+			@roles = Role.where.not(name: @role_exclude_list).pluck(:name)
+			#@roles = User.roles.keys - ["admin", "guest", "store_admin"]
 		end
 	end
 

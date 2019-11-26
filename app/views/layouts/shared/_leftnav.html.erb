@@ -23,7 +23,7 @@
             <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Crear</a></li>
           </div>-->
           
-            <li><a href="<%=new_admin_user_path(type: :create_user)%>"  >Crear usuario</a></li>
+            <li><a href="<%=new_admin_user_path()%>"  >Crear usuario</a></li>
           <li><a href="<%=admin_users_path(type: :store_admin)%>"  >Ver Clientes</a></li>
           <li><a href="<%=admin_users_path(type: :customer)%>">Ver Usuarios</a></li>
           <li><a href="<%=admin_users_path%>">Ver todos los usuarios</a></li>
@@ -31,7 +31,7 @@
       </li>
       <li><a><i class="fa fa-map-pin"></i> Tiendas <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <%if current_user.admin?%>
+          <%if current_user.has_role? :admin %>
             <li><a href="<%=admin_stores_path(status: 0)%>">Tiendas Pendientes</a></li>
           <%end%>
           <li><a href="<%=new_admin_store_path%>">Crear</a></li>

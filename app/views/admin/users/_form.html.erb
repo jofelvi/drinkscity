@@ -46,7 +46,11 @@
     </div>
 
     <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group">
-      <%= form.select(:role, User.roles.keys.map {|key| [ key.humanize, key]},{:include_blank => "Seleccione"}, {:class => "form-control"}) %>
+      <% if current_user.is_admin? %>
+       <%= form.select(:role, Role.all.collect {|key| [ key.name, key.name]},{:include_blank => "Seleccione"}, {:class => "form-control"}) %>
+      <%else%>
+       <%= form.select(:role, Role.where(name: "rrpp").collect {|key| [ key.name, key.name]},{:include_blank => "Seleccione"}, {:class => "form-control"}) %>
+      <%end%>
     </div>
 
     <div class=" col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 form-group">

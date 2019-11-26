@@ -5,7 +5,7 @@ class Admin::EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if current_user.admin?
+    if current_user.has_role? :admin
       @events = Event.all
     else
       @events = current_user.events
@@ -23,7 +23,12 @@ class Admin::EventsController < ApplicationController
     @event = Event.new
     1.times{ @event.tickets.new }
     1.times{ @event.products.new }
-
+    if current_user.has_role? :admin
+      @products = Product.where(item_type: "Store")
+    else
+      @products = current_user.products
+    end
+    
     puts "Productos: #{@event.products.inspect}"
   end
 

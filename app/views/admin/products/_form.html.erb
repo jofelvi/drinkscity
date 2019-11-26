@@ -35,7 +35,7 @@
             Tienda que vende el producto:
           </label>
           <div class="col-md-9 col-sm-9 col-xs-12">
-            <%= form.select(:item_id, @stores ,{:include_blank => "Seleccione la tienda"}, {:class => "form-control", disabled: disabled}) %>
+            <%= form.select(:item_id, @stores.map{|key| [key.name, key.id]} ,{:include_blank => "Seleccione la tienda"}, {:class => "form-control", disabled: disabled}) %>
             <%#= select_tag "item_id", options_from_collection_for_select(@stores, "id", "name"), class: 'form-control select select2', prompt: "Seleccione la tienda" %>
           </div>
         </div>
