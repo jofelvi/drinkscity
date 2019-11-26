@@ -35,7 +35,7 @@ class Admin::ProductsController < ApplicationController
   # GET /products/new
   def new
     if current_user.has_role? :admin
-      @stores = Stores.all
+      @stores = Store.where(status: 1)
     else
       u = User.find_by(id: current_user.id)
       @stores = u.stores.where(status: 1)
@@ -47,7 +47,7 @@ class Admin::ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     if current_user.has_role? :admin
-      @stores = Stores.all
+      @stores = Store.where(status: 1)
     else
       u = User.find_by(id: current_user.id)
       @stores = u.stores.where(status: 1)
