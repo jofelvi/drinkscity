@@ -275,7 +275,6 @@ ActiveRecord::Schema.define(version: 20191124063304) do
     t.datetime "logo_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
   end
 
   create_table "stores_users", force: :cascade do |t|

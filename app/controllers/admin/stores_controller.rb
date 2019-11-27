@@ -61,10 +61,8 @@ class Admin::StoresController < ApplicationController
 	def create
 		@store = Store.new(store_params)
 		@store.status = 0
+		@store.users << User.find(params[:store][:user_id])
 		if @store.save
-			if params[:store][:user_id]
-				@store.users << User.find(params[:store][:user_id])
-			end	
 			add_images
 			redirect_to admin_stores_path, notice: "Store was successfully created."
 		else

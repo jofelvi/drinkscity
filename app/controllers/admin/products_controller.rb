@@ -30,6 +30,13 @@ class Admin::ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    if current_user.has_role? :admin
+      @stores = Store.where(status: 1)
+    else
+      u = User.find_by(id: current_user.id)
+      @stores = u.stores.where(status: 1)
+    end
+    
   end
 
   # GET /products/new
