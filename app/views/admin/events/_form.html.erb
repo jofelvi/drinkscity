@@ -222,18 +222,7 @@
   <!-- Productos del evento -->
   <div class="row">
     <div class="products-fields">
-    <% if @event.new_record? %>
-     <% @products.each do |p| %>
-      <%= form.fields_for :products do | product | %>
-          <%= render 'product_fields', f: product, p: p %>
-      <% end %>
-     <%end%>
-    <%else%>
-        <%= form.fields_for :products do | product | %>
-          <%= render 'edit_product_fields', f: product %>
-      <% end %>
-
-    <%end%>
+    
     </div>
     <%= form.hidden_field :product_ids, id: :product_ids%>
     <input type="hidden" name="product_stk" id="product_stk">
@@ -253,7 +242,28 @@
           </tr>
         </thead>
         <tbody>
-          
+          <% if @event.new_record? %>
+             <% @products.each do |p| %>
+             <td> 
+              <input type="checkbox" id="checkTodos"/>
+             </td>
+             <td>
+              <%= p.image_file_name %>
+             </td> 
+             <td>
+                <%= p.name %>
+            </td>
+            <td>
+              <%= p.description %>
+            </td>
+            <td>
+              <%= p.price %>
+            </td>
+            <td>
+              <%= form.number_field :stock, class:"form-control", id: :user_fullname, placeholder:"Stock", value: p.stock, disabled: disabled %>
+            </td>
+             <% end %>
+          <% end %>
         </tbody>  
       </table>    
     </div>
