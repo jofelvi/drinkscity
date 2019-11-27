@@ -1,0 +1,27 @@
+  <tr class="nested-fields">
+             <td> 
+           
+          <%= link_to_remove_association f do %>
+            <i class="fa fa-close"></i>
+          <% end %>
+        
+             </td>
+             <td>
+              
+                <%= f.file_field :image, class: 'form-control' %>        
+            
+             </td> 
+             <td>
+               <%= f.text_field :name, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Nombre del producto", disabled: disabled%>
+            </td>
+            <td>
+             <%= f.text_field :name, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Nombre del producto", disabled: disabled%>
+            </td>
+            <td>
+               <%= f.number_field :price, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Precio" , disabled: disabled%>
+            </td>
+            <td>
+               <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+       <%= f.number_field :stock, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Stock",  disabled: disabled %>
+            </td>
+</tr>

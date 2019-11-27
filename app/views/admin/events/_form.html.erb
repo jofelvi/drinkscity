@@ -227,7 +227,7 @@
     <%= form.hidden_field :product_ids, id: :product_ids%>
     <input type="hidden" name="product_stk" id="product_stk">
     <div class="table-responsive">
-      <table class="table table-hover table-striped product-table">
+      <table class="table table-hover table-striped product-table ">
         <thead style="background-image: url(/assets/banda.png); color: white">
           <tr>
             <th>
@@ -244,25 +244,14 @@
         <tbody>
           <% if @event.new_record? %>
              <% @products.each do |p| %>
-             <td> 
-              <input type="checkbox" id="checkTodos"/>
-             </td>
-             <td>
-              <%= p.image_file_name %>
-             </td> 
-             <td>
-                <%= p.name %>
-            </td>
-            <td>
-              <%= p.description %>
-            </td>
-            <td>
-              <%= p.price %>
-            </td>
-            <td>
-              <%= form.number_field :stock, class:"form-control", id: :user_fullname, placeholder:"Stock", value: p.stock, disabled: disabled %>
-            </td>
+              <%= form.fields_for :products do | product | %>
+                <%= render 'product_table_fields', f: product, p: p %>
+              <% end %>
              <% end %>
+             <%else%>
+                <%= form.fields_for :products do | product | %>
+                  <%= render 'edit_product_table_fields', f: product %>
+                <% end %>
           <% end %>
         </tbody>  
       </table>    
