@@ -61,7 +61,6 @@ class Admin::StoresController < ApplicationController
 	def create
 		@store = Store.new(store_params)
 		@store.status = 0
-
 		if @store.save
 			if params[:store][:user_id]
 				@store.users << User.find(params[:store][:user_id])
@@ -113,7 +112,7 @@ class Admin::StoresController < ApplicationController
 			params.require(:store).permit(:longitude, :latitude, :address, :description,
 				:kind,:status, :delivery, :name, :description, :rut, :phone, :email,
 				:region, :days_opened, :time_opened, :legal_agent, :legal_agent_rut, :legal_agent_phone,
-				:legal_agent_email, :user_id, schedules_attributes: [:id, :day_of_week, :opens, :closes,:_destroy])
+				:legal_agent_email,  schedules_attributes: [:id, :day_of_week, :opens, :closes,:_destroy])
 		end
 
 		def add_schedules

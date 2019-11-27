@@ -41,7 +41,7 @@
                   <td><%= user.fullname %></td>
                   <td><%= user.email %></td>
                   <td>
-                    <%= user.roles.pluck(:name).join("") %>
+                    <%= (I18n.t "roles.#{user.roles.pluck(:name).join("")}") %>
                   </td>
                   <td> 
                     <div class="btn-group">
