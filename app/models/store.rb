@@ -149,7 +149,7 @@ class Store < ApplicationRecord
 	private
 
 		def send_email_registration
-			StoreMailer.registration(self).deliver_now
-			StoreMailer.pending(self).deliver_now
+			#StoreMailer.registration(self).deliver_now
+			#StoreMailer.pending(self).deliver_now
 		end
 end
