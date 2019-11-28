@@ -29,9 +29,9 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <%= form.select(:user_id, User.with_any_role(:store_admin).map {|key| [  key.fullname, key.id]},
+              <%= form.select(:user_id, User.with_any_role(:store_admin, :admin).map {|key| [  key.fullname, key.id]},
                      {:include_blank => "Seleccione el usuario"},
-                    {:class => "form-control",
+                    {:class => "form-control", :id => "user_select",
                     disabled: disabled} 
                   )
                 %>
@@ -224,7 +224,6 @@
     <div class="products-fields">
     
     </div>
-    <%= form.hidden_field :product_ids, id: :product_ids%>
     <input type="hidden" name="product_stk" id="product_stk">
     <div class="table-responsive">
       <table class="table table-hover table-striped product-table ">
@@ -243,15 +242,19 @@
         </thead>
         <tbody>
           <% if @event.new_record? %>
-             <% @products.each do |p| %>
-              <%= form.fields_for :products do | product | %>
-                <%= render 'product_table_fields', f: product, p: p %>
-              <% end %>
+             <% if @products.present? %>
+               <% @products.each do |p|  %>
+                 <%= form.fields_for :products do | product | %>
+                 <tr class="nested-fields">
+                   <%= render 'product_table_fields', f: product, p: p %>
+                 </tr>
+                 <% end %>
+               <% end %>
              <% end %>
-             <%else%>
-                <%= form.fields_for :products do | product | %>
+          <%else%>
+              <%= form.fields_for :products do | product | %>
                   <%= render 'edit_product_table_fields', f: product %>
-                <% end %>
+              <% end %>
           <% end %>
         </tbody>  
       </table>    

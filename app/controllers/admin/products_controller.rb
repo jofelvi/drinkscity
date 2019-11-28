@@ -70,7 +70,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       redirect_to admin_products_path, notice: 'Product was successfully created.'
     else
-      render admin_products_path, alert: "Product not created"
+      render new_admin_product, alert: "Product not created"
     end
   rescue StandardError => e
     Airbrake.notify(e)

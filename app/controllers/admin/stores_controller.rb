@@ -61,7 +61,11 @@ class Admin::StoresController < ApplicationController
 	def create
 		@store = Store.new(store_params)
 		@store.status = 0
-		@store.users << User.find(params[:store][:user_id])
+		if params[:store][:user_id].present?
+			@store.users << User.find(params[:store][:user_id])
+		else
+			@store.users << User.find(current_user.id)
+		end
 		if @store.save
 			add_images
 			redirect_to admin_stores_path, notice: "Store was successfully created."
@@ -75,9 +79,6 @@ class Admin::StoresController < ApplicationController
 	def update
 		respond_to do |format|
 			if @store.update(store_params)
-				if params[:store][:user_id]
-					@store.users << User.find(params[:store][:user_id])
-				end	
 				add_images
 				format.html { redirect_to admin_stores_path, notice: 'Store was successfully updated.' }
 				format.json { render :show, status: :ok, location: @store }

@@ -1,27 +1,37 @@
   <tr class="nested-fields">
-             <td> 
-           
-          <%= link_to_remove_association f do %>
-            <i class="fa fa-close"></i>
-          <% end %>
-        
-             </td>
-             <td>
-              <%= p.image_file_name %>
-             </td> 
-             <td>
-                <%= p.name %>
-            </td>
-            <td>
-              <%= p.description %>
-            </td>
-            <td>
-              <%= p.price %>
-            </td>
-            <td>
-               <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-        <%= f.number_field :stock, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Stock", value: p.stock, disabled: disabled %>
-        <span class="fa fa-shopping-bag form-control-feedback left" aria-hidden="true"></span>
-      </div>
-            </td>
-</tr>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :priority, value: p.priority %>
+          <%= f.hidden_field :category, value: p.category %>
+          <%= f.hidden_field :sale_or_show, value: p.sale_or_show %>
+          <%= f.hidden_field :name, value: p.name %>
+          <%= f.hidden_field :description, value: p.description %>
+          <%= f.hidden_field :price, value: p.price %>
+          <td> 
+            <%= link_to_remove_association f do %>
+              <i class="fa fa-close"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= image_tag p.image.url(:mini), width: '50px' %>
+          </td> 
+          <td>
+            <%= p.name %>
+          </td>
+          <td>
+            <%= p.description %>
+          </td>
+          <td>
+            <%= p.price %>
+          </td>
+          <td>
+            <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+               <%= f.number_field :stock, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Stock", value: p.stock, disabled: disabled %>
+               <span class="fa fa-shopping-bag form-control-feedback left" aria-hidden="true"></span>
+            </div>
+          </td>
+  </tr>
+
+
+      
+    
+    

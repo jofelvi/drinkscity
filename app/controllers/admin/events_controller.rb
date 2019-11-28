@@ -21,8 +21,8 @@ class Admin::EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    1.times{ @event.tickets.new }
-    1.times{ @event.products.new }
+    @event.products.build
+    @event.tickets.build
     if current_user.has_role? :admin
       @products = Product.where(item_type: "Store")
     else
@@ -43,12 +43,9 @@ class Admin::EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @event.store = Store.first
-
     respond_to do |format|
       if @event.save
         add_images
-        add_products
         format.html { redirect_to admin_events_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -61,6 +58,7 @@ class Admin::EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event = Event.find(params[:id])
     respond_to do |format|
       if @event.update(event_params)
         add_images
@@ -84,8 +82,8 @@ class Admin::EventsController < ApplicationController
   end
 
   def stores_list
-    relations = StoresUser.where(user_id: params[:user_id])
-    @stores = Store.where(id: relations.map(&:id))
+    @user = User.find_by(id: params[:user_id])
+    @stores = @user.stores
   end
 
   private
@@ -96,7 +94,7 @@ class Admin::EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:store_id, :user_id, :priority, :name, :category, :description, :start_datetime, :end_datetime, :video_link, :address, :product_ids,
+      params.require(:event).permit(:store_id, :user_id, :priority, :name, :category, :description, :start_datetime, :end_datetime, :video_link, :address,
         products_attributes: [:id, :name, :price, :stock, :priority, :active, :user_id, :_destroy, :description, :category, :start_datetime, :end_datetime, :image, :item_id, :item_type],
         tickets_attributes: [:id, :price, :name, :stock, :active, :start_date, :end_date, :_destroy]
       )
