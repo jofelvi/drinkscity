@@ -50,23 +50,23 @@
                       <br>
                       <a class="btn btn-default btn-block rd-0" href="<%=edit_admin_product_path(product)%>" ><%=fa_icon "pencil"%></a>
                       <br>
-                      <button type="button" class="btn btn-default btn-block rd-0" data-toggle="modal" data-target="#deleteProduct"><%=fa_icon "trash"%></button>
-                    </div>
+                       <a class="btn btn-default btn-block rd-0" href="<%=admin_product_path(product)%>" data-method="DELETE" data-confirm="Esta seguro que desea eliminar este evento?" ><%=fa_icon "trash"%></a>
+                  
                   </td>
               </tr>
 
               <div id="deleteProduct" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h2>¿Estas seguro de eliminarlo?</h2>
-        <br>
-        <%= link_to "Eliminar", admin_product_path(product), method: :delete, class: "btn btn-primary" %>
-        <%= link_to "Cancelar", "#", "data-dismiss"=>"modal", class: "btn btn-success" %>
-      </div>
-    </div>
-  </div>
-</div>
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <h2>¿Estas seguro de eliminarlo?</h2>
+                      <br>
+                      <%= link_to "Eliminar", admin_product_path(product), method: :delete, class: "btn btn-primary" %>
+                      <%= link_to "Cancelar", "#", "data-dismiss"=>"modal", class: "btn btn-success" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
                 <%end%>
             </tbody>
           </table>
