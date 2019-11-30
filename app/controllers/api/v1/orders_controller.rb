@@ -7,7 +7,7 @@ module Api
 		  def validate_order
 				if @order.order_status_id == 3
 					@order.update(order_status_id: 4)
-					validator = User.find(params[:validator_id])
+					validator = User.find(params[:id])
 					@order.validator << validator
 					@order.save
 					render json: @order, status: :ok
@@ -19,7 +19,7 @@ module Api
 			# GET /orders
 			def index
 				@orders = Order.all
-				json_response(@orders)
+				render json: @orders
 			end
 
 			# GET /orders/1

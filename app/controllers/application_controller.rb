@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_order
   before_action :set_new_user
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+ 
   def after_sign_in_path_for(resource)
     if params[:user].present?
       if params[:user][:cart].present?
@@ -55,4 +55,21 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:fullname, :rut, :address, :phone, :email, :password, :current_password, :avatar, :uid, :provider) }
   end
 
+end
+
+
+module Api
+  module V1
+    class ApplicationController < ActionController::API
+      before_action :authenticate_request
+
+      attr_reader :current_user
+      private
+
+      def authenticate_request
+        @current_user = AuthorizeApiRequest.call(request.headers).result
+        render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+      end
+    end
+  end
 end

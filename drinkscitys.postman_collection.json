@@ -1,0 +1,767 @@
+{
+	"info": {
+		"_postman_id": "4beb26e7-86b1-4f65-9635-73b92d2a0084",
+		"name": "drinkscitys",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/v1/authenticate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"admin@gmail.com\",\n\t\"password\":\"test123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"authenticate"
+					]
+				},
+				"description": "test crear usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				},
+				"description": "Regresa una lista todos los usuarios que se encuentran en la base de datos algunos para los store_admin incluye las tiendas"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/users/1/products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users/1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"1",
+						"products"
+					]
+				},
+				"description": "obtiene los productos de un usuario en especifico"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/orders/validate_order/1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/orders/validate_order/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"validate_order",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				},
+				"description": "obtiene todos los usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/rrpp_events/3",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/rrpp_events/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"rrpp_events",
+						"3"
+					]
+				},
+				"description": "trae los eventos los usuarios rrpp por id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/upload_video",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/upload_video",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"upload_video"
+					]
+				},
+				"description": "deberia de subir el video, falta la configuracion de parametros"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/get_videos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/get_videos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"get_videos"
+					]
+				},
+				"description": "obtine todas las url de los videos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/add_products_event/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/add_products_event/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"add_products_event",
+						""
+					]
+				},
+				"description": "Falta configurar los parametros para agregarlo a un evento, se necesitan el id del evento y los atributos de los productos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/order_items",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/order_items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"order_items"
+					]
+				},
+				"description": "Obtiene todos los items de las ordenes"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/order_items",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/order_items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"order_items"
+					]
+				},
+				"description": "hay que crear el controlador para que cree un order_item por eso no responde"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				},
+				"description": "Obtiene todos los productos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"name\": \"Bacardi blanco\",\n        \"user_id\": 1,\n        \"price\": 9990,\n        \"active\": true,\n        \"category\": \"licores\",\n        \"description\": \"Absolute Mango 750cc\",\n        \"start_datetime\": null,\n        \"end_datetime\": null,\n        \"stock\": 10,\n        \"image\": \"https://s3.amazonaws.com/drinkcitybucket/product.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				},
+				"description": "crea un producto con los parametros que se le envien"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/products/34",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bacardi blanco\",\n    \"user_id\": 1,\n    \"price\": 9990,\n    \"active\": true,\n    \"category\": \"licores\",\n    \"description\": \"Absolute Mango 750cc\",\n    \"start_datetime\": null,\n    \"end_datetime\": null,\n    \"stock\": 10,\n    \"store\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products/34",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"34"
+					]
+				},
+				"description": "Trae un producto por id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/products/34",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bacardi\",\n    \"user_id\": 1,\n    \"price\": 9990,\n    \"active\": true,\n    \"category\": \"licores\",\n    \"description\": \"Absolute Mango 750cc\",\n    \"start_datetime\": null,\n    \"end_datetime\": null,\n    \"stock\": 5,\n    \"store\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products/34",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"34"
+					]
+				},
+				"description": "Actuliza los datos de un producto, falta configurar el controler para que este se asigne a la tienda que se envie"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/products/34",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products/34",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"34"
+					]
+				},
+				"description": "Elimina un producto"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/stores",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stores"
+					]
+				},
+				"description": "Trae todas las tiendas con sus productos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/stores",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"longitude\": -70.6504451,\n        \"latitude\": -33.4377968,\n        \"address\": \"Santiago, Chile\",\n        \"description\": \"la Terraza 2\",\n        \"kind\": \"alojamiento\",\n        \"status\": \"active\",\n        \"delivery\": true,\n        \"name\": \"La terraza\",\n        \"rut\": \"000002\",\n        \"phone\": \"1987567\",\n        \"email\": null,\n        \"region\": null,\n        \"days_opened\": null,\n        \"time_opened\": null,\n        \"legal_agent\": null,\n        \"legal_agent_rut\": \"rut\",\n        \"legal_agent_phone\": \"9999999\",\n        \"legal_agent_email\": \"\",\n        \"logo\": \"https://pngimage.net/wp-content/uploads/2018/06/online-store-png-6.png\",\n        \"images\": {\n            \"self\": []\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stores"
+					]
+				},
+				"description": "Falta configurar los parametros para crear la tienda segun el usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/stores/2",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"longitude\": -70.6504451,\n        \"latitude\": -33.4377968,\n        \"address\": \"Santiago, Chile\",\n        \"description\": \"la Terraza 2\",\n        \"kind\": \"alojamiento\",\n        \"status\": \"active\",\n        \"delivery\": true,\n        \"name\": \"La terraza\",\n        \"rut\": \"000002\",\n        \"phone\": \"1987567\",\n        \"email\": null,\n        \"region\": null,\n        \"days_opened\": null,\n        \"time_opened\": null,\n        \"legal_agent\": null,\n        \"legal_agent_rut\": \"rut\",\n        \"legal_agent_phone\": \"9999999\",\n        \"legal_agent_email\": \"\",\n        \"logo\": \"https://pngimage.net/wp-content/uploads/2018/06/online-store-png-6.png\",\n        \"images\": {\n            \"self\": []\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stores/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stores",
+						"2"
+					]
+				},
+				"description": "modifica una tienda segun el id que se le pase"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/stores/2",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"longitude\": -70.6504451,\n        \"latitude\": -33.4377968,\n        \"address\": \"Santiago, Chile\",\n        \"description\": \"la Terraza 2\",\n        \"kind\": \"alojamiento\",\n        \"status\": \"active\",\n        \"delivery\": true,\n        \"name\": \"La terraza\",\n        \"rut\": \"000002\",\n        \"phone\": \"1987567\",\n        \"email\": null,\n        \"region\": null,\n        \"days_opened\": null,\n        \"time_opened\": null,\n        \"legal_agent\": null,\n        \"legal_agent_rut\": \"rut\",\n        \"legal_agent_phone\": \"9999999\",\n        \"legal_agent_email\": \"\",\n        \"logo\": \"https://pngimage.net/wp-content/uploads/2018/06/online-store-png-6.png\",\n        \"images\": {\n            \"self\": []\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/stores/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"stores",
+						"2"
+					]
+				},
+				"description": "Elimina una tienda con sus respectivos productos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1NzUxNzIyNjJ9.exoVMMZeJ71NLhssYYDi8h5ZrVkRI5EvpIq6rhn5Iek",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/orders",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"orders"
+					]
+				},
+				"description": "Obtiene todas las ordenes con los clientes"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
