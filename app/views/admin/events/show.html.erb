@@ -69,7 +69,8 @@
         </thead>
         <tbody>
                <% @products.each do |p|  %>
-                <td>
+              <tr>
+                  <td>
             <%= image_tag p.image.url(:mini), width: '50px' %>
           </td> 
                 <td>
@@ -84,6 +85,8 @@
                 <td>
                   <%= p.stock %>
                 </td>
+              </tr> 
+              
                 <% end %>
         </tbody>  
       </table>    
