@@ -29,12 +29,12 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Usuario</label>
             <div class="col-md-9 col-sm-9 col-xs-12">
+          
               <%= form.select(:user_id, User.with_any_role(:store_admin, :admin).map {|key| [  key.fullname, key.id]},
-                     {:include_blank => "Seleccione el usuario"},
+                    {:include_blank => "Seleccione el usuario"},
                     {:class => "form-control", :id => "user_select",
-                    disabled: disabled} 
-                  )
-                %>
+                    disabled: disabled})
+              %>
             </div>
           </div>
         <% else %>
@@ -44,19 +44,58 @@
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Tienda</label>
             <div class="col-md-9 col-sm-9 col-xs-12" >
-                <select class="form-control" id="user_stores" name="event[store_id]"></select>
-              <%#= form.select(:store_id, @stores.map {|key| [  key.name, key.id]},{:include_blank => "Seleccione la tienda"}, {:class => "form-control", disabled: disabled, id: :store_id}) %>
+              <%#= form.grouped_collection_select :store_id, User.with_any_role(:store_admin, :admin), :stores, :fullname, :id, :name, {prompt: "Seleccione una tienda"}, {class: "form-control"} %>
+              <!--   <select class="form-control" id="user_stores" name="event[store_id]"></select> -->
+              <%= form.select(:store_id, Store.all.map {|key| [  key.name, key.id]},
+                {:include_blank => "Seleccione la tienda"}, 
+                {:class => "form-control", :id => "user_stores"}) 
+              %>
 
               <%#= form.grouped_collection_select :store_id, User.order(fullname: :desc), :stores, :fullname, :id, :name, {prompt: "Seleccione una tienda"}, {class: "form-control"} %>
             </div>
           </div>
+<!-- <script type="text/javascript">
+   if ($("#user_select").val() == "") {
+      $('#user_stores').prop('disabled',true);
+    }
+    else if ($('#user_select').val() > 0){
+       var id_store = parseInt($('#user_stores').val(),10);
+       $.ajax({
+          url: '/admin/stores_list',
+          type: 'GET',
+          data: { user_id: $('#user_select').val() },
+           success: function (response){
+            $("#user_stores").val(id_store).change();
+           },
+           error: function () {
+            alert("error");
+        }
 
-<script type="text/javascript">
-  $('#user_select').on('change', function userID(value) {
-     const getUser = this.value;
-     console.log(getUser)
+         });
+  }
+  else{
+      $('#user_select').change(function(){
+          $.ajax({
+          url: '/admin/stores_list',
+          type: 'GET',
+          data: { user_id: $(this).val() }
+         });  
+      });
+  }
+</script> -->
+
+
+<!-- <script type="text/javascript">
+ 
+  var e = document.getElementsByName("event[store_id]");
+  var stores = e[0].innerHTML;
+  console.log(stores)
+  $('#user_for_store').on('change', function userID(value) {
+    $(stores).each(function(){
+      console.log($(this))
+    })
   });
-</script>
+</script> -->
 
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre</label>
@@ -237,6 +276,7 @@
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Precio</th>
+            <th>Stock en tienda</th>
             <th>Stock</th>
           </tr>
         </thead>

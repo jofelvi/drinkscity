@@ -24,8 +24,11 @@
             <%= p.price %>
           </td>
           <td>
+            <%= p.stock %>
+          </td>
+          <td>
             <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-               <%= f.number_field :stock, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Stock", value: p.stock, disabled: disabled %>
+               <%= f.number_field :stock, class:"form-control has-feedback-left", id: :user_fullname, placeholder:"Stock", disabled: disabled %>
                <span class="fa fa-shopping-bag form-control-feedback left" aria-hidden="true"></span>
             </div>
           </td>

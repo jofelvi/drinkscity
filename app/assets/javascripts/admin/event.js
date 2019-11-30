@@ -1,15 +1,34 @@
 $( document ).ready(function() {
 
-  $('#user_select').change(function(){
-    $.ajax({
-      url: '/admin/stores_list',
-      type: 'GET',
-      data: { user_id: $(this).val() }
-    });
-  });
+if ($("#user_select").val() == "") {
+      $('#user_stores').prop('disabled',true);
+    }
+    else if ($('#user_select').val() > 0){
+       var id_store = parseInt($('#user_stores').val(),10);
+       $.ajax({
+          url: '/admin/stores_list',
+          type: 'GET',
+          data: { user_id: $('#user_select').val() },
+           success: function (response){
+            $("#user_stores").val(id_store).change();
+           },
+           error: function () {
+            alert("error");
+        }
+
+         });
+  }
+  else{
+      $('#user_select').change(function(){
+          $.ajax({
+          url: '/admin/stores_list',
+          type: 'GET',
+          data: { user_id: $(this).val() }
+         });  
+      });
+  }
 
   $('#store_id').change(function(){
-    console.log($(this).val());
     $.ajax({
       url: '/admin/products_list',
       type: 'GET',
