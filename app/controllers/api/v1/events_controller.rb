@@ -10,6 +10,11 @@ module Api
 				render json: @events
 			end
 
+			def eventforuser
+				@user = User.find(params[:id])
+				render json: @user.events
+			end
+
 			# GET /events/1
 			def show
 				render json: @event

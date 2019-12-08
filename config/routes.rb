@@ -73,6 +73,7 @@ end
     get '/stores_list', to: 'events#stores_list', as: 'stores_list'
 		
 		resources :users, :images, :products, :stores, :orders
+		
 
 		resources :events do
 			resources :tickets
@@ -83,14 +84,15 @@ end
 	#Api endpoints
 	namespace 'api' do
 		namespace 'v1' do
-			put '/orders/validate_order', to: 'orders#validate_order', as: 'validate_order'
+			put '/orders/validate_order/:id', to: 'orders#validate_order', as: 'validate_order'
 			get '/users/:id/products', to: 'users#products', as: 'user_products'
 			post 'authenticate', to: 'authentication#authenticate'
-      get 'rrpp_events', to: 'events#rrpp_events'
-      post 'upload_video', to: 'events#upload_video'
-      get 'get_videos', to: 'events#get_videos'
-      get 'event_products/:id', to: 'events#event_products'
-      post 'add_products_event', to: 'events#add_products_event'
+	        get 'rrpp_events/:user_id', to: 'events#rrpp_events'
+	        post 'upload_video', to: 'events#upload_video'
+	        get 'get_videos', to: 'events#get_videos'
+	        get 'event_products/:id', to: 'events#event_products'
+	        post 'add_products_event', to: 'events#add_products_event'
+	        get 'event_users/:id', to: 'events#eventforuser'
 			resources :order_items
 			resources :products
 			resources :stores
