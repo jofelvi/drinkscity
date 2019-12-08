@@ -71,7 +71,7 @@
 		</div>
 
 
-		<% if @tickets.any? %>
+		<% if @event.tickets.any? %>
 	    	<div class="">
 				<div class="text-left" style="padding-top:8px;margin-bottom:20px">
 					<h3 class="" style="    margin-bottom: 0px;">Entradas</h3>
@@ -96,7 +96,7 @@
 									</p>
 
 									<br>
-
+									
 									<p>
 										<% if (ticket.stock != nil || ticket.stock.to_i > 0 )%>
 											<%= form_for @order_item, remote: true do |f| %>

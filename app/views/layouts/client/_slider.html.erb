@@ -2,9 +2,8 @@
 
     <!-- Carousel items -->
     <div class="carousel-inner">
-
-        <div class="active item">
-            <a href="#">
+          <div class="active item">
+              <a href="#">
                 <%= image_tag 'slides/slider1.jpg' %>
             </a>
         </div>
@@ -28,15 +27,17 @@
                 <%= image_tag 'slides/slider2.jpg' %>
             </a>
         </div>
-
-        <% products.each do |product| %>
-            <div class="item">
-                <a href="#">
-                    <%= image_tag product.image.url(:large), style: 'max-height: 615px; ' %>
-                </a>
-            </div>
+        <% products.each do |product| %>  
+        <div class="item">
+             <a href="<%=producto_path(id: product.id)%>" class="borderDC">
+                <% if product.image? %>
+                    <%= image_tag product.image.url(:medium),  :style => " max-height: 615px;" %>
+                <% else %>
+                    <img src="https://via.placeholder.com/728x90.png?text=<%=product.name %>"/>
+                <% end %>
+            </a>
+        </div>
         <% end %>
-
     </div>
     <!-- Controls -->
       <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
