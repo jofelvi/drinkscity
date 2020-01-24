@@ -31,7 +31,7 @@
 								<%= "#{store.description} Vive la experiencia DrinksCity disfrutando los mejores y más variados  tragos junto a todos tus amigos!!" if !store.description %>
 							</p>
 							<% if store.check_open %>	
-								<p>Cerrado</p>
+								<%= image_tag 'close.png', alt:'', :style => "width: 30px" %>
 								<% if store.schedules.length>0 %>
 									<p>Abrimos los dias</p>	
 									<% store.schedules.each do |s| %>
@@ -39,7 +39,7 @@
 									<% end %>
 								<% end %>
 							<%else %>
-								<p>Abierto</p>
+								<%= image_tag 'open.png', alt:'', :style => "width: 30px" %>
 							<% end %>
 							
 						</div>

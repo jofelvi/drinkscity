@@ -1,0 +1,3879 @@
+/**
+ * Swiper 3.4.1
+ * Most modern mobile touch slider and framework with hardware accelerated transitions
+ * 
+ * http://www.idangero.us/swiper/
+ * 
+ * Copyright 2016, Vladimir Kharlampidi
+ * The iDangero.us
+ * http://www.idangero.us/
+ * 
+ * Licensed under MIT
+ * 
+ * Released on: December 13, 2016
+ */
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-no-flexbox .swiper-slide {
+  float: left;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-vertical > .swiper-wrapper {
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-android .swiper-slide, .swiper-wrapper {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate(0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-multirow > .swiper-wrapper {
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-free-mode > .swiper-wrapper {
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -ms-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+  margin: 0 auto;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-slide {
+  -webkit-flex-shrink: 0;
+  -ms-flex: 0 0 auto;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-autoheight, .swiper-container-autoheight .swiper-slide {
+  height: auto;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-autoheight .swiper-wrapper {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -webkit-transition-property: -webkit-transform,height;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform,height;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container .swiper-notification {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1000;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-wp8-horizontal {
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-wp8-vertical {
+  -ms-touch-action: pan-x;
+  touch-action: pan-x;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-next, .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  width: 27px;
+  height: 44px;
+  margin-top: -22px;
+  z-index: 10;
+  cursor: pointer;
+  -moz-background-size: 27px 44px;
+  -webkit-background-size: 27px 44px;
+  background-size: 27px 44px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+  opacity: .35;
+  cursor: auto;
+  pointer-events: none;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+  left: 10px;
+  right: auto;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-prev.swiper-button-black, .swiper-container-rtl .swiper-button-next.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E");
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-prev.swiper-button-white, .swiper-container-rtl .swiper-button-next.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23007aff'%2F%3E%3C%2Fsvg%3E");
+  right: 10px;
+  left: auto;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-next.swiper-button-black, .swiper-container-rtl .swiper-button-prev.swiper-button-black {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23000000'%2F%3E%3C%2Fsvg%3E");
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-button-next.swiper-button-white, .swiper-container-rtl .swiper-button-prev.swiper-button-white {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination {
+  position: absolute;
+  text-align: center;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+  -webkit-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination.swiper-pagination-hidden {
+  opacity: 0;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-horizontal > .swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  background: #000;
+  opacity: .2;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+button.swiper-pagination-bullet {
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  cursor: pointer;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-white .swiper-pagination-bullet {
+  background: #fff;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #007aff;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-white .swiper-pagination-bullet-active {
+  background: #fff;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-black .swiper-pagination-bullet-active {
+  background: #000;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-vertical > .swiper-pagination-bullets {
+  right: 10px;
+  top: 50%;
+  -webkit-transform: translate3d(0, -50%, 0);
+  -moz-transform: translate3d(0, -50%, 0);
+  -o-transform: translate(0, -50%);
+  -ms-transform: translate3d(0, -50%, 0);
+  transform: translate3d(0, -50%, 0);
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 5px 0;
+  display: block;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 5px;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-progress {
+  background: rgba(0, 0, 0, 0.25);
+  position: absolute;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-progress .swiper-pagination-progressbar {
+  background: #007aff;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -webkit-transform-origin: left top;
+  -moz-transform-origin: left top;
+  -ms-transform-origin: left top;
+  -o-transform-origin: left top;
+  transform-origin: left top;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-rtl .swiper-pagination-progress .swiper-pagination-progressbar {
+  -webkit-transform-origin: right top;
+  -moz-transform-origin: right top;
+  -ms-transform-origin: right top;
+  -o-transform-origin: right top;
+  transform-origin: right top;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-horizontal > .swiper-pagination-progress {
+  width: 100%;
+  height: 4px;
+  left: 0;
+  top: 0;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-vertical > .swiper-pagination-progress {
+  width: 4px;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-progress.swiper-pagination-white {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-progress.swiper-pagination-white .swiper-pagination-progressbar {
+  background: #fff;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-pagination-progress.swiper-pagination-black .swiper-pagination-progressbar {
+  background: #000;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-3d {
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  -o-perspective: 1200px;
+  perspective: 1200px;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-3d .swiper-cube-shadow, .swiper-container-3d .swiper-slide, .swiper-container-3d .swiper-slide-shadow-bottom, .swiper-container-3d .swiper-slide-shadow-left, .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-top, .swiper-container-3d .swiper-wrapper {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-3d .swiper-slide-shadow-bottom, .swiper-container-3d .swiper-slide-shadow-left, .swiper-container-3d .swiper-slide-shadow-right, .swiper-container-3d .swiper-slide-shadow-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-3d .swiper-slide-shadow-left {
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-3d .swiper-slide-shadow-right {
+  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-3d .swiper-slide-shadow-top {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-3d .swiper-slide-shadow-bottom {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-coverflow .swiper-wrapper, .swiper-container-flip .swiper-wrapper {
+  -ms-perspective: 1200px;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube, .swiper-container-flip {
+  overflow: visible;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube .swiper-slide, .swiper-container-flip .swiper-slide {
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  z-index: 1;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube .swiper-slide .swiper-slide, .swiper-container-flip .swiper-slide .swiper-slide {
+  pointer-events: none;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube .swiper-slide-active, .swiper-container-cube .swiper-slide-active .swiper-slide-active, .swiper-container-flip .swiper-slide-active, .swiper-container-flip .swiper-slide-active .swiper-slide-active {
+  pointer-events: auto;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube .swiper-slide-shadow-bottom, .swiper-container-cube .swiper-slide-shadow-left, .swiper-container-cube .swiper-slide-shadow-right, .swiper-container-cube .swiper-slide-shadow-top, .swiper-container-flip .swiper-slide-shadow-bottom, .swiper-container-flip .swiper-slide-shadow-left, .swiper-container-flip .swiper-slide-shadow-right, .swiper-container-flip .swiper-slide-shadow-top {
+  z-index: 0;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube .swiper-slide {
+  visibility: hidden;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube.swiper-container-rtl .swiper-slide {
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube .swiper-slide-active, .swiper-container-cube .swiper-slide-next, .swiper-container-cube .swiper-slide-next + .swiper-slide, .swiper-container-cube .swiper-slide-prev {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-cube .swiper-cube-shadow {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .6;
+  -webkit-filter: blur(50px);
+  filter: blur(50px);
+  z-index: 0;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-fade.swiper-container-free-mode .swiper-slide {
+  -webkit-transition-timing-function: ease-out;
+  -moz-transition-timing-function: ease-out;
+  -ms-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-fade .swiper-slide {
+  pointer-events: none;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-fade .swiper-slide .swiper-slide {
+  pointer-events: none;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-fade .swiper-slide-active, .swiper-container-fade .swiper-slide-active .swiper-slide-active {
+  pointer-events: auto;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-zoom-container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-zoom-container > canvas, .swiper-zoom-container > img, .swiper-zoom-container > svg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-scrollbar {
+  border-radius: 10px;
+  position: relative;
+  -ms-touch-action: none;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-horizontal > .swiper-scrollbar {
+  position: absolute;
+  left: 1%;
+  bottom: 3px;
+  z-index: 50;
+  height: 5px;
+  width: 98%;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-container-vertical > .swiper-scrollbar {
+  position: absolute;
+  right: 3px;
+  top: 1%;
+  z-index: 50;
+  width: 5px;
+  height: 98%;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-scrollbar-drag {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-scrollbar-cursor-drag {
+  cursor: move;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-lazy-preloader {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -21px;
+  margin-top: -21px;
+  z-index: 10;
+  -webkit-transform-origin: 50%;
+  -moz-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-animation: swiper-preloader-spin 1s steps(12, end) infinite;
+  -moz-animation: swiper-preloader-spin 1s steps(12, end) infinite;
+  animation: swiper-preloader-spin 1s steps(12, end) infinite;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-lazy-preloader:after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%236c6c6c'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  background-position: 50%;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/swiper.min.scss */
+.swiper-lazy-preloader-white:after {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%23fff'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+}
+
+@-webkit-keyframes swiper-preloader-spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes swiper-preloader-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* line 2, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+body {
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+@font-face {
+  font-family: 'kelsonregular';
+  src: url(/assets/ksr-162a7ef8ecaf67afeba724ac1a91fc3a0f46cef495270b5e6fa2c3505c81ae3c.otf) format("opentype");
+}
+@font-face {
+  font-family: 'bemio_italicregular';
+  src: url(/fonts/bemio_italic-webfont.woff2) format("woff2"), url(/fonts/bemio_italic-webfont.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'kelsonlight';
+  src: url(/assets/ksl-e0d4e5554b3172d989ef4dae4cf34cc13f905520a0fedd63ff85581428d03348.otf) format("opentype");
+}
+/* line 25, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.categorySep2 {
+  background-color: #bbb;
+  color: black;
+  padding: 10px 50px;
+  border-top: 5px solid white;
+  font-family: 'kelsonregular';
+  position: relative;
+}
+
+/* line 33, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.hoverText:hover {
+  color: #00e6c4;
+}
+
+/* line 36, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.categorySep2:hover, .categorySep2:hover a {
+  background-image: url(banda.png);
+  color: white;
+}
+
+/* line 40, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.categorySep2 a {
+  color: black;
+}
+
+/* line 43, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+a:hover {
+  text-decoration: none;
+}
+
+/* line 46, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.colorDC {
+  color: #00f8aa;
+}
+
+/* line 50, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.circleClose {
+  width: 15px;
+  height: 15px;
+  background: #FF0000;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+/* line 59, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.circleOpen {
+  width: 15px;
+  height: 15px;
+  background: #52F01B;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+/* line 69, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.whatsButton {
+  background-color: #00e676 !important;
+  border-color: #00e676 !important;
+}
+
+/* line 73, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.logoUser {
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+/* line 76, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.inputDC {
+  background: transparent;
+  border-radius: 0px;
+  border: 1px solid #00c5da;
+  color: white;
+  height: 40px;
+}
+
+/* line 83, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.headerFilterDiv {
+  max-width: 400px;
+  width: 100%;
+  margin-top: 7px;
+}
+
+/* line 89, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.faceButton {
+  background-color: #3b579d !important;
+  border-color: #3b579d !important;
+}
+
+/* line 93, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.btn-primary {
+  background-color: #00c5da;
+  border-color: #00c5da;
+}
+
+/* line 97, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.eventDate {
+  font-size: 11px;
+  width: 100%;
+  margin: 0;
+  padding: 4px 6px 0px 6px;
+  color: white;
+  text-transform: uppercase;
+  font-family: 'kelsonregular';
+  line-height: 8px;
+}
+
+/* line 110, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.eventDay {
+  border-radius: 0px 0px 6px 6px;
+  padding-bottom: 2px;
+}
+
+/* line 114, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.categorySep {
+  background-image: url(banda.png);
+  padding: 10px 0;
+}
+
+/* line 118, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.eventNumer {
+  line-height: 19px;
+  font-size: 20px;
+  font-family: 'kelsonregular';
+  padding-top: 4px;
+  color: #04fbcc;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* line 127, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+body {
+  background-color: black;
+  color: #fff;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}
+
+/* line 132, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+a, a:hover {
+  color: white;
+}
+
+/* line 135, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.table > tbody > tr > td {
+  border: none;
+}
+
+/* line 138, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.formGroup .form-control {
+  background: transparent;
+  border-radius: 0px;
+  border: 1px solid #00c5da;
+  color: white;
+}
+
+/* line 144, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.formGroup option {
+  background: black;
+}
+
+/* line 147, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.formGroup button {
+  background-image: url(banda.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
+  border-radius: 0px;
+  border: none;
+  font-family: 'kelsonregular';
+  font-size: 20px;
+}
+
+/* The side navigation menu */
+/* line 160, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.sidenav {
+  height: 100%;
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 999;
+  /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+/* line 174, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+/* line 184, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.sidenav a:hover, .offcanvas a:focus {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+/* line 189, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+/* line 198, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#main {
+  transition: margin-left .5s;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  /* line 205, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  /* line 206, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+/* line 211, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#navHeader {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+
+/* line 218, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.flecha1 {
+  width: 35px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* line 224, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.flecha2 {
+  width: 35px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* line 230, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+section {
+  margin-top: 50px;
+}
+
+/* line 233, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 0;
+}
+
+/* line 237, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+section article {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* line 242, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.claStores {
+  position: absolute;
+  bottom: 0;
+  top: 20px;
+  left: 0;
+}
+
+/* line 248, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.distStores {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* line 253, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.bottomNav {
+  position: fixed;
+  width: 100%;
+  height: 103px;
+  bottom: 0;
+  background-color: black;
+  z-index: 99;
+}
+
+/* line 261, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.formDivHeader {
+  max-width: 400px;
+  width: 100%;
+}
+
+/* line 265, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.navCenter {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 271, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.headerNav {
+  background-image: url("banda.png");
+  height: 50px;
+  width: 100%;
+}
+
+/* line 276, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.filterBand {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 70px;
+  padding: 3px 10px;
+  width: 100%;
+}
+
+/* line 282, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.btn-default, .btn-default:hover {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* line 290, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.inicio_logo {
+  background-image: url("iconos/inicio2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* line 295, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.inicio_logo:hover {
+  background-image: url("iconos/inicio.png");
+}
+
+/* line 298, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.eventos_logo {
+  background-repeat: no-repeat;
+  background-image: url("iconos/eventos2.png");
+  background-size: cover;
+}
+
+/* line 303, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.eventos_logo:hover {
+  background-image: url("iconos/eventos.png");
+}
+
+/* line 306, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.promo_logo {
+  background-image: url("iconos/promociones2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* line 311, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.promo_logo:hover {
+  background-image: url("iconos/promociones.png");
+}
+
+/* line 314, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.carro_logo {
+  background-repeat: no-repeat;
+  background-image: url("iconos/compras2.png");
+  background-size: cover;
+}
+
+/* line 319, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.carro_logo:hover {
+  background-image: url("iconos/compras.png");
+}
+
+/* line 322, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.tienda_logo {
+  background-repeat: no-repeat;
+  background-image: url("iconos/tiendas.png");
+  background-size: cover;
+}
+
+/* line 327, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.tienda_logo:hover {
+  background-image: url("iconos/tiendas2.png");
+}
+
+/* line 332, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.imgBottomNav {
+  width: 50px;
+  height: 50px;
+  margin: 0px 60px;
+}
+
+/* line 337, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.navP {
+  padding: 0 20px;
+}
+
+/* line 340, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.flexNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  /* Safari 6.1+ */
+  justify-content: space-between;
+}
+
+/* line 348, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.flexFilter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  /* Safari 6.1+ */
+  justify-content: space-around;
+  flex-flow: row wrap;
+}
+
+/* line 357, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.filterBand .text-center {
+  flex: 1;
+}
+
+/* line 362, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#qrcode {
+  background: white;
+  padding: 10px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+/* line 368, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#qrcode img {
+  margin: 0 auto;
+}
+
+/* line 371, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.imgFilterBand {
+  width: 40px;
+  height: 40px;
+}
+
+/* line 375, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.flexNavbottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  /* Safari 6.1+ */
+  justify-content: center;
+}
+
+/* line 383, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.textBottomNav {
+  text-align: center;
+  color: white !important;
+}
+
+/* line 387, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.autocomplete-suggestions {
+  border: 1px solid #999;
+  background: #000;
+  overflow: auto;
+  font-family: 'kelsonlight';
+}
+
+/* line 388, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.autocomplete-suggestion {
+  padding: 2px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* line 389, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.autocomplete-selected {
+  background-color: rgba(129, 129, 129, 0.75);
+}
+
+/* line 390, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.autocomplete-suggestions strong {
+  font-weight: normal;
+  color: #86cbbc;
+}
+
+/* line 391, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.autocomplete-group {
+  padding: 2px 5px;
+}
+
+/* line 392, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.autocomplete-group strong {
+  display: block;
+  border-bottom: 1px solid #000;
+}
+
+/* line 394, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+header .form-control {
+  border-radius: 20px;
+  border: none;
+}
+
+/* line 398, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+header .input-group-addon {
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+}
+
+/* line 405, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#notify-bubble {
+  position: relative;
+  bottom: 150px;
+  right: 150px;
+  background-color: red;
+}
+
+/* line 411, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.message-user {
+  margin-bottom: 50px;
+}
+
+/* line 414, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.messages-container {
+  border-radius: 0px;
+  border: 1px solid #00c5da;
+  color: white;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-x: none;
+}
+
+/* line 426, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.chat-bubble-r {
+  background-color: #aaa;
+  border-radius: 5px 0px 5px 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  position: relative;
+  width: 40%;
+  height: auto;
+  overflow-x: hidden;
+}
+
+/* line 436, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.chat-bubble-l {
+  background-color: #00D9C7;
+  border-radius: 0px 5px 5px 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  position: relative;
+  width: 40%;
+  height: auto;
+  overflow-x: hidden;
+}
+
+/* line 446, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.hourChat {
+  padding-top: 10px;
+  font-size: 10px;
+}
+
+/* line 450, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.flecha_izquierda {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #00D9C7;
+  float: left;
+}
+
+/* line 458, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.flecha_derecha {
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #aaa;
+  float: right;
+}
+
+/* line 469, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.buttonP {
+  background-image: url(banda.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
+  border-radius: 0px;
+  border: none;
+  font-family: 'kelsonregular';
+  font-size: 20px;
+}
+
+/* line 481, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.carousel-fade .carousel-inner .item {
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+}
+
+/* line 485, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.carousel-fade .carousel-inner .item,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  opacity: 0;
+}
+
+/* line 490, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.carousel-fade .carousel-inner .active,
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+
+/* line 495, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.carousel-fade .carousel-inner .next,
+.carousel-fade .carousel-inner .prev,
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 503, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+
+/* line 506, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+html,
+.carousel,
+.carousel-inner,
+.carousel-inner .item {
+  height: 100%;
+}
+
+/* line 513, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#carousel img {
+  height: auto;
+  width: 100%;
+}
+
+/* line 519, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.swiper-container {
+  width: 100%;
+  height: auto;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+/* line 525, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  margin-left: 25px;
+  width: 21%;
+  min-width: 250px;
+}
+
+/* line 533, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.swiper-container2 {
+  width: 100%;
+  height: auto;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+/* line 539, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  margin-left: 25px;
+  width: 21%;
+  min-width: 250px;
+}
+
+/* line 547, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.swiper-container3 {
+  width: 100%;
+  height: auto;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+/* line 553, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  margin-left: 25px;
+  width: 21%;
+  min-width: 250px;
+}
+
+/* line 561, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.btnHeader {
+  background-color: black;
+  border: none;
+}
+
+/* line 565, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.headerA {
+  position: relative;
+}
+
+/*.botonerA{
+    position: absolute;
+    right: 42px;
+}*/
+/* line 572, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.avisoImg {
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+}
+
+/* line 578, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.KR {
+  font-family: 'kelsonregular';
+}
+
+/* line 581, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.KL {
+  font-family: 'kelsonlight';
+}
+
+/* line 584, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.tituloHomeShow {
+  font-family: 'kelsonregular';
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+/* line 590, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.addCar {
+  background: none;
+  border: none;
+  position: absolute;
+  left: -20px;
+  z-index: 99;
+}
+
+/* line 598, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.addCar2 {
+  left: -1px;
+  top: 0px;
+}
+
+/* line 602, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.tiendaHomeShow {
+  font-family: 'kelsonlight';
+  font-size: 14px;
+}
+
+/* line 606, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.precioHomeShow {
+  font-family: 'kelsonregular';
+  padding: 6px 6px 3px;
+  font-size: 18px;
+  font-style: italic;
+}
+
+/* line 613, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.distanciaHomeShow {
+  font-family: 'kelsonlight';
+  font-size: 14px;
+}
+
+/* line 617, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.bannerImg {
+  width: 100%;
+  height: 100%;
+  max-height: 250px;
+  border: 1px solid #00c5da;
+}
+
+/* line 624, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.bannerBox {
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #00c5da;
+  width: 100%;
+}
+
+/* line 631, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.sideNavItem {
+  background-color: rgba(129, 129, 129, 0.75);
+  color: white !important;
+  text-transform: uppercase;
+  font-size: 14px !important;
+  margin: 2px;
+  text-align: center;
+  padding: 5px 18px !important;
+}
+
+/* line 641, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.sideNavItem:hover {
+  background-color: rgba(92, 92, 92, 0.75);
+}
+
+/* line 645, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.anuncioImgbox {
+  position: relative;
+  height: auto;
+}
+
+/* line 650, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.anuncioBox {
+  /*height: 435px;*/
+  padding: 0 5px;
+}
+
+/* line 654, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.notiContainer {
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+/* line 657, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.notiContainer .badge {
+  background-color: #e53935;
+  position: absolute;
+  top: 0;
+  font-size: 10px;
+  padding: 2px;
+}
+
+/* line 664, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#notifList {
+  list-style: none;
+  padding: 0;
+}
+
+/* line 668, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#notifList li {
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+  margin-top: 10px;
+  padding: 0 15px 10px;
+  position: relative;
+}
+
+/* line 675, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#notifList li:hover {
+  opacity: 0.5;
+}
+
+/* line 678, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#notifList img {
+  width: 100%;
+  max-width: 50px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+/* line 685, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+#notifList span {
+  font-size: 16px;
+}
+
+/* line 688, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.timeSet {
+  padding: 0;
+  font-size: 18px;
+}
+
+/* line 692, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.timeSetNow {
+  border-bottom: 3px solid white;
+}
+
+/* line 695, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.chatBB {
+  position: fixed;
+  top: 77%;
+  right: 0;
+  z-index: 999;
+}
+
+/* line 701, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.chatBB button {
+  border-radius: 5px 0px 0 5px;
+  background-image: url(banda.png);
+  background-position-x: 90%;
+}
+
+/* line 706, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+.chatBB i {
+  font-size: 22px;
+}
+
+@media (max-width: 425px) {
+  /* line 710, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .searchPP {
+    font-size: 12px;
+  }
+
+  /* line 713, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .chatBB {
+    top: 76%;
+  }
+
+  /* line 716, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .timeSet {
+    font-size: 13px;
+  }
+
+  /* line 719, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .KR {
+    font-size: 14px;
+  }
+
+  /* line 722, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .tituloHomeShow, .tiendaHomeShow, .precioHomeShow, .distanciaHomeShow {
+    font-size: 12px !important;
+  }
+
+  /* line 732, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .bannerImg {
+    width: 90vw;
+  }
+
+  /* line 735, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .swiper-slide {
+    margin-left: 15px;
+    min-width: 140px;
+  }
+
+  /* line 739, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .navP {
+    padding: 0 0px;
+  }
+
+  /* line 742, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .filterBand {
+    height: 150px;
+  }
+
+  /* line 746, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .filterBand .text-center {
+    flex-basis: 25%;
+    margin-bottom: 20px;
+  }
+
+  /* line 751, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .imgBottomNav {
+    width: 32px;
+    height: 30px;
+    margin: 0px 15px;
+  }
+
+  /* line 756, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .bottomNav {
+    height: 83px;
+  }
+
+  /* line 759, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/app/assets/stylesheets/client/web.scss */
+  .textBottomNav {
+    font-size: 10px;
+    padding-top: 5px;
+  }
+}
+/* line 1, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+body.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 5, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-overlay {
+  background-color: black;
+  /* IE8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  /* IE8 */
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  z-index: 10000;
+}
+
+/* line 19, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert {
+  background-color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 478px;
+  padding: 17px;
+  border-radius: 5px;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -256px;
+  margin-top: -200px;
+  overflow: hidden;
+  display: none;
+  z-index: 99999;
+}
+
+@media all and (max-width: 540px) {
+  /* line 35, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+  .sweet-alert {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    left: 15px;
+    right: 15px;
+  }
+}
+/* line 41, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert h2 {
+  color: #575757;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 600;
+  text-transform: none;
+  position: relative;
+  margin: 25px 0;
+  padding: 0;
+  line-height: 40px;
+  display: block;
+}
+
+/* line 52, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert p {
+  color: #797979;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 300;
+  position: relative;
+  text-align: inherit;
+  float: none;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+/* line 63, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert fieldset {
+  border: none;
+  position: relative;
+}
+
+/* line 66, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-error-container {
+  background-color: #f1f1f1;
+  margin-left: -17px;
+  margin-right: -17px;
+  overflow: hidden;
+  padding: 0 10px;
+  max-height: 0;
+  webkit-transition: padding 0.15s, max-height 0.15s;
+  transition: padding 0.15s, max-height 0.15s;
+}
+
+/* line 75, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-error-container.show {
+  padding: 10px 0;
+  max-height: 100px;
+  webkit-transition: padding 0.2s, max-height 0.2s;
+  transition: padding 0.25s, max-height 0.25s;
+}
+
+/* line 80, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-error-container .icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ea7d7d;
+  color: white;
+  line-height: 24px;
+  text-align: center;
+  margin-right: 3px;
+}
+
+/* line 90, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-error-container p {
+  display: inline-block;
+}
+
+/* line 92, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-input-error {
+  position: absolute;
+  top: 29px;
+  right: 26px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+/* line 105, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-input-error::before, .sweet-alert .sa-input-error::after {
+  content: "";
+  width: 20px;
+  height: 6px;
+  background-color: #f06e57;
+  border-radius: 3px;
+  position: absolute;
+  top: 50%;
+  margin-top: -4px;
+  left: 50%;
+  margin-left: -9px;
+}
+
+/* line 116, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-input-error::before {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* line 119, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-input-error::after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* line 122, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-input-error.show {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+/* line 126, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #d7d7d7;
+  height: 43px;
+  margin-top: 10px;
+  margin-bottom: 17px;
+  font-size: 18px;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.06);
+  padding: 0 12px;
+  display: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+/* line 140, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px #c4e6f5;
+  border: 1px solid #b4dbed;
+}
+
+/* line 144, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input:focus::-moz-placeholder {
+  transition: opacity 0.3s 0.03s ease;
+  opacity: 0.5;
+}
+
+/* line 147, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input:focus:-ms-input-placeholder {
+  transition: opacity 0.3s 0.03s ease;
+  opacity: 0.5;
+}
+
+/* line 150, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input:focus::-webkit-input-placeholder {
+  transition: opacity 0.3s 0.03s ease;
+  opacity: 0.5;
+}
+
+/* line 153, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input::-moz-placeholder {
+  color: #bdbdbd;
+}
+
+/* line 155, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input:-ms-input-placeholder {
+  color: #bdbdbd;
+}
+
+/* line 157, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert input::-webkit-input-placeholder {
+  color: #bdbdbd;
+}
+
+/* line 159, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert.show-input input {
+  display: block;
+}
+
+/* line 161, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-confirm-button-container {
+  display: inline-block;
+  position: relative;
+}
+
+/* line 164, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .la-ball-fall {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -27px;
+  margin-top: 4px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* line 172, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button {
+  background-color: #8CD4F5;
+  color: white;
+  border: none;
+  box-shadow: none;
+  font-size: 17px;
+  font-weight: 500;
+  -webkit-border-radius: 4px;
+  border-radius: 5px;
+  padding: 10px 32px;
+  margin: 26px 5px 0 5px;
+  cursor: pointer;
+}
+
+/* line 184, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button:focus {
+  outline: none;
+  box-shadow: 0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* line 187, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button:hover {
+  background-color: #7ecff4;
+}
+
+/* line 189, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button:active {
+  background-color: #5dc2f1;
+}
+
+/* line 191, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button.cancel {
+  background-color: #C1C1C1;
+}
+
+/* line 193, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button.cancel:hover {
+  background-color: #b9b9b9;
+}
+
+/* line 195, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button.cancel:active {
+  background-color: #a8a8a8;
+}
+
+/* line 197, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button.cancel:focus {
+  box-shadow: rgba(197, 205, 211, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.0470588) 0px 0px 0px 1px inset !important;
+}
+
+/* line 199, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button[disabled] {
+  opacity: .6;
+  cursor: default;
+}
+
+/* line 202, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button.confirm[disabled] {
+  color: transparent;
+}
+
+/* line 204, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button.confirm[disabled] ~ .la-ball-fall {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* line 208, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert button::-moz-focus-inner {
+  border: 0;
+}
+
+/* line 210, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert[data-has-cancel-button=false] button {
+  box-shadow: none !important;
+}
+
+/* line 212, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert[data-has-confirm-button=false][data-has-cancel-button=false] {
+  padding-bottom: 40px;
+}
+
+/* line 214, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon {
+  width: 80px;
+  height: 80px;
+  border: 4px solid gray;
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  border-radius: 50%;
+  margin: 20px auto;
+  padding: 0;
+  position: relative;
+  box-sizing: content-box;
+}
+
+/* line 225, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-error {
+  border-color: #F27474;
+}
+
+/* line 227, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-error .sa-x-mark {
+  position: relative;
+  display: block;
+}
+
+/* line 230, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-error .sa-line {
+  position: absolute;
+  height: 5px;
+  width: 47px;
+  background-color: #F27474;
+  display: block;
+  top: 37px;
+  border-radius: 2px;
+}
+
+/* line 238, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-error .sa-line.sa-left {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  left: 17px;
+}
+
+/* line 242, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-error .sa-line.sa-right {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  right: 16px;
+}
+
+/* line 246, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-warning {
+  border-color: #F8BB86;
+}
+
+/* line 248, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-warning .sa-body {
+  position: absolute;
+  width: 5px;
+  height: 47px;
+  left: 50%;
+  top: 10px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  margin-left: -2px;
+  background-color: #F8BB86;
+}
+
+/* line 258, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-warning .sa-dot {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin-left: -3px;
+  left: 50%;
+  bottom: 10px;
+  background-color: #F8BB86;
+}
+
+/* line 268, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-info {
+  border-color: #C9DAE1;
+}
+
+/* line 270, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-info::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 29px;
+  left: 50%;
+  bottom: 17px;
+  border-radius: 2px;
+  margin-left: -2px;
+  background-color: #C9DAE1;
+}
+
+/* line 280, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-info::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-left: -3px;
+  top: 19px;
+  background-color: #C9DAE1;
+}
+
+/* line 289, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success {
+  border-color: #A5DC86;
+}
+
+/* line 291, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success::before, .sweet-alert .sa-icon.sa-success::after {
+  content: '';
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  border-radius: 50%;
+  position: absolute;
+  width: 60px;
+  height: 120px;
+  background: white;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* line 302, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success::before {
+  -webkit-border-radius: 120px 0 0 120px;
+  border-radius: 120px 0 0 120px;
+  top: -7px;
+  left: -33px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 60px 60px;
+  transform-origin: 60px 60px;
+}
+
+/* line 311, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success::after {
+  -webkit-border-radius: 0 120px 120px 0;
+  border-radius: 0 120px 120px 0;
+  top: -11px;
+  left: 30px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 0px 60px;
+  transform-origin: 0px 60px;
+}
+
+/* line 320, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success .sa-placeholder {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(165, 220, 134, 0.2);
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  border-radius: 50%;
+  box-sizing: content-box;
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  z-index: 2;
+}
+
+/* line 332, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success .sa-fix {
+  width: 5px;
+  height: 90px;
+  background-color: white;
+  position: absolute;
+  left: 28px;
+  top: 8px;
+  z-index: 1;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* line 342, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success .sa-line {
+  height: 5px;
+  background-color: #A5DC86;
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 2;
+}
+
+/* line 349, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success .sa-line.sa-tip {
+  width: 25px;
+  left: 14px;
+  top: 46px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* line 355, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success .sa-line.sa-long {
+  width: 47px;
+  right: 8px;
+  top: 38px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* line 361, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-custom {
+  background-size: contain;
+  border-radius: 0;
+  border: none;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/*
+ * Animations
+ */
+@-webkit-keyframes showSweetAlert {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+  }
+  45% {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+    -webkit-transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes showSweetAlert {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+  }
+  45% {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+    -webkit-transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+@-webkit-keyframes hideSweetAlert {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+  100% {
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+  }
+}
+@keyframes hideSweetAlert {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+  100% {
+    transform: scale(0.5);
+    -webkit-transform: scale(0.5);
+  }
+}
+@-webkit-keyframes slideFromTop {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+@keyframes slideFromTop {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+@-webkit-keyframes slideToTop {
+  0% {
+    top: 50%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes slideToTop {
+  0% {
+    top: 50%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@-webkit-keyframes slideFromBottom {
+  0% {
+    top: 70%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+@keyframes slideFromBottom {
+  0% {
+    top: 70%;
+  }
+  100% {
+    top: 50%;
+  }
+}
+@-webkit-keyframes slideToBottom {
+  0% {
+    top: 50%;
+  }
+  100% {
+    top: 70%;
+  }
+}
+@keyframes slideToBottom {
+  0% {
+    top: 50%;
+  }
+  100% {
+    top: 70%;
+  }
+}
+/* line 463, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.showSweetAlert[data-animation=pop] {
+  -webkit-animation: showSweetAlert 0.3s;
+  animation: showSweetAlert 0.3s;
+}
+
+/* line 467, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.showSweetAlert[data-animation=none] {
+  -webkit-animation: none;
+  animation: none;
+}
+
+/* line 471, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.showSweetAlert[data-animation=slide-from-top] {
+  -webkit-animation: slideFromTop 0.3s;
+  animation: slideFromTop 0.3s;
+}
+
+/* line 475, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.showSweetAlert[data-animation=slide-from-bottom] {
+  -webkit-animation: slideFromBottom 0.3s;
+  animation: slideFromBottom 0.3s;
+}
+
+/* line 479, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.hideSweetAlert[data-animation=pop] {
+  -webkit-animation: hideSweetAlert 0.2s;
+  animation: hideSweetAlert 0.2s;
+}
+
+/* line 483, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.hideSweetAlert[data-animation=none] {
+  -webkit-animation: none;
+  animation: none;
+}
+
+/* line 487, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.hideSweetAlert[data-animation=slide-from-top] {
+  -webkit-animation: slideToTop 0.4s;
+  animation: slideToTop 0.4s;
+}
+
+/* line 491, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.hideSweetAlert[data-animation=slide-from-bottom] {
+  -webkit-animation: slideToBottom 0.3s;
+  animation: slideToBottom 0.3s;
+}
+
+@-webkit-keyframes animateSuccessTip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
+  }
+}
+@keyframes animateSuccessTip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  54% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 45px;
+  }
+}
+@-webkit-keyframes animateSuccessLong {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
+  }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+@keyframes animateSuccessLong {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  84% {
+    width: 55px;
+    right: 0px;
+    top: 35px;
+  }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+@-webkit-keyframes rotatePlaceholder {
+  0% {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  5% {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  12% {
+    transform: rotate(-405deg);
+    -webkit-transform: rotate(-405deg);
+  }
+  100% {
+    transform: rotate(-405deg);
+    -webkit-transform: rotate(-405deg);
+  }
+}
+@keyframes rotatePlaceholder {
+  0% {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  5% {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  12% {
+    transform: rotate(-405deg);
+    -webkit-transform: rotate(-405deg);
+  }
+  100% {
+    transform: rotate(-405deg);
+    -webkit-transform: rotate(-405deg);
+  }
+}
+/* line 603, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.animateSuccessTip {
+  -webkit-animation: animateSuccessTip 0.75s;
+  animation: animateSuccessTip 0.75s;
+}
+
+/* line 607, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.animateSuccessLong {
+  -webkit-animation: animateSuccessLong 0.75s;
+  animation: animateSuccessLong 0.75s;
+}
+
+/* line 611, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sa-icon.sa-success.animate::after {
+  -webkit-animation: rotatePlaceholder 4.25s ease-in;
+  animation: rotatePlaceholder 4.25s ease-in;
+}
+
+@-webkit-keyframes animateErrorIcon {
+  0% {
+    transform: rotateX(100deg);
+    -webkit-transform: rotateX(100deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+@keyframes animateErrorIcon {
+  0% {
+    transform: rotateX(100deg);
+    -webkit-transform: rotateX(100deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+/* line 635, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.animateErrorIcon {
+  -webkit-animation: animateErrorIcon 0.5s;
+  animation: animateErrorIcon 0.5s;
+}
+
+@-webkit-keyframes animateXMark {
+  0% {
+    transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    margin-top: 26px;
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    margin-top: 26px;
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+    margin-top: -6px;
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+@keyframes animateXMark {
+  0% {
+    transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    margin-top: 26px;
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.4);
+    -webkit-transform: scale(0.4);
+    margin-top: 26px;
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+    margin-top: -6px;
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+/* line 681, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.animateXMark {
+  -webkit-animation: animateXMark 0.5s;
+  animation: animateXMark 0.5s;
+}
+
+@-webkit-keyframes pulseWarning {
+  0% {
+    border-color: #F8D486;
+  }
+  100% {
+    border-color: #F8BB86;
+  }
+}
+@keyframes pulseWarning {
+  0% {
+    border-color: #F8D486;
+  }
+  100% {
+    border-color: #F8BB86;
+  }
+}
+/* line 697, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.pulseWarning {
+  -webkit-animation: pulseWarning 0.75s infinite alternate;
+  animation: pulseWarning 0.75s infinite alternate;
+}
+
+@-webkit-keyframes pulseWarningIns {
+  0% {
+    background-color: #F8D486;
+  }
+  100% {
+    background-color: #F8BB86;
+  }
+}
+@keyframes pulseWarningIns {
+  0% {
+    background-color: #F8D486;
+  }
+  100% {
+    background-color: #F8BB86;
+  }
+}
+/* line 713, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.pulseWarningIns {
+  -webkit-animation: pulseWarningIns 0.75s infinite alternate;
+  animation: pulseWarningIns 0.75s infinite alternate;
+}
+
+@-webkit-keyframes rotate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Internet Explorer 9 has some special quirks that are fixed here */
+/* The icons are not animated. */
+/* This file is automatically merged into sweet-alert.min.js through Gulp */
+/* Error icon */
+/* line 733, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-error .sa-line.sa-left {
+  -ms-transform: rotate(45deg) \9 ;
+}
+
+/* line 736, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-error .sa-line.sa-right {
+  -ms-transform: rotate(-45deg) \9 ;
+}
+
+/* Success icon */
+/* line 740, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success {
+  border-color: transparent\9;
+}
+
+/* line 743, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success .sa-line.sa-tip {
+  -ms-transform: rotate(45deg) \9 ;
+}
+
+/* line 746, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.sweet-alert .sa-icon.sa-success .sa-line.sa-long {
+  -ms-transform: rotate(-45deg) \9 ;
+}
+
+/*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */
+/* line 754, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall,
+.la-ball-fall > div {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 761, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall {
+  display: block;
+  font-size: 0;
+  color: #fff;
+}
+
+/* line 766, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall.la-dark {
+  color: #333;
+}
+
+/* line 769, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall > div {
+  display: inline-block;
+  float: none;
+  background-color: currentColor;
+  border: 0 solid currentColor;
+}
+
+/* line 775, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall {
+  width: 54px;
+  height: 18px;
+}
+
+/* line 779, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall > div {
+  width: 10px;
+  height: 10px;
+  margin: 4px;
+  border-radius: 100%;
+  opacity: 0;
+  -webkit-animation: ball-fall 1s ease-in-out infinite;
+  -moz-animation: ball-fall 1s ease-in-out infinite;
+  -o-animation: ball-fall 1s ease-in-out infinite;
+  animation: ball-fall 1s ease-in-out infinite;
+}
+
+/* line 790, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall > div:nth-child(1) {
+  -webkit-animation-delay: -200ms;
+  -moz-animation-delay: -200ms;
+  -o-animation-delay: -200ms;
+  animation-delay: -200ms;
+}
+
+/* line 796, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall > div:nth-child(2) {
+  -webkit-animation-delay: -100ms;
+  -moz-animation-delay: -100ms;
+  -o-animation-delay: -100ms;
+  animation-delay: -100ms;
+}
+
+/* line 802, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall > div:nth-child(3) {
+  -webkit-animation-delay: 0ms;
+  -moz-animation-delay: 0ms;
+  -o-animation-delay: 0ms;
+  animation-delay: 0ms;
+}
+
+/* line 808, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall.la-sm {
+  width: 26px;
+  height: 8px;
+}
+
+/* line 812, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall.la-sm > div {
+  width: 4px;
+  height: 4px;
+  margin: 2px;
+}
+
+/* line 817, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall.la-2x {
+  width: 108px;
+  height: 36px;
+}
+
+/* line 821, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall.la-2x > div {
+  width: 20px;
+  height: 20px;
+  margin: 8px;
+}
+
+/* line 826, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall.la-3x {
+  width: 162px;
+  height: 54px;
+}
+
+/* line 830, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/sweetalert.scss */
+.la-ball-fall.la-3x > div {
+  width: 30px;
+  height: 30px;
+  margin: 12px;
+}
+
+/*
+ * Animation
+ */
+@-webkit-keyframes ball-fall {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-145%);
+    transform: translateY(-145%);
+  }
+  10% {
+    opacity: .5;
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  90% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(145%);
+    transform: translateY(145%);
+  }
+}
+@-moz-keyframes ball-fall {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(-145%);
+    transform: translateY(-145%);
+  }
+  10% {
+    opacity: .5;
+  }
+  20% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+    transform: translateY(0);
+  }
+  90% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+    -moz-transform: translateY(145%);
+    transform: translateY(145%);
+  }
+}
+@-o-keyframes ball-fall {
+  0% {
+    opacity: 0;
+    -o-transform: translateY(-145%);
+    transform: translateY(-145%);
+  }
+  10% {
+    opacity: .5;
+  }
+  20% {
+    opacity: 1;
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  90% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+    -o-transform: translateY(145%);
+    transform: translateY(145%);
+  }
+}
+@keyframes ball-fall {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-145%);
+    -moz-transform: translateY(-145%);
+    -o-transform: translateY(-145%);
+    transform: translateY(-145%);
+  }
+  10% {
+    opacity: .5;
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+  }
+  90% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(145%);
+    -moz-transform: translateY(145%);
+    -o-transform: translateY(145%);
+    transform: translateY(145%);
+  }
+}
+/* line 1, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+.grid {
+  list-style: none;
+  margin: 30px auto;
+  padding: 0;
+}
+
+/* line 7, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+.borderDC {
+  border: 2px solid #00f8aa;
+  opacity: .7;
+  border-radius: 20px;
+}
+
+/* line 12, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+.borderDC:hover {
+  opacity: 1;
+}
+
+/* line 15, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+.grid li {
+  display: block;
+  padding: 7px;
+  padding-top: 15px;
+  width: 20%;
+  opacity: 1;
+}
+
+/* line 24, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+.grid li.shown,
+.no-js .grid li,
+.no-cssanimations .grid li {
+  opacity: 1;
+}
+
+/* line 30, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+.grid li a,
+.grid li img {
+  outline: none;
+  display: block;
+  max-width: 100%;
+}
+
+/* Effect 2: Move Up */
+/* line 39, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+.grid.effect-2 li.animate {
+  -webkit-transform: translateY(200px);
+  transform: translateY(200px);
+  -webkit-animation: moveUp 0.65s ease forwards;
+  animation: moveUp 0.65s ease forwards;
+}
+
+@-webkit-keyframes moveUp {
+  100% {
+    -webkit-transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes moveUp {
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 900px) {
+  /* line 58, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+  .grid li {
+    width: 33% !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  /* line 64, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/gridstyle.scss */
+  .grid li {
+    width: 50% !important;
+  }
+}
+/* Accessibility: hide screen reader texts (and prefer "top" for RTL languages).
+Reference: http://blog.rrwd.nl/2015/04/04/the-screen-reader-text-class-why-and-how/ */
+/* line 3, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__offscreen {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal;
+}
+
+/* line 17, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container {
+  background: #000;
+  box-sizing: border-box;
+  font-family: 'Helvetica', Arial, serif;
+  position: relative;
+  text-align: left;
+  text-indent: 0;
+  vertical-align: top;
+}
+
+/* line 27, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container * {
+  box-sizing: border-box;
+}
+
+/* Hide native play button and control bar from iOS to favor plugin button */
+/* line 32, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container video::-webkit-media-controls,
+.mejs__container video::-webkit-media-controls-panel,
+.mejs__container video::-webkit-media-controls-panel-container,
+.mejs__container video::-webkit-media-controls-start-playback-button {
+  -webkit-appearance: none;
+  display: none !important;
+}
+
+/* line 40, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__fill-container,
+.mejs__fill-container .mejs__container {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 46, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__fill-container {
+  background: transparent;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 53, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container:focus {
+  outline: none;
+}
+
+/* line 57, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__iframe-overlay {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+/* line 63, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__embed,
+.mejs__embed body {
+  background: #000;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+/* line 73, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__fullscreen {
+  overflow: hidden !important;
+}
+
+/* line 77, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container-fullscreen {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+/* line 87, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container-fullscreen .mejs__mediaelement,
+.mejs__container-fullscreen video {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* Start: LAYERS */
+/* line 94, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__background {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* line 100, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__mediaelement {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+/* line 109, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__poster {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+/* line 119, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+:root .mejs__poster-img {
+  display: none;
+}
+
+/* line 123, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__poster-img {
+  border: 0;
+  padding: 0;
+}
+
+/* line 128, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* line 146, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__layer {
+  z-index: 1;
+}
+
+/* line 150, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay-play {
+  cursor: pointer;
+}
+
+/* line 154, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay-button {
+  background: url("mejs-controls.svg") no-repeat;
+  background-position: 0 -39px;
+  height: 80px;
+  width: 80px;
+}
+
+/* line 161, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay:hover > .mejs__overlay-button {
+  background-position: -80px -39px;
+}
+
+/* line 165, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay-loading {
+  height: 80px;
+  width: 80px;
+}
+
+/* line 170, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay-loading-bg-img {
+  -webkit-animation: mejs__loading-spinner 1s linear infinite;
+  animation: mejs__loading-spinner 1s linear infinite;
+  background: transparent url("mejs-controls.svg") -160px -40px no-repeat;
+  display: block;
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+
+@-webkit-keyframes mejs__loading-spinner {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes mejs__loading-spinner {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/* End: LAYERS */
+/* Start: CONTROL BAR */
+/* line 197, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__controls {
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0 10px;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
+
+/* line 213, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__controls:not([style*='display: none']) {
+  background: rgba(255, 0, 0, 0.7);
+  background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.35));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.35));
+}
+
+/* line 219, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__button,
+.mejs__time,
+.mejs__time-rail {
+  font-size: 10px;
+  height: 40px;
+  line-height: 10px;
+  margin: 0;
+  width: 32px;
+}
+
+/* line 229, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__button > button {
+  background: transparent url("mejs-controls.svg");
+  border: 0;
+  cursor: pointer;
+  display: block;
+  font-size: 0;
+  height: 20px;
+  line-height: 0;
+  margin: 10px 6px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  text-decoration: none;
+  width: 20px;
+}
+
+/* :focus for accessibility */
+/* line 246, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__button > button:focus {
+  outline: dotted 1px #999;
+}
+
+/* line 250, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container-keyboard-inactive a,
+.mejs__container-keyboard-inactive a:focus,
+.mejs__container-keyboard-inactive button,
+.mejs__container-keyboard-inactive button:focus,
+.mejs__container-keyboard-inactive [role=slider],
+.mejs__container-keyboard-inactive [role=slider]:focus {
+  outline: 0;
+}
+
+/* End: CONTROL BAR */
+/* Start: Time (Current / Duration) */
+/* line 262, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time {
+  box-sizing: content-box;
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  height: 24px;
+  overflow: hidden;
+  padding: 16px 6px 0;
+  text-align: center;
+  width: auto;
+}
+
+/* End: Time (Current / Duration) */
+/* Start: Play/Pause/Stop */
+/* line 277, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__play > button {
+  background-position: 0 0;
+}
+
+/* line 281, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__pause > button {
+  background-position: -20px 0;
+}
+
+/* line 285, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__replay > button {
+  background-position: -160px 0;
+}
+
+/* End: Play/Pause/Stop */
+/* Start: Progress Bar */
+/* line 292, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-rail {
+  direction: ltr;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  height: 40px;
+  margin: 0 10px;
+  padding-top: 10px;
+  position: relative;
+}
+
+/* line 304, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-total,
+.mejs__time-buffering,
+.mejs__time-loaded,
+.mejs__time-current,
+.mejs__time-float,
+.mejs__time-hovered,
+.mejs__time-float-current,
+.mejs__time-float-corner,
+.mejs__time-marker {
+  border-radius: 2px;
+  cursor: pointer;
+  display: block;
+  height: 10px;
+  position: absolute;
+}
+
+/* line 320, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-total {
+  background: rgba(255, 255, 255, 0.3);
+  margin: 5px 0 0;
+  width: 100%;
+}
+
+/* line 326, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-buffering {
+  -webkit-animation: buffering-stripes 2s linear infinite;
+  animation: buffering-stripes 2s linear infinite;
+  background: -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+  background: linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.4) 75%, transparent 75%, transparent);
+  background-size: 15px 15px;
+  width: 100%;
+}
+
+@-webkit-keyframes buffering-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 30px 0;
+  }
+}
+@keyframes buffering-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 30px 0;
+  }
+}
+/* line 353, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-loaded {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* line 357, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-current,
+.mejs__time-handle-content {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* line 362, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-hovered {
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 10;
+}
+
+/* line 367, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-hovered.negative {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* line 371, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-current,
+.mejs__time-buffering,
+.mejs__time-loaded,
+.mejs__time-hovered {
+  left: 0;
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transition: 0.15s ease-in all;
+  transition: 0.15s ease-in all;
+  width: 100%;
+}
+
+/* line 387, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-buffering {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+/* line 393, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-hovered {
+  -webkit-transition: height 0.1s cubic-bezier(0.44, 0, 1, 1);
+  transition: height 0.1s cubic-bezier(0.44, 0, 1, 1);
+}
+
+/* line 398, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-hovered.no-hover {
+  -webkit-transform: scaleX(0) !important;
+  -ms-transform: scaleX(0) !important;
+  transform: scaleX(0) !important;
+}
+
+/* line 404, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-handle,
+.mejs__time-handle-content {
+  border: 4px solid transparent;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  z-index: 11;
+}
+
+/* line 416, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-handle-content {
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  height: 10px;
+  left: -7px;
+  top: -4px;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  width: 10px;
+}
+
+/* line 428, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-rail:hover .mejs__time-handle-content,
+.mejs__time-rail .mejs__time-handle-content:focus,
+.mejs__time-rail .mejs__time-handle-content:active {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+/* line 436, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-float {
+  background: #eee;
+  border: solid 1px #333;
+  bottom: 100%;
+  color: #111;
+  display: none;
+  height: 17px;
+  margin-bottom: 9px;
+  position: absolute;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 36px;
+}
+
+/* line 452, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-float-current {
+  display: block;
+  left: 0;
+  margin: 2px;
+  text-align: center;
+  width: 30px;
+}
+
+/* line 460, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__time-float-corner {
+  border: solid 5px #eee;
+  border-color: #eee transparent transparent;
+  border-radius: 0;
+  display: block;
+  height: 0;
+  left: 50%;
+  line-height: 0;
+  position: absolute;
+  top: 100%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 0;
+}
+
+/* line 476, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__long-video .mejs__time-float {
+  margin-left: -23px;
+  width: 64px;
+}
+
+/* line 481, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__long-video .mejs__time-float-current {
+  width: 60px;
+}
+
+/* line 485, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__broadcast {
+  color: #fff;
+  height: 10px;
+  position: absolute;
+  top: 15px;
+  width: 100%;
+}
+
+/* End: Progress Bar */
+/* Start: Fullscreen */
+/* line 496, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__fullscreen-button > button {
+  background-position: -80px 0;
+}
+
+/* line 500, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__unfullscreen > button {
+  background-position: -100px 0;
+}
+
+/* End: Fullscreen */
+/* Start: Mute/Volume */
+/* line 507, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__mute > button {
+  background-position: -60px 0;
+}
+
+/* line 511, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__unmute > button {
+  background-position: -40px 0;
+}
+
+/* line 515, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__volume-button {
+  position: relative;
+}
+
+/* line 519, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__volume-button > .mejs__volume-slider {
+  background: rgba(50, 50, 50, 0.7);
+  border-radius: 0;
+  bottom: 100%;
+  display: none;
+  height: 115px;
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 25px;
+  z-index: 1;
+}
+
+/* line 535, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__volume-button:hover {
+  border-radius: 0 0 4px 4px;
+}
+
+/* line 539, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__volume-total {
+  background: rgba(255, 255, 255, 0.5);
+  height: 100px;
+  left: 50%;
+  margin: 0;
+  position: absolute;
+  top: 8px;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 2px;
+}
+
+/* line 552, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__volume-current {
+  background: rgba(255, 255, 255, 0.9);
+  left: 0;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/* line 560, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__volume-handle {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1px;
+  cursor: ns-resize;
+  height: 6px;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 16px;
+}
+
+/* line 573, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__horizontal-volume-slider {
+  display: block;
+  height: 36px;
+  position: relative;
+  vertical-align: middle;
+  width: 56px;
+}
+
+/* line 581, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__horizontal-volume-total {
+  background: rgba(50, 50, 50, 0.8);
+  border-radius: 2px;
+  font-size: 1px;
+  height: 8px;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 16px;
+  width: 50px;
+}
+
+/* line 594, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__horizontal-volume-current {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  font-size: 1px;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* line 607, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__horizontal-volume-handle {
+  display: none;
+}
+
+/* End: Mute/Volume */
+/* Start: Track (Captions and Chapters) */
+/* line 614, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-button,
+.mejs__chapters-button {
+  position: relative;
+}
+
+/* line 619, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-button > button {
+  background-position: -140px 0;
+}
+
+/* line 623, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__chapters-button > button {
+  background-position: -180px 0;
+}
+
+/* line 627, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-button > .mejs__captions-selector,
+.mejs__chapters-button > .mejs__chapters-selector {
+  background: rgba(50, 50, 50, 0.7);
+  border: solid 1px transparent;
+  border-radius: 0;
+  bottom: 100%;
+  margin-right: -43px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 50%;
+  visibility: visible;
+  width: 86px;
+}
+
+/* line 642, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__chapters-button > .mejs__chapters-selector {
+  margin-right: -55px;
+  width: 110px;
+}
+
+/* line 647, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-selector-list,
+.mejs__chapters-selector-list {
+  list-style-type: none !important;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* line 655, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-selector-list-item,
+.mejs__chapters-selector-list-item {
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  list-style-type: none !important;
+  margin: 0 0 6px;
+  overflow: hidden;
+  padding: 0 10px;
+}
+
+/* line 666, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-selector-list-item:hover,
+.mejs__chapters-selector-list-item:hover {
+  background-color: #c8c8c8 !important;
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* line 672, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-selector-input,
+.mejs__chapters-selector-input {
+  clear: both;
+  float: left;
+  left: -1000px;
+  margin: 3px 3px 0 5px;
+  position: absolute;
+}
+
+/* line 681, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-selector-label,
+.mejs__chapters-selector-label {
+  cursor: pointer;
+  float: left;
+  font-size: 10px;
+  line-height: 15px;
+  padding: 4px 0 0;
+}
+
+/* line 690, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-selected,
+.mejs__chapters-selected {
+  color: #21f8f8;
+}
+
+/* line 695, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-translations {
+  font-size: 10px;
+  margin: 0 0 5px;
+}
+
+/* line 700, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-layer {
+  bottom: 0;
+  color: #fff;
+  font-size: 16px;
+  left: 0;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+}
+
+/* line 710, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-layer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* line 715, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-layer[lang=ar] {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+/* line 720, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-position {
+  bottom: 15px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/* line 727, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-position-hover {
+  bottom: 35px;
+}
+
+/* line 731, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__captions-text,
+.mejs__captions-text * {
+  background: rgba(20, 20, 20, 0.5);
+  box-shadow: 5px 0 0 rgba(20, 20, 20, 0.5), -5px 0 0 rgba(20, 20, 20, 0.5);
+  padding: 0;
+  white-space: pre-wrap;
+}
+
+/* line 739, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__container.mejs__hide-cues video::-webkit-media-text-track-container {
+  display: none;
+}
+
+/* End: Track (Captions and Chapters) */
+/* Start: Error */
+/* line 746, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay-error {
+  position: relative;
+}
+
+/* line 749, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__overlay-error > img {
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+/* line 755, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__cannotplay,
+.mejs__cannotplay a {
+  color: #fff;
+  font-size: 0.8em;
+}
+
+/* line 761, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__cannotplay {
+  position: relative;
+}
+
+/* line 765, /home/dujo/Documentos/Proyects/drinksforgithub/solution/drinkscitys/vendor/assets/stylesheets/mediaelementplayer.scss */
+.mejs__cannotplay p,
+.mejs__cannotplay a {
+  display: inline-block;
+  padding: 0 15px;
+  width: 100%;
+}
+
+/* End: Error */
