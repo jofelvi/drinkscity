@@ -41,10 +41,6 @@
 							<% end %>
 							<% if i==0 %>
 								<%= image_tag 'close.png', alt:'', :style => "width: 30px" %>
-								<p>Abrimos los dias</p>
-								<% store.schedules.each do |s| %>
-									<p><%= s.day_of_week %></p>
-								<% end %>
 							<% else %>
 								<%= image_tag 'open.png', alt:'', :style => "width: 30px" %>
 							<% end %>	
