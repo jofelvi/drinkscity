@@ -86,6 +86,21 @@ class Store < ApplicationRecord
 		self.save!
 	end
 
+	def check_open
+		i = 0
+		if self.schedules.length > 0
+			self.schedules.each do |s|
+				if s.day_of_week == ( I18n.l Time.now, format: :dia).titleize 
+					i = i+1
+					break
+				else
+					i=0
+				end	
+			end
+		end
+		i == 0 ? true : false
+	end
+
 	def check_status
 		now = Time.now.utc.in_time_zone("America/Santiago")
 		schedule = self.schedules.send(now.strftime('%A').downcase).last

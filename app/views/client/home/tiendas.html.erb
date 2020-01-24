@@ -30,20 +30,16 @@
 							<p class="KR" style="font-size: 16px;">
 								<%= "#{store.description} Vive la experiencia DrinksCity disfrutando los mejores y más variados  tragos junto a todos tus amigos!!" if !store.description %>
 							</p>
-							<% i = 0 %>	
-							<% store.schedules.each do |s| %>
-							 <%if s.day_of_week == (l Time.now, format: :dia).titleize %>
-								<% i=i+1 %>	
-								<% break %>
-							 <% else %>
-								<% i = 0%>	
-							 <%end %>	
-							<% end %>
-							<% if i==0 %>
+							<% if store.check_open %>	
 								<%= image_tag 'close.png', alt:'', :style => "width: 30px" %>
-							<% else %>
+								<p>Abrimos los dias</p>
+								<% store.schedules.each do |s| %>
+									<p><%= s.day_of_week %></p>
+								<% end %>
+							<%else %>
 								<%= image_tag 'open.png', alt:'', :style => "width: 30px" %>
-							<% end %>	
+							<% end %>
+							
 						</div>
 					</div>
 					<%= image_tag 'linea.png', height:"2", style:"width: 100%;" %>
