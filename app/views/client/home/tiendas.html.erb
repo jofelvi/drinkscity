@@ -32,6 +32,12 @@
 							</p>
 							<% if store.check_open %>	
 								<p>Cerrado</p>
+								<% if store.schedules.length>0 %>
+									<p>Abrimos los dias</p>	
+									<% store.schedules.each do |s| %>
+										<p><%= s.day_of_week %></p>
+									<% end %>
+								<% end %>
 							<%else %>
 								<p>Abierto</p>
 							<% end %>
