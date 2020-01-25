@@ -32,10 +32,8 @@
 							</p>
 							<% if store.check_open %>	
 								<%= image_tag 'close.png', alt:'', :style => "width: 30px" %>
-								<% if store.schedules %>
-									<p>Abrimos el dia</p>	
-								    <%=store.check_open %>		
-								<% end %>
+								<p>Abrimos el dia</p>	
+								<%=store.check_open %>		
 							<% else %>
 								<%= image_tag 'open.png', alt:'', :style => "width: 30px" %>
 							<% end %>
