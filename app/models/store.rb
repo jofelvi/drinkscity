@@ -88,17 +88,88 @@ class Store < ApplicationRecord
 
 	def check_open
 		i = 0
+		day = 0
+		distance = 0
 		if self.schedules.length > 0
-			self.schedules.each do |s|
-				if s.day_of_week == ( I18n.l Time.now, format: :dia).titleize 
+			self.schedules.each do |schedule|
+				if schedule.day_of_week == ( I18n.l Time.now, format: :dia).titleize 
 					i = i+1
 					break
 				else
-					i=0
+					tempday = 0
+					temp = 0
+					if day == 0
+						day = get_next_open_day( schedule.day_of_week)
+						today = get_next_open_day(( I18n.l Time.now, format: :dia).titleize )
+						if today > day
+							distance= today-day
+						else
+							distance= day-today
+						end
+					else
+						tempday = get_next_open_day( schedule.day_of_week)
+						today = get_next_open_day(( I18n.l Time.now, format: :dia).titleize )
+						if today > tempday
+							temp= today-tempday
+							if distance <  temp
+								distance = temp
+								day =tempday
+							end
+						else
+							temp = tempday-today
+							if temp < distance
+								distance = temp 
+								day =tempday
+							end
+						end
+						
+					end
+					
 				end	
 			end
 		end
-		i == 0 ? true : false
+		i == 0 ?  convert_int_to_day(day) : false
+	end
+
+
+	def get_next_open_day(day)
+		case day
+			when "Lunes"
+				day_of_week = 1							
+			when "Martes"
+				day_of_week = 2
+			when "Miercoles"
+				day_of_week = 3
+			when "Jueves"
+				day_of_week = 4
+			when "Viernes"
+				day_of_week = 5
+			when "Sabado"
+				day_of_week = 6
+			when "Domingo"
+				day_of_week = 7
+		end
+		return day_of_week
+	end
+
+	def convert_int_to_day(day)
+		case day
+		when 1
+			day_of_week = "Lunes"							
+		when 2
+			day_of_week = "Martes"
+		when 3
+			day_of_week = "Miercoles"
+		when 4
+			day_of_week = "Jueves"
+		when 5
+			day_of_week = "Viernes"
+		when 6
+			day_of_week = "Sabado"
+		when 7
+			day_of_week = "Domingo"
+	end
+	return day_of_week
 	end
 
 	def check_status
