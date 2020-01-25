@@ -90,7 +90,7 @@ class Store < ApplicationRecord
 		i = 0
 		day = 0
 		distance = 0
-		if self.schedules.length > 0
+		if self.schedules
 			self.schedules.each do |schedule|
 				if schedule.day_of_week == ( I18n.l Time.now, format: :dia).titleize 
 					i = i+1
