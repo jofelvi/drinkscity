@@ -87,52 +87,54 @@ class Store < ApplicationRecord
 	end
 
 	def check_open
-		i = 0
-		day = 0
-		distance = 0
+		days=[]
 		if self.schedules
 			self.schedules.each do |schedule|
 				if schedule.day_of_week == ( I18n.l Time.now, format: :dia).titleize 
-					i = i+1
-					break
-				else
-					tempday = 0
-					temp = 0
-					if day == 0
-						day = get_next_open_day( schedule.day_of_week)
-						today = get_next_open_day(( I18n.l Time.now, format: :dia).titleize )
-						if today > day
-							distance= today-day
-						else
-							distance= day-today
-						end
-					else
-						tempday = get_next_open_day( schedule.day_of_week)
-						today = get_next_open_day(( I18n.l Time.now, format: :dia).titleize )
-						if today > tempday
-							temp= today-tempday
-							if distance <  temp
-								distance = temp
-								day =tempday
-							end
-						else
-							temp = tempday-today
-							if temp < distance
-								distance = temp 
-								day =tempday
-							end
-						end
-						
-					end
-					
-				end	
+					days << schedule.day_of_week
+				end
 			end
 		end
-		i == 0 ?  convert_int_to_day(day) : false
+		if days.length>0
+			true
+		else
+			false
+		end
+	end
+
+	def get_lastday_open
+		days=[]
+		today = convert_day_to_number(( I18n.l Time.now, format: :dia).titleize )
+		d=0
+		if self.schedules
+			self.schedules.each do |schedule|
+				days << convert_day_to_number(schedule.day_of_week)	
+			end
+			for day in days 
+				if d =0
+					d = day-today
+					day_open = convert_number_to_day(day)
+				else
+					temp = day-today
+					if d > 0 
+						if temp < d
+							d =temp
+							day_open = convert_number_to_day(day) 
+						end
+					else
+						if temp > d
+							d = temp
+							day_open = convert_number_to_day(day) 
+						end
+					end
+				end
+			end
+			return day_open
+		end
 	end
 
 
-	def get_next_open_day(day)
+	def convert_day_to_number(day)
 		case day
 			when "Lunes"
 				day_of_week = 1							
@@ -152,7 +154,7 @@ class Store < ApplicationRecord
 		return day_of_week
 	end
 
-	def convert_int_to_day(day)
+	def convert_number_to_day(day)
 		case day
 		when 1
 			day_of_week = "Lunes"							
