@@ -34,7 +34,10 @@
 								<%= image_tag 'open.png', alt:'', :style => "width: 30px" %>
 							<% else %>
 								<%= image_tag 'close.png', alt:'', :style => "width: 30px" %>
-								<%= store.get_lastday_open%>
+								<% if store.schedules.length>0 %>
+									<br>
+									<p>Abrimos el <%= store.get_lastday_open%></p>
+								<% end %>
 							<% end %>
 						</div>
 					</div>
